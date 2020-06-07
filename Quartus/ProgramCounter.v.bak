@@ -1,0 +1,10 @@
+module main(CLK);
+	input CLK;
+	output [3:0]count;
+
+	always @(posedge CLK or posedge RESET)
+	begin
+		
+		
+	end
+endmodule

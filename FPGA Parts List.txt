@@ -1,0 +1,2 @@
+Program Counter:
+	4 bit DIP switch

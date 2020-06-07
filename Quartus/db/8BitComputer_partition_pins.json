@@ -1,0 +1,165 @@
+{
+	"partitions" : [
+		{
+			"name" : "Top",
+			"pins" : [
+				{
+					"name" : "count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "count[3]",
+					"strict" : false
+				},
+				{
+					"name" : "on",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "A_out[7]",
+					"strict" : false
+				},
+				{
+					"name" : "c_out",
+					"strict" : false
+				},
+				{
+					"name" : "en",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SUB",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[0]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[1]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[1]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[2]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[2]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[3]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[3]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[4]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[4]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[5]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[5]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[6]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[6]",
+					"strict" : false
+				},
+				{
+					"name" : "B_in[7]",
+					"strict" : false
+				},
+				{
+					"name" : "A_in[7]",
+					"strict" : false
+				},
+				{
+					"name" : "in[0]",
+					"strict" : false
+				},
+				{
+					"name" : "RESET",
+					"strict" : false
+				},
+				{
+					"name" : "in[1]",
+					"strict" : false
+				},
+				{
+					"name" : "in[2]",
+					"strict" : false
+				},
+				{
+					"name" : "in[3]",
+					"strict" : false
+				},
+				{
+					"name" : "CLK",
+					"strict" : false
+				},
+				{
+					"name" : "load",
+					"strict" : false
+				}
+			]
+		}
+	]
+}

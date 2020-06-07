@@ -1,0 +1,23 @@
+module main();
+	reg [3:0]count;
+	reg on;
+	wire [3:0] in;
+	wire CLK;
+	wire RESET;
+	wire load;
+	wire en;
+
+
+	
+
+	ProgramCounter ProgramCounter_1 (
+												.count,
+												.on,
+												.in,
+												.CLK,
+												.RESET,
+												.load,
+												.en
+	);
+	
+endmodule

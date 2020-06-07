@@ -1,0 +1,27 @@
+
+
+Clock: https://www.ti.com/lit/ds/symlink/lm555.pdf
+https://www.ti.com/lit/ds/symlink/sn74221.pdf?&ts=1590108271793 is another option (dual monostable multivibrator)
+
+
+Program counter: https://www.ti.com/lit/ds/symlink/sn74f161a.pdf
+
+Bus: https://www.ti.com/lit/ds/symlink/sn74lvch245a.pdf?&ts=1589966468221 (bidirectional, $0.94 e.)
+	(74ls244 should also work) ($0.90 e.)
+	https://www.ti.com/lit/ds/symlink/sn74abt541b.pdf (*****) used in multisim ($1.23 e.)
+
+This is a bidrectional bus with OE and switches for whether we're inputting or outputting, recommend checking it out:
+http://ltodi.est.ips.pt/lab-dee-et/datasheets/TTL/74189.pdf (****MAX 3.6 V, IDEAL 3.3 V, NOT 5V, also obsolete)
+Maybe better: https://www.ti.com/lit/ds/symlink/sn74ls652.pdf (652 is 3-state and true logic, try for this) ($9)
+
+Flipflops: https://www.ti.com/lit/ds/symlink/sn74ls273.pdf
+https://www.ti.com/lit/ds/symlink/sn54173.pdf
+
+https://www.ti.com/lit/ds/symlink/sn74hc574.pdf?&ts=1590131666320 (octal D-flip flops with 3-state output)*
+
+MAR: http://ltodi.est.ips.pt/lab-dee-et/datasheets/TTL/74189.pdf
+
+Register: https://www.ti.com/lit/ds/symlink/sn74ls652.pdf (652 is 3-state and true logic, try for this, but it's $9, consider price of others)
+http://ltodi.est.ips.pt/lab-dee-et/datasheets/TTL/74189.pdf (****MAX 3.6 V, IDEAL 3.3 V, NOT 5V)
+
+ALU: https://www.ti.com/lit/ds/sdls136/sdls136.pdf
