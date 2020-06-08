@@ -24,131 +24,27 @@
 					"strict" : false
 				},
 				{
-					"name" : "A_out[0]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[1]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[2]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[3]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[4]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[5]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[6]",
-					"strict" : false
-				},
-				{
-					"name" : "A_out[7]",
-					"strict" : false
-				},
-				{
-					"name" : "c_out",
-					"strict" : false
-				},
-				{
 					"name" : "en",
 					"strict" : false
 				},
 				{
-					"name" : "B_in[0]",
+					"name" : "HLT",
 					"strict" : false
 				},
 				{
-					"name" : "SUB",
+					"name" : "sel[3]",
 					"strict" : false
 				},
 				{
-					"name" : "A_in[0]",
+					"name" : "sel[0]",
 					"strict" : false
 				},
 				{
-					"name" : "B_in[1]",
+					"name" : "sel[1]",
 					"strict" : false
 				},
 				{
-					"name" : "A_in[1]",
-					"strict" : false
-				},
-				{
-					"name" : "B_in[2]",
-					"strict" : false
-				},
-				{
-					"name" : "A_in[2]",
-					"strict" : false
-				},
-				{
-					"name" : "B_in[3]",
-					"strict" : false
-				},
-				{
-					"name" : "A_in[3]",
-					"strict" : false
-				},
-				{
-					"name" : "B_in[4]",
-					"strict" : false
-				},
-				{
-					"name" : "A_in[4]",
-					"strict" : false
-				},
-				{
-					"name" : "B_in[5]",
-					"strict" : false
-				},
-				{
-					"name" : "A_in[5]",
-					"strict" : false
-				},
-				{
-					"name" : "B_in[6]",
-					"strict" : false
-				},
-				{
-					"name" : "A_in[6]",
-					"strict" : false
-				},
-				{
-					"name" : "B_in[7]",
-					"strict" : false
-				},
-				{
-					"name" : "A_in[7]",
-					"strict" : false
-				},
-				{
-					"name" : "in[0]",
-					"strict" : false
-				},
-				{
-					"name" : "RESET",
-					"strict" : false
-				},
-				{
-					"name" : "in[1]",
-					"strict" : false
-				},
-				{
-					"name" : "in[2]",
-					"strict" : false
-				},
-				{
-					"name" : "in[3]",
+					"name" : "sel[2]",
 					"strict" : false
 				},
 				{
@@ -156,7 +52,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "load",
+					"name" : "RESET",
+					"strict" : false
+				},
+				{
+					"name" : "OE",
+					"strict" : false
+				},
+				{
+					"name" : "go",
+					"strict" : false
+				},
+				{
+					"name" : "WE",
 					"strict" : false
 				}
 			]

@@ -2,8 +2,7 @@ module AddSubtract	(output reg [7:0]A_out,
 							 output reg c_out,
 							 input wire [7:0] A_in,
 							 input wire [7:0] B_in,
-							 input wire SUB,
-							 input wire OE);	//output enable
+							 input wire SUB,OE,CLK);	//Subtract,output enable,clock
 			
 	reg [7:0] TB; 
 	reg qOE;
