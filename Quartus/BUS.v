@@ -6,10 +6,10 @@ module BUS	(output reg [7:0] Bus_out,
 
 	always @(OE or WE) begin
 		if (WE) begin
-			Bus_data <= Bus_in;		//write to bus
-			Bus_out <= 8'b00000000;
-		end else if (OE) begin		//read from bus
-			Bus_out <= Bus_data;
+			Bus_data <= Bus_in;		// Read module data
+			Bus_out <= Bus_data;		//	write from module to bus
+		end else if (OE) begin		
+			Bus_out <= Bus_data;		//	Display bus values in output
 		end
 	end
 endmodule
