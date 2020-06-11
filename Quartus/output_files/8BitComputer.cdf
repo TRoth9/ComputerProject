@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE22F17) Path("C:/Users/Tom/Documents/Drive/8bit Computer/Quartus/output_files/") File("8BitComputer.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE22F17) Path("/home/tom/Documents/8bit Computer/Quartus/output_files/") File("8BitComputer.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

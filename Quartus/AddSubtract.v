@@ -5,16 +5,18 @@ module AddSubtract	(output reg [7:0]ALU_out,
 			
 	reg [7:0]TB; 
 	reg [7:0]ALU_data;
-	
+		
 	always @(ALU_out or Acc_in or Breg_in or SUB) begin
+		TB = ~Breg_in+1;						// Two's complement for subtraction
+		
 		if (SUB) begin
-			TB <= ~Breg_in+1;						// Two's complement for subtraction
 			ALU_data <= Acc_in + $signed(TB);
 		end else begin
 			ALU_data <= Acc_in + Breg_in;
 		end
-		
-		if (OE) ALU_out <= ALU_data;			// output to bus
 	end
 	
+	always @(posedge CLK) begin
+			if (OE) ALU_out <= ALU_data;			// output to bus
+	end
 endmodule

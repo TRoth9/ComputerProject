@@ -1,15 +1,12 @@
-module BUS	(output reg [7:0] Bus_out,
+module BUS	(output [7:0] Bus_out,
 				 input wire [7:0] Bus_in,
-				 input wire OE,WE);
+				 input wire WE);
 
 	reg [7:0] Bus_data;
 
-	always @(OE or WE) begin
-		if (WE) begin
-			Bus_data <= Bus_in;		// Read module data
-			Bus_out <= Bus_data;		//	write from module to bus
-		end else if (OE) begin		
-			Bus_out <= Bus_data;		//	Display bus values in output
-		end
+	assign Bus_out = Bus_data;
+	
+	always @(WE or Bus_data or Bus_in) begin
+		if (WE) Bus_data <= Bus_in;		// Read from module or programmer
 	end
 endmodule

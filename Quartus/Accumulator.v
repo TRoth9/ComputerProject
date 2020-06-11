@@ -10,10 +10,8 @@ module Accumulator	(output reg [7:0]Acc_out,
 					Acc <= 8'b00000000;
 					Acc_out <= 8'b00000000;
 				end					
-				else if (load) Acc <= Acc_in;	// load from programmer
-				
-				if (WE & ~load) begin
-					Acc <= Acc_in;					// read from bus, not loading
+				else if (WE & ~load) begin
+					Acc <= Acc_in;					// read from bus, load from programmer
 				end
 				else if (OE) begin
 					Acc_out <= Acc;				// write to bus

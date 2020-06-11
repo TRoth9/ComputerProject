@@ -4,6 +4,22 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "count[0]",
+					"strict" : false
+				},
+				{
+					"name" : "count[1]",
+					"strict" : false
+				},
+				{
+					"name" : "count[2]",
+					"strict" : false
+				},
+				{
+					"name" : "count[3]",
+					"strict" : false
+				},
+				{
 					"name" : "on",
 					"strict" : false
 				},
@@ -40,31 +56,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "en",
-					"strict" : false
-				},
-				{
-					"name" : "sel[2]",
-					"strict" : false
-				},
-				{
-					"name" : "sel[3]",
-					"strict" : false
-				},
-				{
 					"name" : "HLT",
-					"strict" : false
-				},
-				{
-					"name" : "sel[1]",
-					"strict" : false
-				},
-				{
-					"name" : "sel[0]",
-					"strict" : false
-				},
-				{
-					"name" : "CLK",
 					"strict" : false
 				},
 				{
@@ -72,11 +64,27 @@
 					"strict" : false
 				},
 				{
-					"name" : "RESET",
+					"name" : "sel[3]",
 					"strict" : false
 				},
 				{
-					"name" : "OE",
+					"name" : "sel[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sel[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sel[0]",
+					"strict" : false
+				},
+				{
+					"name" : "en",
+					"strict" : false
+				},
+				{
+					"name" : "CLK",
 					"strict" : false
 				},
 				{
@@ -84,7 +92,31 @@
 					"strict" : false
 				},
 				{
+					"name" : "RESET",
+					"strict" : false
+				},
+				{
+					"name" : "in[4]",
+					"strict" : false
+				},
+				{
+					"name" : "OE",
+					"strict" : false
+				},
+				{
 					"name" : "load",
+					"strict" : false
+				},
+				{
+					"name" : "in[5]",
+					"strict" : false
+				},
+				{
+					"name" : "in[6]",
+					"strict" : false
+				},
+				{
+					"name" : "in[7]",
 					"strict" : false
 				},
 				{
@@ -101,22 +133,6 @@
 				},
 				{
 					"name" : "in[3]",
-					"strict" : false
-				},
-				{
-					"name" : "in[4]",
-					"strict" : false
-				},
-				{
-					"name" : "in[5]",
-					"strict" : false
-				},
-				{
-					"name" : "in[6]",
-					"strict" : false
-				},
-				{
-					"name" : "in[7]",
 					"strict" : false
 				}
 			]
