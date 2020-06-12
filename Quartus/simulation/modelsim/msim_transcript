@@ -1,0 +1,140 @@
+# do 8BitComputer_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 10.5b Lib Mapping Utility 2016.10 Oct  5 2016
+# vmap work rtl_work 
+# Modifying /home/tom/intelFPGA_lite/19.1/modelsim_ase/linuxaloem/../modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v 
+# -- Compiling module ProgramCounter
+# 
+# Top level modules:
+# 	ProgramCounter
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/Accumulator.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/Accumulator.v 
+# -- Compiling module Accumulator
+# 
+# Top level modules:
+# 	Accumulator
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/AddSubtract.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v 
+# -- Compiling module AddSubtract
+# 
+# Top level modules:
+# 	AddSubtract
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/BUS.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/BUS.v 
+# -- Compiling module BUS
+# 
+# Top level modules:
+# 	BUS
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/BRegister.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/BRegister.v 
+# -- Compiling module BRegister
+# 
+# Top level modules:
+# 	BRegister
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -sv -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/main.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -sv -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/main.sv 
+# -- Compiling module main
+# 
+# Top level modules:
+# 	main
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/program_tb.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 01:39:08 on Jun 12,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/program_tb.v 
+# -- Compiling module program_tb
+# 
+# Top level modules:
+# 	program_tb
+# End time: 01:39:08 on Jun 12,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  program_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" program_tb 
+# Start time: 01:39:08 on Jun 12,2020
+# Loading work.program_tb
+# Loading sv_std.std
+# Loading work.main
+# Loading work.ProgramCounter
+# Loading work.Accumulator
+# Loading work.BRegister
+# Loading work.AddSubtract
+# Loading work.BUS
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
+# sensitivity triggered
+# in[7:4] = 0000
+# and PC_in = xxxx
+# and Bus_data = xxxxxxxx
+# sensitivity triggered
+# load_PC = 0
+# in[7:4] = 0000
+# and PC_in = xxxx
+# and Bus_data = xxxxxxxx
+# PC_in = xxxx
+# sensitivity triggered
+# in[7:4] = 0000
+# and PC_in = xxxx
+# and Bus_data = xxxxxxxx
+# sensitivity triggered
+# load_PC = 0
+# in[7:4] = 0000
+# and PC_in = xxxx
+# and Bus_data = xxxx0000
+# PC_in = xxxx
+# PC_in = xxxx
+# sensitivity triggered
+# in[7:4] = 0000
+# and PC_in = xxxx
+# and Bus_data = 00010000
+# sensitivity triggered
+# load_PC = 1
+# in[7:4] = 1010
+# and PC_in = 1010
+# and Bus_data = 00010000
+# PC_in = 1010
+# sensitivity triggered
+# in[7:4] = 1010
+# and PC_in = 1010
+# and Bus_data = 00010000
+# Break key hit
+# Simulation stop requested.
+# End time: 01:39:16 on Jun 12,2020, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 1

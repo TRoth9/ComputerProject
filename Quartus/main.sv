@@ -1,21 +1,19 @@
-module main	(output reg [3:0]count,
-				 output on,
-				 input [3:0]sel, //select from 16 modules
-				 input [7:0]in,
-				 input CLK,RESET,
-				 input en,go,		//go updates inputs for our selected module
-				 input OE,WE,load,
-				 input HLT,	//halt the PC
-				 output [7:0]Bus_out,
-				 input SUB);
+module main	(
+	output 	[3:0]count,
+	output 	[7:0]Bus_out,
+	output 	on,
+	input 	[3:0]sel, //select from 16 modules
+	input 	[7:0]in,
+	input 	CLK,RESET,
+	input		en,go,		//go updates inputs for our selected module
+	input		OE,WE,load,
+	input 	HLT,	//halt the PC
+	input 	SUB
+	);
 				 
 	//NOTE:	WE has priority over OE.
-	//			RESET is synchronous	(asynchronous messes with our hierarchy, need to figure out why)
-	//instantiate each module, but use muiltiplexer to change which module we select
-	//We use one set of inputs of OE, WE (load), RESET, and store these values in D latches in each module
-	//		We might not need D latches. We only want to WE when programming and OE when we want to see data in module
-	//multiplexer selects which module, and enables the inputs for that specific module
-	//		i.e.: program counter can be enPC		
+	//			RESET is asynchronous
+	//multiplexer selects which module, and enables the inputs for that specific module	
 		
 	parameter 	PC 	=	4'b0000, //	ProgramCounter
 					Acc 	= 	4'b0001,	//	Accumulator
@@ -28,12 +26,12 @@ module main	(output reg [3:0]count,
 					OR 	=	4'b1000,	//	Output Register
 					BUS	=	4'b1001;	// Bus
 	
-	reg enPC,
-		 OE_PC,WE_PC,load_PC,
-		 OE_Acc,WE_Acc,load_Acc,
-		 OE_Breg,WE_Breg,load_Breg,
+	logic enPC,
+		 OE_PC,WE_PC,load_PC,rs_PC,
+		 OE_Acc,WE_Acc,load_Acc,rs_Acc,
+		 OE_Breg,WE_Breg,load_Breg,rs_Breg,
 		 OE_ALU,
-		 WE_Bus,load_Bus;
+		 load_Bus,rs_Bus;
 	
 	reg [7:0]Bus_data;
 	
@@ -51,81 +49,14 @@ module main	(output reg [3:0]count,
 	reg go_db;
 	wire mcount = &cnt;
 	
-	always @(go_db or sel or go or HLT) begin
-		{enPC,OE_PC,WE_PC,load_PC} = 4'b1000;
-		{OE_Acc,WE_Acc,load_Acc} = 3'b000;
-		{OE_Breg,WE_Breg,load_Breg} = 3'b000;
-		OE_ALU = 1'b0;
-		{WE_Bus,load_Bus} = 3'b000;	
-
-		if (go_db) begin									//use go_db when using 50MHz clock
-			case (sel)
-				PC		:	begin
-								enPC			<= en;		//ProgramCounter
-								OE_PC			<= OE;
-								WE_PC 		<= WE;
-								load_PC		<= load;
-							end
-				Acc	:	begin
-								OE_Acc		<= OE;
-								WE_Acc		<= WE;		// Accumulator
-								load_Acc		<= load;
-							end
-				Breg	:	begin
-								OE_Breg 		<= OE;
-								WE_Breg 		<= WE;		// B Register
-								load_Breg	<= load;
-							end
-				ALU	:	begin
-								OE_ALU		<= OE;		
-							end
-				BUS	:	begin
-								WE_Bus 		<= WE;
-								load_Bus		<= load;
-							end
-			endcase
-		end
-		else if (HLT) begin
-			//Disable everything, counter stopped
-			{enPC,OE_PC,WE_PC,load_PC} <= 4'b0000;
-			{OE_Acc,WE_Acc,load_Acc} <= 3'b000;
-			{OE_Breg,WE_Breg,load_Breg} <= 3'b000;
-			OE_ALU <= 1'b0;
-			{OE_Bus,WE_Bus,load_Bus} <= 3'b000;
-		end	
-	end
-	
-	always @(posedge CLK) begin	
-		if (go_db == go) cnt <= 0;
-		else begin
-			cnt <= cnt+1;
-			if (mcount) go_db <= ~go_db;
-		end
-		
-		// At the moment, we trust the user to not set multiple modules to write to the bus
-		if 		(WE_PC)		PC_in = Bus_data[7:4]; 			// read 4 MSBs from bus
-		else if	(OE_PC)		Bus_data = {PC_out,4'b0000}; 	// output to bus
-		else if	(load_PC)	PC_in = in[7:4];					// read from programmer
-		
-		if 		(WE_Acc)		Acc_in = Bus_data;
-		else if	(OE_Acc)		Bus_data = Acc_out;
-		else if	(load_Acc)	Acc_in = in;
-		
-		if 		(WE_Breg)	Breg_in = Bus_data;
-		else if	(OE_Breg)	Bus_data = Breg_out;
-		else if	(load_Breg)	Breg_in = in;
-		
-		if 		(load_Bus)				Bus_in = in;			// programming bus
-		else if	(Bus_in != Bus_data)	Bus_in = Bus_data;	// outputting module data
-	end
-		
 	ProgramCounter ProgramCounter_1 (
-			.counter	( count	),
+			.count	( count	),
 			.PC_out	( PC_out	),
 			.on		( on		),
 			.PC_in	( PC_in	),
 			.CLK		( CLK		),
-			.RESET	( RESET	),
+			.RESET	( rs_PC	),
+			.load		( load_PC),
 			.WE		( WE_PC	),
 			.OE		( OE_PC	),
 			.en		( enPC	) //enables counter
@@ -138,7 +69,7 @@ module main	(output reg [3:0]count,
 			.WE			( WE_Acc		),
 			.load			( load_Acc	),
 			.CLK			( CLK			),
-			.RESET		( RESET		)
+			.RESET		( rs_Acc		)
 	);
 										 
 	BRegister	Breg_1	(
@@ -148,7 +79,7 @@ module main	(output reg [3:0]count,
 			.WE			( WE_Breg	),
 			.load			( load_Breg	),
 			.CLK			( CLK			),
-			.RESET		( RESET		)
+			.RESET		( rs_Breg	)
 	);			
 
 	AddSubtract AddSubtract_1 (
@@ -163,6 +94,90 @@ module main	(output reg [3:0]count,
 	BUS Bus_1	(
 			.Bus_out		( Bus_out	),
 			.Bus_in		( Bus_data	),
-			.WE			( WE_Bus		)
+			.CLK			( CLK			),
+			.RESET		( rs_Bus		)
 	);
+	
+	always @(go or HLT or en or OE or WE or load or RESET) begin
+//		{enPC,OE_PC,WE_PC,load_PC,rs_PC} = 5'b00000;
+//		{OE_Acc,WE_Acc,load_Acc,rs_Acc} = 4'b0000;
+//		{OE_Breg,WE_Breg,load_Breg,rs_Breg} = 4'b0000;
+//		OE_ALU = 1'b0;
+//		{load_Bus,rs_Bus} = 2'b00;	
+		$display("sensitivity triggered");
+		if (go) begin									//use go_db when using 50MHz clock
+			case (sel)
+				PC		:	begin								//ProgramCounter
+								enPC			= en;		
+								OE_PC			= OE;
+								WE_PC 		= WE;
+								load_PC		= load;
+								rs_PC			= RESET;
+							end
+				Acc	:	begin								// Accumulator
+								OE_Acc		= OE;
+								WE_Acc		= WE;
+								load_Acc		= load;
+								rs_Acc		= RESET;
+							end
+				Breg	:	begin								// B Register
+								OE_Breg 		= OE;
+								WE_Breg 		= WE;
+								load_Breg	= load;
+								rs_Breg		= RESET;
+							end
+				ALU	:	begin
+								OE_ALU		= OE;		
+							end
+				BUS	:	begin
+								load_Bus		= load;
+								rs_Bus		= RESET;
+							end
+			endcase
+			$display("load_PC = %d",load_PC);
+
+		end
+		else if (HLT) begin
+			//Disable everything, counter stopped
+			{enPC,OE_PC,WE_PC,load_PC} = 4'b0000;
+			{OE_Acc,WE_Acc,load_Acc} = 3'b000;
+			{OE_Breg,WE_Breg,load_Breg} = 3'b000;
+			OE_ALU = 1'b0;
+			{load_Bus} = 3'b000;
+		end	
+		
+		//We output to and read from bus and load on the next clock cycle
+		// At the moment, we trust the user to not set multiple modules to write to the bus
+		if 		(WE_PC)		PC_in = Bus_data[7:4]; 			// read 4 MSBs from bus
+		else if	(load_PC)	PC_in = in[7:4];					// read from programmer
+		if	(OE_PC)				Bus_data = {PC_out,4'b0000}; 			// output to bus
+
+		if 		(WE_Acc)		Acc_in = Bus_data;
+		else if	(load_Acc)	Acc_in = in;
+		if	(OE_Acc)		Bus_data = Acc_out;
+		
+		if 		(WE_Breg)	Breg_in = Bus_data;
+		else if	(load_Breg)	Breg_in = in;
+		if	(OE_Breg)	Bus_data = Breg_out;
+		
+		if 		(load_Bus)				Bus_in = in;			// programming bus
+		else if	(Bus_in != Bus_data)	Bus_in = Bus_data;	// outputting module data
+		
+		$display("in[7:4] = %b",in[7:4]);
+		$display("and PC_in = %b",PC_in);
+		$display("and Bus_data = %b",Bus_data);
+	end
+	
+	always @(posedge CLK) begin	
+		if (go_db == go) cnt <= 0;
+		else begin
+			cnt <= cnt+1;
+			if (mcount) go_db <= ~go_db;
+		end
+		
+
+		
+		//$monitor("PC = %d",count);
+	end
+
 endmodule

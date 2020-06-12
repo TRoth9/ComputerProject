@@ -5,15 +5,13 @@ module BRegister	(output reg [7:0]Breg_out,
 		
 		reg [7:0]Breg;
 		
-		always @(posedge CLK) begin
+		always @(posedge CLK or posedge RESET) begin
 				if (RESET) begin
 					Breg <= 8'b00000000;
 					Breg_out <= 8'b00000000;
 				end					
-				else if (load) Breg <= Breg_in;	// load from programmer
-				
-				if (WE & ~load) begin
-					Breg <= Breg_in;					// read from bus, not loading
+				else if (WE || load) begin
+					Breg <= Breg_in;					// read from bus or loading
 				end
 				else if (OE) begin
 					Breg_out <= Breg;				// write to bus

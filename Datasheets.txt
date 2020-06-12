@@ -1,7 +1,7 @@
 
 
-Clock: https://www.ti.com/lit/ds/symlink/lm555.pdf
-https://www.ti.com/lit/ds/symlink/sn74221.pdf?&ts=1590108271793 is another option (dual monostable multivibrator)
+Clock: https://www.ti.com/lit/ds/symlink/lm555.pdf (.43 e)
+https://www.ti.com/lit/ds/symlink/sn74221.pdf?&ts=1590108271793 is another option (dual monostable multivibrator) ($1.27 e.)
 
 
 Program counter: https://www.ti.com/lit/ds/symlink/sn74f161a.pdf

@@ -1,12 +1,9 @@
-module BUS	(output [7:0] Bus_out,
+module BUS	(output reg [7:0] Bus_out,
 				 input wire [7:0] Bus_in,
-				 input wire WE);
-
-	reg [7:0] Bus_data;
-
-	assign Bus_out = Bus_data;
+				 input wire CLK,RESET);				 
 	
-	always @(WE or Bus_data or Bus_in) begin
-		if (WE) Bus_data <= Bus_in;		// Read from module or programmer
+	always @(posedge CLK or posedge RESET) begin
+		if (RESET)	Bus_out <= 8'b00000000;
+		else			Bus_out <= Bus_in;		// Read from module or programmer
 	end
 endmodule
