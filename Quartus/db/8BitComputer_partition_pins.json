@@ -64,7 +64,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "load",
+					"name" : "WE",
 					"strict" : false
 				},
 				{
@@ -72,11 +72,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "sel[0]",
+					"name" : "sel[2]",
 					"strict" : false
 				},
 				{
-					"name" : "sel[2]",
+					"name" : "sel[0]",
 					"strict" : false
 				},
 				{
@@ -88,7 +88,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "WE",
+					"name" : "load",
 					"strict" : false
 				},
 				{
@@ -112,6 +112,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "OE",
+					"strict" : false
+				},
+				{
+					"name" : "go",
+					"strict" : false
+				},
+				{
 					"name" : "in[0]",
 					"strict" : false
 				},
@@ -125,10 +133,6 @@
 				},
 				{
 					"name" : "in[3]",
-					"strict" : false
-				},
-				{
-					"name" : "OE",
 					"strict" : false
 				}
 			]
