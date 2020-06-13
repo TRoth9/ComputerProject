@@ -9,7 +9,7 @@ module ProgramCounter	(output reg [3:0]count,
 	
 	assign on = en;
 	
-	always @(*) begin
+	always @(WE or OE or load or counter) begin
 		$display("PC_in = %b",PC_in);
 		if (WE || load)	count = PC_in;	// read from bus,load from programmer
 		else 					count = counter;
@@ -20,5 +20,6 @@ module ProgramCounter	(output reg [3:0]count,
 	always @(posedge CLK or posedge RESET) begin
 		if (RESET) 			counter = 4'b0000;
 		else if (en) 		counter = counter+1;	// Counting
-	end
+		else if (WE || load)	counter = PC_in;
+		end
 endmodule

@@ -57,8 +57,9 @@ module program_tb();
 		#50;
 		
 		go = 1'b0;
+		OE = 1'b0;
 		
-		#50;
+		#150;
 		in = 8'b10100000;			// stop counting, load from programmer
 		en = 1'b0;
 		load = 1'b1;
@@ -67,7 +68,30 @@ module program_tb();
 		
 		go = 1'b0;
 		load = 1'b0;
+		#25;
 		
+		OE = 1'b1;			// output to bus
+		go = 1'b1;
+		#100;
+
+		go = 1'b0;
+		OE = 1'b0;
+		#25;
+		
+		en = 1'b1;			// start counting again
+		go  = 1'b1;
+		#100;
+		
+		en = 1'b0;
+		go = 1'b0;
+		#25;
+		
+		WE = 1'b1;		// read from bus
+		go = 1'b1;
+		#100;
+		
+		go =1'b0;
+		WE = 1'b0;
 	end
 
 	always begin

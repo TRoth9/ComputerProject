@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 8BitComputer
-Fri Jun 12 01:37:29 2020
+Fri Jun 12 20:46:52 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -48,13 +48,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Jun 12 01:37:29 2020       ;
+; Analysis & Synthesis Status        ; Successful - Fri Jun 12 20:46:52 2020       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; 8BitComputer                                ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 137                                         ;
-;     Total combinational functions  ; 121                                         ;
+; Total logic elements               ; 119                                         ;
+;     Total combinational functions  ; 103                                         ;
 ;     Dedicated logic registers      ; 44                                          ;
 ; Total registers                    ; 44                                          ;
 ; Total pins                         ; 34                                          ;
@@ -188,16 +188,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 137       ;
+; Estimated Total logic elements              ; 119       ;
 ;                                             ;           ;
-; Total combinational functions               ; 121       ;
+; Total combinational functions               ; 103       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 41        ;
-;     -- 3 input functions                    ; 67        ;
-;     -- <=2 input functions                  ; 13        ;
+;     -- 4 input functions                    ; 34        ;
+;     -- 3 input functions                    ; 63        ;
+;     -- <=2 input functions                  ; 6         ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 121       ;
+;     -- normal mode                          ; 103       ;
 ;     -- arithmetic mode                      ; 0         ;
 ;                                             ;           ;
 ; Total registers                             ; 44        ;
@@ -210,7 +210,7 @@ https://fpgasoftware.intel.com/eula.
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
 ; Maximum fan-out                             ; 44        ;
-; Total fan-out                               ; 602       ;
+; Total fan-out                               ; 555       ;
 ; Average fan-out                             ; 2.58      ;
 +---------------------------------------------+-----------+
 
@@ -220,11 +220,11 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node           ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name    ; Library Name ;
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
-; |main                                ; 121 (103)           ; 44 (0)                    ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |main                                 ; main           ; work         ;
+; |main                                ; 103 (86)            ; 44 (0)                    ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |main                                 ; main           ; work         ;
 ;    |Accumulator:Accumulator_1|       ; 2 (2)               ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|Accumulator:Accumulator_1       ; Accumulator    ; work         ;
 ;    |BRegister:Breg_1|                ; 2 (2)               ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|BRegister:Breg_1                ; BRegister      ; work         ;
 ;    |BUS:Bus_1|                       ; 0 (0)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|BUS:Bus_1                       ; BUS            ; work         ;
-;    |ProgramCounter:ProgramCounter_1| ; 14 (14)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|ProgramCounter:ProgramCounter_1 ; ProgramCounter ; work         ;
+;    |ProgramCounter:ProgramCounter_1| ; 13 (13)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|ProgramCounter:ProgramCounter_1 ; ProgramCounter ; work         ;
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -235,35 +235,36 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Latch Name                                          ; Latch Enable Signal                     ; Free of Timing Hazards ;
 +-----------------------------------------------------+-----------------------------------------+------------------------+
 ; PC_in[0]                                            ; ProgramCounter:ProgramCounter_1|always0 ; yes                    ;
-; load_PC                                             ; load_PC                                 ; yes                    ;
-; WE_PC                                               ; load_PC                                 ; yes                    ;
+; load_PC                                             ; Decoder0                                ; yes                    ;
+; WE_PC                                               ; Decoder0                                ; yes                    ;
 ; PC_in[1]                                            ; ProgramCounter:ProgramCounter_1|always0 ; yes                    ;
 ; PC_in[2]                                            ; ProgramCounter:ProgramCounter_1|always0 ; yes                    ;
 ; PC_in[3]                                            ; ProgramCounter:ProgramCounter_1|always0 ; yes                    ;
-; enPC                                                ; load_PC                                 ; yes                    ;
-; rs_PC                                               ; rs_PC                                   ; yes                    ;
+; enPC                                                ; Decoder0                                ; yes                    ;
+; rs_PC                                               ; Decoder0                                ; yes                    ;
 ; Bus_data[4]                                         ; Bus_data[7]                             ; yes                    ;
 ; Bus_data[5]                                         ; Bus_data[7]                             ; yes                    ;
 ; Bus_data[6]                                         ; Bus_data[7]                             ; yes                    ;
 ; Bus_data[7]                                         ; Bus_data[7]                             ; yes                    ;
 ; Bus_data[0]                                         ; Bus_data[7]                             ; yes                    ;
-; rs_Bus                                              ; rs_Bus                                  ; yes                    ;
+; rs_Bus                                              ; Decoder0                                ; yes                    ;
 ; Bus_data[1]                                         ; Bus_data[7]                             ; yes                    ;
 ; Bus_data[2]                                         ; Bus_data[7]                             ; yes                    ;
 ; Bus_data[3]                                         ; Bus_data[7]                             ; yes                    ;
+; OE_Breg                                             ; Decoder0                                ; yes                    ;
+; OE_Acc                                              ; Decoder0                                ; yes                    ;
 ; ProgramCounter:ProgramCounter_1|PC_out[0]           ; OE_PC                                   ; yes                    ;
-; OE_Acc                                              ; load_Acc                                ; yes                    ;
-; OE_Breg                                             ; load_Breg                               ; yes                    ;
-; OE_PC                                               ; load_PC                                 ; yes                    ;
+; OE_PC                                               ; Decoder0                                ; yes                    ;
+; load_Bus                                            ; Decoder0                                ; yes                    ;
 ; ProgramCounter:ProgramCounter_1|PC_out[1]           ; OE_PC                                   ; yes                    ;
 ; ProgramCounter:ProgramCounter_1|PC_out[2]           ; OE_PC                                   ; yes                    ;
 ; ProgramCounter:ProgramCounter_1|PC_out[3]           ; OE_PC                                   ; yes                    ;
-; rs_Acc                                              ; rs_Acc                                  ; yes                    ;
-; load_Acc                                            ; load_Acc                                ; yes                    ;
-; WE_Acc                                              ; load_Acc                                ; yes                    ;
-; rs_Breg                                             ; rs_Breg                                 ; yes                    ;
-; load_Breg                                           ; load_Breg                               ; yes                    ;
-; WE_Breg                                             ; load_Breg                               ; yes                    ;
+; rs_Acc                                              ; Decoder0                                ; yes                    ;
+; load_Acc                                            ; Decoder0                                ; yes                    ;
+; WE_Acc                                              ; Decoder0                                ; yes                    ;
+; rs_Breg                                             ; Decoder0                                ; yes                    ;
+; load_Breg                                           ; Decoder0                                ; yes                    ;
+; WE_Breg                                             ; Decoder0                                ; yes                    ;
 ; Acc_in[4]                                           ; Accumulator:Accumulator_1|always0       ; yes                    ;
 ; Breg_in[4]                                          ; BRegister:Breg_1|always0                ; yes                    ;
 ; Acc_in[5]                                           ; Accumulator:Accumulator_1|always0       ; yes                    ;
@@ -280,7 +281,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Breg_in[2]                                          ; BRegister:Breg_1|always0                ; yes                    ;
 ; Acc_in[3]                                           ; Accumulator:Accumulator_1|always0       ; yes                    ;
 ; Breg_in[3]                                          ; BRegister:Breg_1|always0                ; yes                    ;
-; Number of user-specified and inferred latches = 46  ;                                         ;                        ;
+; Number of user-specified and inferred latches = 47  ;                                         ;                        ;
 +-----------------------------------------------------+-----------------------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
@@ -292,7 +293,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Total registers                              ; 44    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
-; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Synchronous Load   ; 4     ;
 ; Number of registers using Asynchronous Clear ; 44    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 32    ;
@@ -305,9 +306,8 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Bus_data[2]          ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Bus_data[7]          ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |main|Breg_in[0]           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Bus_data[1]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Bus_data[7]          ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -346,16 +346,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; boundary_port         ; 34                          ;
 ; cycloneiii_ff         ; 44                          ;
-;     CLR               ; 12                          ;
+;     CLR               ; 8                           ;
+;     CLR SLD           ; 4                           ;
 ;     ENA CLR           ; 32                          ;
-; cycloneiii_lcell_comb ; 121                         ;
-;     normal            ; 121                         ;
-;         2 data inputs ; 13                          ;
-;         3 data inputs ; 67                          ;
-;         4 data inputs ; 41                          ;
+; cycloneiii_lcell_comb ; 103                         ;
+;     normal            ; 103                         ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 63                          ;
+;         4 data inputs ; 34                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 3.00                        ;
-; Average LUT depth     ; 2.07                        ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 1.84                        ;
 +-----------------------+-----------------------------+
 
 
@@ -374,7 +376,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Fri Jun 12 01:37:22 2020
+    Info: Processing started: Fri Jun 12 20:46:44 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 8BitComputer -c 8BitComputer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -393,85 +395,79 @@ Info (12021): Found 1 design units, including 1 entities, in source file BRegist
 Info (12021): Found 1 design units, including 1 entities, in source file program_tb.v
     Info (12023): Found entity 1: program_tb File: /home/tom/Documents/8bit Computer/Quartus/program_tb.v Line: 2
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10235): Verilog HDL Always Construct warning at main.sv(109): variable "sel" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 109
-Warning (10270): Verilog HDL Case Statement warning at main.sv(109): incomplete case statement has no default case item File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 109
+Warning (10270): Verilog HDL Case Statement warning at main.sv(110): incomplete case statement has no default case item File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 110
 Warning (10230): Verilog HDL assignment warning at main.sv(146): truncated value with size 3 to match size of target (1) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 146
-Warning (10235): Verilog HDL Always Construct warning at main.sv(151): variable "Bus_data" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 151
-Warning (10235): Verilog HDL Always Construct warning at main.sv(152): variable "in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
-Warning (10235): Verilog HDL Always Construct warning at main.sv(153): variable "PC_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 153
-Warning (10235): Verilog HDL Always Construct warning at main.sv(156): variable "in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Warning (10235): Verilog HDL Always Construct warning at main.sv(157): variable "Acc_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 157
-Warning (10235): Verilog HDL Always Construct warning at main.sv(160): variable "in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Warning (10235): Verilog HDL Always Construct warning at main.sv(161): variable "Breg_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Warning (10235): Verilog HDL Always Construct warning at main.sv(163): variable "in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 163
-Warning (10235): Verilog HDL Always Construct warning at main.sv(164): variable "Bus_in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 164
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "load_Bus", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "rs_Bus", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "OE_ALU", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "OE_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "WE_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "load_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "rs_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "OE_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "WE_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "load_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "rs_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "enPC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "OE_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "WE_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "load_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "rs_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "PC_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "Bus_data", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "Acc_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "Breg_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10240): Verilog HDL Always Construct warning at main.sv(101): inferring latch(es) for variable "Bus_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
-Warning (10230): Verilog HDL assignment warning at main.sv(174): truncated value with size 32 to match size of target (16) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 174
-Info (10041): Inferred latch for "Bus_data[0]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[1]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[2]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[3]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[4]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[5]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[6]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Bus_data[7]" at main.sv(161) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Info (10041): Inferred latch for "Breg_in[0]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[1]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[2]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[3]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[4]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[5]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[6]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Breg_in[7]" at main.sv(160) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
-Info (10041): Inferred latch for "Acc_in[0]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[1]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[2]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[3]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[4]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[5]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[6]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
-Info (10041): Inferred latch for "Acc_in[7]" at main.sv(156) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "load_Bus", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "rs_Bus", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "OE_ALU", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "OE_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "WE_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "load_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "rs_Breg", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "OE_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "WE_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "load_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "rs_Acc", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "enPC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "OE_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "WE_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "load_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "rs_PC", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "PC_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "Acc_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10240): Verilog HDL Always Construct warning at main.sv(108): inferring latch(es) for variable "Breg_in", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Warning (10235): Verilog HDL Always Construct warning at main.sv(175): variable "load_Bus" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 175
+Warning (10235): Verilog HDL Always Construct warning at main.sv(176): variable "OE_PC" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 176
+Warning (10235): Verilog HDL Always Construct warning at main.sv(177): variable "OE_Acc" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 177
+Warning (10235): Verilog HDL Always Construct warning at main.sv(178): variable "OE_Breg" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Warning (10240): Verilog HDL Always Construct warning at main.sv(174): inferring latch(es) for variable "Bus_data", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 174
+Info (10041): Inferred latch for "Bus_data[0]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[1]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[2]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[3]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[4]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[5]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[6]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "Bus_data[7]" at main.sv(178) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
+Info (10041): Inferred latch for "rs_PC" at main.sv(108) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Info (10041): Inferred latch for "rs_Acc" at main.sv(108) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Info (10041): Inferred latch for "rs_Breg" at main.sv(108) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Info (10041): Inferred latch for "rs_Bus" at main.sv(108) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 108
+Info (10041): Inferred latch for "Breg_in[0]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[1]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[2]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[3]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[4]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[5]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[6]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Breg_in[7]" at main.sv(158) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
+Info (10041): Inferred latch for "Acc_in[0]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[1]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[2]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[3]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[4]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[5]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[6]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
+Info (10041): Inferred latch for "Acc_in[7]" at main.sv(155) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
 Info (10041): Inferred latch for "PC_in[0]" at main.sv(152) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
 Info (10041): Inferred latch for "PC_in[1]" at main.sv(152) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
 Info (10041): Inferred latch for "PC_in[2]" at main.sv(152) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
 Info (10041): Inferred latch for "PC_in[3]" at main.sv(152) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
-Info (10041): Inferred latch for "rs_PC" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "load_Bus" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "OE_ALU" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "load_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "WE_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "OE_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "load_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "WE_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
+Info (10041): Inferred latch for "OE_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
 Info (10041): Inferred latch for "load_PC" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
 Info (10041): Inferred latch for "WE_PC" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
 Info (10041): Inferred latch for "OE_PC" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
 Info (10041): Inferred latch for "enPC" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "rs_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "load_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "WE_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "OE_Acc" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "rs_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "load_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "WE_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "OE_Breg" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "OE_ALU" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
-Info (10041): Inferred latch for "rs_Bus" at main.sv(140) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 140
 Info (12128): Elaborating entity "ProgramCounter" for hierarchy "ProgramCounter:ProgramCounter_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 63
-Warning (10240): Verilog HDL Always Construct warning at ProgramCounter.v(13): inferring latch(es) for variable "PC_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 13
+Warning (10235): Verilog HDL Always Construct warning at ProgramCounter.v(14): variable "PC_in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 14
+Warning (10240): Verilog HDL Always Construct warning at ProgramCounter.v(12): inferring latch(es) for variable "PC_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 12
 Warning (10230): Verilog HDL assignment warning at ProgramCounter.v(22): truncated value with size 32 to match size of target (4) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 22
 Info (10041): Inferred latch for "PC_out[0]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
 Info (10041): Inferred latch for "PC_out[1]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
@@ -484,94 +480,75 @@ Warning (10230): Verilog HDL assignment warning at AddSubtract.v(10): truncated 
 Info (12128): Elaborating entity "BUS" for hierarchy "BUS:Bus_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 99
 Warning (13012): Latch PC_in[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_PC File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
-Warning (13012): Latch load_PC has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch WE_PC has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
 Warning (13012): Latch PC_in[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_PC File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
 Warning (13012): Latch PC_in[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_PC File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
 Warning (13012): Latch PC_in[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_PC File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
-Warning (13012): Latch enPC has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 29
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch Bus_data[4] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[4] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[5] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[5] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[6] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[6] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[7] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[7] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Bus_data[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
+Warning (13012): Latch Bus_data[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 178
     Warning (13013): Ports D and ENA on the latch are fed by the same signal OE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch OE_Acc has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch OE_Breg has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch OE_PC has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 30
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch load_Acc has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch WE_Acc has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch load_Breg has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch WE_Breg has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal go File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
-Warning (13012): Latch Acc_in[4] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[4] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[4] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[4] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[5] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[5] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[5] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[5] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[6] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[6] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[6] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[6] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[7] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[7] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[7] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[7] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[0] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[1] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[2] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
-Warning (13012): Latch Acc_in[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 156
+Warning (13012): Latch Acc_in[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Acc File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 31
-Warning (13012): Latch Breg_in[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 160
+Warning (13012): Latch Breg_in[3] has unsafe behavior File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
     Warning (13013): Ports D and ENA on the latch are fed by the same signal WE_Breg File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 32
 Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file /home/tom/Documents/8bit Computer/Quartus/output_files/8BitComputer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "go" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 8
     Warning (15610): No output dependent on input pin "SUB" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 12
-Info (21057): Implemented 195 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 181 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 21 input pins
     Info (21059): Implemented 13 output pins
-    Info (21061): Implemented 161 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 116 warnings
-    Info: Peak virtual memory: 980 megabytes
-    Info: Processing ended: Fri Jun 12 01:37:29 2020
-    Info: Elapsed time: 00:00:07
+    Info (21061): Implemented 147 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 90 warnings
+    Info: Peak virtual memory: 977 megabytes
+    Info: Processing ended: Fri Jun 12 20:46:52 2020
+    Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:13
 
 

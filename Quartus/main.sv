@@ -98,14 +98,15 @@ module main	(
 			.RESET		( rs_Bus		)
 	);
 	
-	always @(go or HLT or en or OE or WE or load or RESET) begin
-//		{enPC,OE_PC,WE_PC,load_PC,rs_PC} = 5'b00000;
-//		{OE_Acc,WE_Acc,load_Acc,rs_Acc} = 4'b0000;
-//		{OE_Breg,WE_Breg,load_Breg,rs_Breg} = 4'b0000;
-//		OE_ALU = 1'b0;
-//		{load_Bus,rs_Bus} = 2'b00;	
+//	always @(go or HLT or en or OE or WE or load or RESET) begin
+	always @(*) begin
+		//{enPC,OE_PC,WE_PC,load_PC,rs_PC} = 5'b00000;
+		//{OE_Acc,WE_Acc,load_Acc,rs_Acc} = 4'b0000;
+		//{OE_Breg,WE_Breg,load_Breg,rs_Breg} = 4'b0000;
+		//OE_ALU = 1'b0;
+		//{load_Bus,rs_Bus} = 2'b00;	
 		$display("sensitivity triggered");
-		if (go) begin									//use go_db when using 50MHz clock
+		//if (go_db) begin									//use go_db when using 50MHz clock
 			case (sel)
 				PC		:	begin								//ProgramCounter
 								enPC			= en;		
@@ -135,9 +136,8 @@ module main	(
 							end
 			endcase
 			$display("load_PC = %d",load_PC);
-
-		end
-		else if (HLT) begin
+		//end
+		if (HLT) begin
 			//Disable everything, counter stopped
 			{enPC,OE_PC,WE_PC,load_PC} = 4'b0000;
 			{OE_Acc,WE_Acc,load_Acc} = 3'b000;
@@ -150,31 +150,44 @@ module main	(
 		// At the moment, we trust the user to not set multiple modules to write to the bus
 		if 		(WE_PC)		PC_in = Bus_data[7:4]; 			// read 4 MSBs from bus
 		else if	(load_PC)	PC_in = in[7:4];					// read from programmer
-		if	(OE_PC)				Bus_data = {PC_out,4'b0000}; 			// output to bus
 
 		if 		(WE_Acc)		Acc_in = Bus_data;
 		else if	(load_Acc)	Acc_in = in;
-		if	(OE_Acc)		Bus_data = Acc_out;
 		
 		if 		(WE_Breg)	Breg_in = Bus_data;
 		else if	(load_Breg)	Breg_in = in;
-		if	(OE_Breg)	Bus_data = Breg_out;
 		
-		if 		(load_Bus)				Bus_in = in;			// programming bus
-		else if	(Bus_in != Bus_data)	Bus_in = Bus_data;	// outputting module data
-		
-		$display("in[7:4] = %b",in[7:4]);
+		$display("WE_PC = %d",WE_PC);
+		$display("OE_PC = %d",OE_PC);
 		$display("and PC_in = %b",PC_in);
+		$display("and PC_out = %b",PC_out);		
 		$display("and Bus_data = %b",Bus_data);
 	end
 	
+	
+	//I don't think these OE blocks get executed in time to output
+	//the correct data
+	always @(PC_in or Acc_in or Breg_in or load_Bus) begin
+
+	end
+	
+	always @(in or PC_out or Acc_out or Breg_out or ALU_out) begin
+		if (load_Bus)	Bus_data = in;			// programming bus
+		if	(OE_PC)		Bus_data = {PC_out,4'b0000}; 			// output to bus
+		if	(OE_Acc)		Bus_data = Acc_out;	
+		if	(OE_Breg)	Bus_data = Breg_out;	
+	end
+	
 	always @(posedge CLK) begin	
-		if (go_db == go) cnt <= 0;
+		if (go_db != go) cnt <= 0;	// nothing happening
 		else begin
-			cnt <= cnt+1;
+			cnt <= cnt + 16'd1;
 			if (mcount) go_db <= ~go_db;
 		end
+
 		
+			
+		//else 									Bus_in = Bus_data;	// outputting module data		
 
 		
 		//$monitor("PC = %d",count);

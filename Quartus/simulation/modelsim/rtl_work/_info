@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/home/tom/Documents/8bit Computer/Quartus/simulation/modelsim
 vAccumulator
-Z1 !s110 1591951148
+Z1 !s110 1592019888
 !i10b 1
 !s100 V7NC4UbI_M]_DY]db8`4?0
 IckUN[_Y^fmUUBBf>^K0<n2
@@ -23,7 +23,7 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1591951148.000000
+Z4 !s108 1592019888.000000
 !s107 /home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !i113 1
@@ -104,13 +104,13 @@ vmain
 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 R1
 !i10b 1
-!s100 8=0O1e5@UmfM^ZcOnjDRb1
-I3Lgl=:N6cJBgzmf7V:2`E2
+!s100 h4?933dEB0l<Kb8QWHACW2
+IB7;KHj`kTAEfE_n9S[ECY1
 R2
 !s105 main_sv_unit
 S1
 R0
-w1591950987
+w1592019616
 8/home/tom/Documents/8bit Computer/Quartus/main.sv
 F/home/tom/Documents/8bit Computer/Quartus/main.sv
 L0 1
@@ -128,11 +128,11 @@ R7
 vprogram_tb
 R1
 !i10b 1
-!s100 VKZc[bNJB@67>YTz^JSTW1
-IKi9W?>mWUNTFURz`RdSRg2
+!s100 jVXddjPOCdk?D]2GQOPa53
+I7WafZF1;O<C;[Nfl3BG4h3
 R2
 R0
-w1591951039
+w1592019451
 8/home/tom/Documents/8bit Computer/Quartus/program_tb.v
 F/home/tom/Documents/8bit Computer/Quartus/program_tb.v
 L0 2
@@ -150,11 +150,11 @@ R7
 vProgramCounter
 R1
 !i10b 1
-!s100 :>Pi8FF4HgEAa;k;Tb_Xg2
-I[G>M:T];>`G7DHSe=bJ9a2
+!s100 bg;gnZ`E4B=Lz@^BhUoRa0
+IDFhZG5`9<1c<z<7RFaLPO0
 R2
 R0
-w1591950090
+w1592019867
 8/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v
 F/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v
 L0 1
