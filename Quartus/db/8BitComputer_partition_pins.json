@@ -52,6 +52,38 @@
 					"strict" : false
 				},
 				{
+					"name" : "Mem_out[0]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[1]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[2]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[3]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[4]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[5]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[6]",
+					"strict" : false
+				},
+				{
+					"name" : "Mem_out[7]",
+					"strict" : false
+				},
+				{
 					"name" : "curr[0]",
 					"strict" : false
 				},

@@ -1,6 +1,8 @@
 module main	(
 	output 	[3:0]count,
+	output	[3:0]Address,
 	output	[7:0]Bus_out,
+	output	[7:0]Mem_out,
 	output	reg[7:0]curr,
 	output 	on,
 	input 	[3:0]sel, //select from 16 modules
@@ -43,7 +45,7 @@ module main	(
 	reg [7:0]Breg_out;
 	reg [7:0]Acc_out;
 	reg [7:0]ALU_out;
-	reg [7:0]Mem_out;
+	//reg [7:0]Mem_out;
 
 	reg [3:0]PC_in;
 	reg [3:0]MAR_in;
@@ -81,7 +83,7 @@ module main	(
 			.RESET		( rs_Acc		)
 	);
 										 
-	BRegister	Breg_1	(
+	BRegister Breg_1	(
 			.Breg_out	( Breg_out	),
 			.Breg_in		( Breg_in	),
 			.OE			( OE_Breg	),

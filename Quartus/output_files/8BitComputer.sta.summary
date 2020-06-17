@@ -3,243 +3,243 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'CLK'
-Slack : -3.970
-TNS   : -185.775
-
-Type  : Slow 1200mV 85C Model Setup 'sel[2]'
-Slack : -1.609
-TNS   : -6.497
-
-Type  : Slow 1200mV 85C Model Setup 'OE_ALU'
-Slack : -0.568
-TNS   : -2.936
+Slack : -4.640
+TNS   : -201.995
 
 Type  : Slow 1200mV 85C Model Setup 'OE_PC'
-Slack : -0.542
-TNS   : -1.673
+Slack : -0.586
+TNS   : -1.704
+
+Type  : Slow 1200mV 85C Model Setup 'OE_ALU'
+Slack : -0.380
+TNS   : -1.896
 
 Type  : Slow 1200mV 85C Model Setup 'OE_Breg'
-Slack : -0.366
-TNS   : -2.738
+Slack : -0.127
+TNS   : -0.924
 
 Type  : Slow 1200mV 85C Model Setup 'OE_Acc'
-Slack : -0.313
-TNS   : -2.369
+Slack : -0.005
+TNS   : -0.011
 
-Type  : Slow 1200mV 85C Model Hold 'OE_ALU'
-Slack : 0.075
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'OE_PC'
-Slack : 0.120
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'sel[2]'
-Slack : 0.157
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'OE_Acc'
-Slack : 0.216
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Hold 'OE_Breg'
-Slack : 0.271
+Type  : Slow 1200mV 85C Model Setup 'Mem:Mem_1|Memory.we_a'
+Slack : 0.295
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'CLK'
-Slack : 0.357
+Slack : -2.007
+TNS   : -2.007
+
+Type  : Slow 1200mV 85C Model Hold 'Mem:Mem_1|Memory.we_a'
+Slack : -0.305
+TNS   : -2.382
+
+Type  : Slow 1200mV 85C Model Hold 'OE_Acc'
+Slack : -0.088
+TNS   : -0.691
+
+Type  : Slow 1200mV 85C Model Hold 'OE_ALU'
+Slack : -0.040
+TNS   : -0.189
+
+Type  : Slow 1200mV 85C Model Hold 'OE_Breg'
+Slack : 0.048
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'OE_PC'
+Slack : 0.148
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Recovery 'CLK'
-Slack : -0.719
-TNS   : -11.751
+Slack : -0.629
+TNS   : -12.218
 
 Type  : Slow 1200mV 85C Model Removal 'CLK'
-Slack : 0.834
+Slack : 0.496
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -99.000
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'sel[2]'
-Slack : -3.000
-TNS   : -3.000
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_Acc'
-Slack : 0.425
-TNS   : 0.000
-
-Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_ALU'
-Slack : 0.430
-TNS   : 0.000
+TNS   : -128.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_PC'
-Slack : 0.434
+Slack : 0.364
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_Breg'
-Slack : 0.459
+Slack : 0.390
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'Mem:Mem_1|Memory.we_a'
+Slack : 0.396
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_Acc'
+Slack : 0.424
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_ALU'
+Slack : 0.454
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'CLK'
-Slack : -3.474
-TNS   : -160.700
-
-Type  : Slow 1200mV 0C Model Setup 'sel[2]'
-Slack : -1.409
-TNS   : -5.410
-
-Type  : Slow 1200mV 0C Model Setup 'OE_ALU'
-Slack : -0.484
-TNS   : -2.489
+Slack : -4.043
+TNS   : -170.250
 
 Type  : Slow 1200mV 0C Model Setup 'OE_PC'
-Slack : -0.465
-TNS   : -1.420
+Slack : -0.534
+TNS   : -1.550
+
+Type  : Slow 1200mV 0C Model Setup 'OE_ALU'
+Slack : -0.329
+TNS   : -1.575
 
 Type  : Slow 1200mV 0C Model Setup 'OE_Breg'
-Slack : -0.334
-TNS   : -2.516
+Slack : -0.093
+TNS   : -0.651
 
 Type  : Slow 1200mV 0C Model Setup 'OE_Acc'
-Slack : -0.285
-TNS   : -2.155
-
-Type  : Slow 1200mV 0C Model Hold 'OE_ALU'
-Slack : 0.163
+Slack : 0.009
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'sel[2]'
-Slack : 0.182
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'OE_PC'
-Slack : 0.205
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Hold 'OE_Acc'
-Slack : 0.297
+Type  : Slow 1200mV 0C Model Setup 'Mem:Mem_1|Memory.we_a'
+Slack : 0.359
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'CLK'
-Slack : 0.311
+Slack : -1.825
+TNS   : -1.825
+
+Type  : Slow 1200mV 0C Model Hold 'Mem:Mem_1|Memory.we_a'
+Slack : -0.277
+TNS   : -2.159
+
+Type  : Slow 1200mV 0C Model Hold 'OE_Acc'
+Slack : 0.006
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'OE_ALU'
+Slack : 0.061
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'OE_Breg'
-Slack : 0.351
+Slack : 0.120
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'OE_PC'
+Slack : 0.265
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Recovery 'CLK'
-Slack : -0.526
-TNS   : -7.569
+Slack : -0.457
+TNS   : -7.882
 
 Type  : Slow 1200mV 0C Model Removal 'CLK'
-Slack : 0.743
+Slack : 0.443
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -99.000
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sel[2]'
-Slack : -3.000
-TNS   : -3.000
+TNS   : -128.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_Breg'
-Slack : 0.460
-TNS   : 0.000
-
-Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_ALU'
-Slack : 0.464
+Slack : 0.425
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_PC'
-Slack : 0.472
+Slack : 0.426
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'Mem:Mem_1|Memory.we_a'
+Slack : 0.449
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_Acc'
-Slack : 0.475
+Slack : 0.462
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_ALU'
+Slack : 0.476
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'CLK'
-Slack : -2.193
-TNS   : -82.885
-
-Type  : Fast 1200mV 0C Model Setup 'sel[2]'
-Slack : -0.768
-TNS   : -2.217
-
-Type  : Fast 1200mV 0C Model Setup 'OE_ALU'
-Slack : -0.014
-TNS   : -0.014
+Slack : -2.245
+TNS   : -68.432
 
 Type  : Fast 1200mV 0C Model Setup 'OE_PC'
-Slack : 0.010
+Slack : -0.023
+TNS   : -0.023
+
+Type  : Fast 1200mV 0C Model Setup 'OE_ALU'
+Slack : 0.125
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'OE_Breg'
-Slack : 0.111
+Slack : 0.274
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'OE_Acc'
-Slack : 0.140
+Slack : 0.344
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Hold 'OE_ALU'
-Slack : 0.124
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Hold 'OE_PC'
-Slack : 0.148
+Type  : Fast 1200mV 0C Model Setup 'Mem:Mem_1|Memory.we_a'
+Slack : 0.631
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'CLK'
-Slack : 0.186
-TNS   : 0.000
+Slack : -1.158
+TNS   : -1.161
+
+Type  : Fast 1200mV 0C Model Hold 'Mem:Mem_1|Memory.we_a'
+Slack : -0.232
+TNS   : -1.817
 
 Type  : Fast 1200mV 0C Model Hold 'OE_Acc'
-Slack : 0.212
+Slack : 0.009
 TNS   : 0.000
 
-Type  : Fast 1200mV 0C Model Hold 'sel[2]'
-Slack : 0.237
+Type  : Fast 1200mV 0C Model Hold 'OE_ALU'
+Slack : 0.049
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'OE_Breg'
-Slack : 0.239
+Slack : 0.086
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'OE_PC'
+Slack : 0.158
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Recovery 'CLK'
-Slack : 0.010
+Slack : 0.057
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Removal 'CLK'
-Slack : 0.467
+Slack : 0.282
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -104.510
+TNS   : -135.443
 
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sel[2]'
-Slack : -3.000
-TNS   : -3.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_ALU'
-Slack : 0.382
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_PC'
-Slack : 0.386
-TNS   : 0.000
-
-Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_Acc'
-Slack : 0.392
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'Mem:Mem_1|Memory.we_a'
+Slack : 0.351
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_Breg'
-Slack : 0.401
+Slack : 0.351
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_PC'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_Acc'
+Slack : 0.360
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_ALU'
+Slack : 0.376
 TNS   : 0.000
 
 ------------------------------------------------------------

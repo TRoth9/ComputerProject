@@ -8,7 +8,9 @@ module Mem	(output reg [7:0]Mem_out,
 				 
 	always @(posedge CLK or posedge RESET) begin
 		if 		(RESET) 			Memory[Address] = 8'b00000000;
-		else if 	(WE || load) 	Memory[Address] = Mem_in;
+		else if 	(WE || load) begin
+			Memory[Address] = Mem_in;
+		end
 		else if 	(OE)				Mem_out = Memory[Address];
 	end
 endmodule

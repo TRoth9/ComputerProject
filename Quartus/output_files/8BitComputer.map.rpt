@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 8BitComputer
-Wed Jun 17 03:34:04 2020
+Wed Jun 17 03:49:22 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -23,6 +23,7 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
  15. Post-Synthesis Netlist Statistics for Top Partition
  16. Elapsed Time Per Partition
  17. Analysis & Synthesis Messages
+ 18. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -49,7 +50,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Jun 17 03:34:03 2020       ;
+; Analysis & Synthesis Status        ; Successful - Wed Jun 17 03:49:22 2020       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; 8BitComputer                                ;
 ; Top-level Entity Name              ; main                                        ;
@@ -58,7 +59,7 @@ https://fpgasoftware.intel.com/eula.
 ;     Total combinational functions  ; 219                                         ;
 ;     Dedicated logic registers      ; 125                                         ;
 ; Total registers                    ; 125                                         ;
-; Total pins                         ; 42                                          ;
+; Total pins                         ; 54                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -165,8 +166,8 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.1%      ;
-;     Processors 3-4         ;   0.1%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -207,14 +208,14 @@ https://fpgasoftware.intel.com/eula.
 ;     -- Dedicated logic registers            ; 125       ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 42        ;
+; I/O pins                                    ; 54        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
 ; Maximum fan-out                             ; 125       ;
-; Total fan-out                               ; 1131      ;
-; Average fan-out                             ; 2.64      ;
+; Total fan-out                               ; 1151      ;
+; Average fan-out                             ; 2.55      ;
 +---------------------------------------------+-----------+
 
 
@@ -223,7 +224,7 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node           ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name    ; Library Name ;
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
-; |main                                ; 219 (153)           ; 125 (72)                  ; 0           ; 0            ; 0       ; 0         ; 42   ; 0            ; |main                                 ; main           ; work         ;
+; |main                                ; 219 (153)           ; 125 (72)                  ; 0           ; 0            ; 0       ; 0         ; 54   ; 0            ; |main                                 ; main           ; work         ;
 ;    |Accumulator:Accumulator_1|       ; 9 (9)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|Accumulator:Accumulator_1       ; Accumulator    ; work         ;
 ;    |AddSubtract:AddSubtract_1|       ; 25 (25)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|AddSubtract:AddSubtract_1       ; AddSubtract    ; work         ;
 ;    |BRegister:Breg_1|                ; 9 (9)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|BRegister:Breg_1                ; BRegister      ; work         ;
@@ -375,7 +376,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 42                          ;
+; boundary_port         ; 54                          ;
 ; cycloneiii_ff         ; 125                         ;
 ;     CLR               ; 17                          ;
 ;     CLR SLD           ; 4                           ;
@@ -384,18 +385,19 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     ENA SLD           ; 4                           ;
 ;     SCLR              ; 16                          ;
 ;     plain             ; 26                          ;
-; cycloneiii_lcell_comb ; 219                         ;
+; cycloneiii_lcell_comb ; 220                         ;
 ;     arith             ; 23                          ;
 ;         2 data inputs ; 16                          ;
 ;         3 data inputs ; 7                           ;
-;     normal            ; 196                         ;
+;     normal            ; 197                         ;
+;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 2                           ;
 ;         2 data inputs ; 31                          ;
 ;         3 data inputs ; 82                          ;
 ;         4 data inputs ; 81                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 7.00                        ;
-; Average LUT depth     ; 2.79                        ;
+; Average LUT depth     ; 2.78                        ;
 +-----------------------+-----------------------------+
 
 
@@ -414,7 +416,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Wed Jun 17 03:33:55 2020
+    Info: Processing started: Wed Jun 17 03:49:15 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 8BitComputer -c 8BitComputer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -439,15 +441,16 @@ Info (12021): Found 1 design units, including 1 entities, in source file Mem.v
 Info (12021): Found 1 design units, including 1 entities, in source file MAR.v
     Info (12023): Found entity 1: MemAddReg File: /home/tom/Documents/8bit Computer/Quartus/MAR.v Line: 1
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10235): Verilog HDL Always Construct warning at main.sv(152): variable "PC_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 152
-Warning (10235): Verilog HDL Always Construct warning at main.sv(155): variable "Acc_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 155
-Warning (10235): Verilog HDL Always Construct warning at main.sv(158): variable "Breg_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 158
-Warning (10235): Verilog HDL Always Construct warning at main.sv(161): variable "ALU_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 161
-Warning (10235): Verilog HDL Always Construct warning at main.sv(164): variable "MAR_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 164
-Warning (10235): Verilog HDL Always Construct warning at main.sv(167): variable "Mem_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 167
-Warning (10270): Verilog HDL Case Statement warning at main.sv(150): incomplete case statement has no default case item File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 150
-Warning (10230): Verilog HDL assignment warning at main.sv(231): truncated value with size 3 to match size of target (1) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 231
-Info (12128): Elaborating entity "ProgramCounter" for hierarchy "ProgramCounter:ProgramCounter_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 72
+Warning (10235): Verilog HDL Always Construct warning at main.sv(136): variable "PC_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 136
+Warning (10235): Verilog HDL Always Construct warning at main.sv(139): variable "Acc_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 139
+Warning (10235): Verilog HDL Always Construct warning at main.sv(142): variable "Breg_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 142
+Warning (10235): Verilog HDL Always Construct warning at main.sv(145): variable "ALU_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 145
+Warning (10235): Verilog HDL Always Construct warning at main.sv(148): variable "MAR_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 148
+Warning (10235): Verilog HDL Always Construct warning at main.sv(151): variable "Mem_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 151
+Warning (10270): Verilog HDL Case Statement warning at main.sv(134): incomplete case statement has no default case item File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 134
+Warning (10230): Verilog HDL assignment warning at main.sv(210): truncated value with size 3 to match size of target (1) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 210
+Warning (10034): Output port "Address" at main.sv(3) has no driver File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 3
+Info (12128): Elaborating entity "ProgramCounter" for hierarchy "ProgramCounter:ProgramCounter_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 74
 Warning (10235): Verilog HDL Always Construct warning at ProgramCounter.v(14): variable "PC_in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 14
 Warning (10240): Verilog HDL Always Construct warning at ProgramCounter.v(12): inferring latch(es) for variable "PC_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 12
 Warning (10230): Verilog HDL assignment warning at ProgramCounter.v(22): truncated value with size 32 to match size of target (4) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 22
@@ -455,7 +458,7 @@ Info (10041): Inferred latch for "PC_out[0]" at ProgramCounter.v(17) File: /home
 Info (10041): Inferred latch for "PC_out[1]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
 Info (10041): Inferred latch for "PC_out[2]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
 Info (10041): Inferred latch for "PC_out[3]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
-Info (12128): Elaborating entity "Accumulator" for hierarchy "Accumulator:Accumulator_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 82
+Info (12128): Elaborating entity "Accumulator" for hierarchy "Accumulator:Accumulator_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 84
 Warning (10240): Verilog HDL Always Construct warning at Accumulator.v(8): inferring latch(es) for variable "Acc_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 8
 Info (10041): Inferred latch for "Acc_out[0]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
 Info (10041): Inferred latch for "Acc_out[1]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
@@ -465,7 +468,7 @@ Info (10041): Inferred latch for "Acc_out[4]" at Accumulator.v(9) File: /home/to
 Info (10041): Inferred latch for "Acc_out[5]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
 Info (10041): Inferred latch for "Acc_out[6]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
 Info (10041): Inferred latch for "Acc_out[7]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
-Info (12128): Elaborating entity "BRegister" for hierarchy "BRegister:Breg_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 92
+Info (12128): Elaborating entity "BRegister" for hierarchy "BRegister:Breg_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 94
 Warning (10240): Verilog HDL Always Construct warning at BRegister.v(8): inferring latch(es) for variable "Breg_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 8
 Info (10041): Inferred latch for "Breg_out[0]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
 Info (10041): Inferred latch for "Breg_out[1]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
@@ -475,7 +478,7 @@ Info (10041): Inferred latch for "Breg_out[4]" at BRegister.v(9) File: /home/tom
 Info (10041): Inferred latch for "Breg_out[5]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
 Info (10041): Inferred latch for "Breg_out[6]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
 Info (10041): Inferred latch for "Breg_out[7]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
-Info (12128): Elaborating entity "AddSubtract" for hierarchy "AddSubtract:AddSubtract_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
+Info (12128): Elaborating entity "AddSubtract" for hierarchy "AddSubtract:AddSubtract_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 103
 Warning (10235): Verilog HDL Always Construct warning at AddSubtract.v(10): variable "OE" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 10
 Warning (10240): Verilog HDL Always Construct warning at AddSubtract.v(9): inferring latch(es) for variable "ALU_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
 Warning (10230): Verilog HDL assignment warning at AddSubtract.v(14): truncated value with size 32 to match size of target (8) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 14
@@ -487,23 +490,35 @@ Info (10041): Inferred latch for "ALU_out[4]" at AddSubtract.v(9) File: /home/to
 Info (10041): Inferred latch for "ALU_out[5]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
 Info (10041): Inferred latch for "ALU_out[6]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
 Info (10041): Inferred latch for "ALU_out[7]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
-Info (12128): Elaborating entity "MemAddReg" for hierarchy "MemAddReg:MAR_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 110
-Info (12128): Elaborating entity "Mem" for hierarchy "Mem:Mem_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
-Info (12128): Elaborating entity "BUS" for hierarchy "BUS:Bus_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 128
+Info (12128): Elaborating entity "MemAddReg" for hierarchy "MemAddReg:MAR_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 112
+Info (12128): Elaborating entity "Mem" for hierarchy "Mem:Mem_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 123
+Info (12128): Elaborating entity "BUS" for hierarchy "BUS:Bus_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 130
 Info (13000): Registers with preset signals will power-up high File: /home/tom/Documents/8bit Computer/Quartus/Mem.v Line: 7
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "Address[0]" is stuck at GND File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 3
+    Warning (13410): Pin "Address[1]" is stuck at GND File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 3
+    Warning (13410): Pin "Address[2]" is stuck at GND File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 3
+    Warning (13410): Pin "Address[3]" is stuck at GND File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 3
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file /home/tom/Documents/8bit Computer/Quartus/output_files/8BitComputer.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 318 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 330 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 21 input pins
-    Info (21059): Implemented 21 output pins
+    Info (21059): Implemented 33 output pins
     Info (21061): Implemented 276 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 17 warnings
-    Info: Peak virtual memory: 981 megabytes
-    Info: Processing ended: Wed Jun 17 03:34:04 2020
-    Info: Elapsed time: 00:00:09
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
+    Info: Peak virtual memory: 980 megabytes
+    Info: Processing ended: Wed Jun 17 03:49:22 2020
+    Info: Elapsed time: 00:00:07
     Info: Total CPU time (on all processors): 00:00:13
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/tom/Documents/8bit Computer/Quartus/output_files/8BitComputer.map.smsg.
 
 

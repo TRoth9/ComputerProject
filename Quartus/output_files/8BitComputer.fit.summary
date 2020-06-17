@@ -1,15 +1,15 @@
-Fitter Status : Successful - Mon Jun 15 18:37:57 2020
+Fitter Status : Successful - Wed Jun 17 03:49:29 2020
 Quartus Prime Version : 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 Revision Name : 8BitComputer
 Top-level Entity Name : main
 Family : Cyclone IV E
 Device : EP4CE22F17C6
 Timing Models : Final
-Total logic elements : 197 / 22,320 ( < 1 % )
-    Total combinational functions : 189 / 22,320 ( < 1 % )
-    Dedicated logic registers : 96 / 22,320 ( < 1 % )
-Total registers : 96
-Total pins : 42 / 154 ( 27 % )
+Total logic elements : 234 / 22,320 ( 1 % )
+    Total combinational functions : 219 / 22,320 ( < 1 % )
+    Dedicated logic registers : 125 / 22,320 ( < 1 % )
+Total registers : 125
+Total pins : 54 / 154 ( 35 % )
 Total virtual pins : 0
 Total memory bits : 0 / 608,256 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 132 ( 0 % )
