@@ -52,7 +52,47 @@
 					"strict" : false
 				},
 				{
+					"name" : "curr[0]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[1]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[2]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[3]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[4]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[5]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[6]",
+					"strict" : false
+				},
+				{
+					"name" : "curr[7]",
+					"strict" : false
+				},
+				{
 					"name" : "on",
+					"strict" : false
+				},
+				{
+					"name" : "en",
+					"strict" : false
+				},
+				{
+					"name" : "HLT",
 					"strict" : false
 				},
 				{
@@ -68,15 +108,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "sel[1]",
-					"strict" : false
-				},
-				{
 					"name" : "sel[2]",
-					"strict" : false
-				},
-				{
-					"name" : "sel[0]",
 					"strict" : false
 				},
 				{
@@ -84,7 +116,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "HLT",
+					"name" : "sel[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sel[1]",
 					"strict" : false
 				},
 				{
@@ -101,10 +137,6 @@
 				},
 				{
 					"name" : "in[7]",
-					"strict" : false
-				},
-				{
-					"name" : "en",
 					"strict" : false
 				},
 				{
@@ -133,6 +165,10 @@
 				},
 				{
 					"name" : "in[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SUB",
 					"strict" : false
 				}
 			]

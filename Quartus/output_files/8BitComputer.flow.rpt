@@ -1,5 +1,5 @@
 Flow report for 8BitComputer
-Sat Jun 13 01:03:19 2020
+Mon Jun 15 18:38:01 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -41,18 +41,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sat Jun 13 01:03:19 2020       ;
+; Flow Status                        ; Successful - Mon Jun 15 18:38:01 2020       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; 8BitComputer                                ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
 ; Device                             ; EP4CE22F17C6                                ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 142 / 22,320 ( < 1 % )                      ;
-;     Total combinational functions  ; 110 / 22,320 ( < 1 % )                      ;
-;     Dedicated logic registers      ; 104 / 22,320 ( < 1 % )                      ;
-; Total registers                    ; 104                                         ;
-; Total pins                         ; 34 / 154 ( 22 % )                           ;
+; Total logic elements               ; 197 / 22,320 ( < 1 % )                      ;
+;     Total combinational functions  ; 189 / 22,320 ( < 1 % )                      ;
+;     Dedicated logic registers      ; 96 / 22,320 ( < 1 % )                       ;
+; Total registers                    ; 96                                          ;
+; Total pins                         ; 42 / 154 ( 27 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 608,256 ( 0 % )                         ;
 ; Embedded Multiplier 9-bit elements ; 0 / 132 ( 0 % )                             ;
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/13/2020 01:03:01 ;
+; Start date & time ; 06/15/2020 18:37:42 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; 8BitComputer        ;
 +-------------------+---------------------+
@@ -76,19 +76,23 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
 ; Assignment Name                      ; Value                                  ; Default Value ; Entity Name ; Section Id                        ;
 +--------------------------------------+----------------------------------------+---------------+-------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID                ; 238368715534089.159203538110474        ; --            ; --          ; --                                ;
+; COMPILER_SIGNATURE_ID                ; 238368715534089.159227146229201        ; --            ; --          ; --                                ;
 ; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; program_tb                        ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --            ; --          ; registers_tb                      ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --          ; eda_board_design_signal_integrity ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST      ; Off                                    ; --            ; --          ; eda_board_design_symbol           ;
-; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; program_tb                             ; --            ; --          ; eda_simulation                    ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; registers_tb                           ; --            ; --          ; eda_simulation                    ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Verilog Hdl                            ; --            ; --          ; eda_simulation                    ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --                                ;
 ; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --            ; --          ; eda_simulation                    ;
 ; EDA_TEST_BENCH_FILE                  ; program_tb.v                           ; --            ; --          ; program_tb                        ;
+; EDA_TEST_BENCH_FILE                  ; registers_tb.v                         ; --            ; --          ; registers_tb                      ;
 ; EDA_TEST_BENCH_MODULE_NAME           ; program_tb                             ; --            ; --          ; program_tb                        ;
+; EDA_TEST_BENCH_MODULE_NAME           ; registers_tb                           ; --            ; --          ; registers_tb                      ;
 ; EDA_TEST_BENCH_NAME                  ; program_tb                             ; --            ; --          ; eda_simulation                    ;
+; EDA_TEST_BENCH_NAME                  ; registers_tb                           ; --            ; --          ; eda_simulation                    ;
 ; EDA_TIME_SCALE                       ; 1 ps                                   ; --            ; --          ; eda_simulation                    ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --            ; --          ; --                                ;
 ; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --            ; --          ; --                                ;
@@ -108,12 +112,12 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 932 MB              ; 00:00:13                           ;
-; Fitter               ; 00:00:05     ; 1.0                     ; 1556 MB             ; 00:00:05                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 836 MB              ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 866 MB              ; 00:00:01                           ;
+; Analysis & Synthesis ; 00:00:08     ; 1.0                     ; 935 MB              ; 00:00:13                           ;
+; Fitter               ; 00:00:06     ; 1.0                     ; 1553 MB             ; 00:00:07                           ;
+; Assembler            ; 00:00:00     ; 1.0                     ; 832 MB              ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:01     ; 1.0                     ; 871 MB              ; 00:00:01                           ;
 ; EDA Netlist Writer   ; 00:00:00     ; 1.0                     ; 1057 MB             ; 00:00:00                           ;
-; Total                ; 00:00:15     ; --                      ; --                  ; 00:00:20                           ;
+; Total                ; 00:00:15     ; --                      ; --                  ; 00:00:22                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

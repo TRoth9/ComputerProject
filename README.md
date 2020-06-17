@@ -8,4 +8,4 @@ The project will consist of schematics for each module and the correspoding HDL 
 ###### MultiSim Schematics for:
 ~~Program Counter~~, ~~Accumulator~~, ~~B Register~~, ~~ALU~~, RAM, MAR, Controller, Output Register, ~~Bus~~
 ###### Verilog HDL for: 
-~~Program Counter~~, ~~Accumulator~~, ~~B Register~~, ~~ALU~~, RAM, MAR, Controller, Output Register, Bus
+~~Program Counter~~, ~~Accumulator~~, ~~B Register~~, ~~ALU~~, RAM, MAR, Controller, Output Register, ~~Bus~~

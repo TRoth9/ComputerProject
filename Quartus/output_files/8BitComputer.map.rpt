@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 8BitComputer
-Sat Jun 13 01:03:09 2020
+Mon Jun 15 18:37:50 2020
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -17,10 +17,9 @@ Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
   9. General Register Statistics
  10. Multiplexer Restructuring Statistics (Restructuring Performed)
  11. Parameter Settings for User Entity Instance: Top-level Entity: |main
- 12. Port Connectivity Checks: "AddSubtract:AddSubtract_1"
- 13. Post-Synthesis Netlist Statistics for Top Partition
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
+ 12. Post-Synthesis Netlist Statistics for Top Partition
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
 
 
 
@@ -47,16 +46,16 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Jun 13 01:03:09 2020       ;
+; Analysis & Synthesis Status        ; Successful - Mon Jun 15 18:37:50 2020       ;
 ; Quartus Prime Version              ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name                      ; 8BitComputer                                ;
 ; Top-level Entity Name              ; main                                        ;
 ; Family                             ; Cyclone IV E                                ;
-; Total logic elements               ; 150                                         ;
-;     Total combinational functions  ; 110                                         ;
-;     Dedicated logic registers      ; 104                                         ;
-; Total registers                    ; 104                                         ;
-; Total pins                         ; 34                                          ;
+; Total logic elements               ; 213                                         ;
+;     Total combinational functions  ; 189                                         ;
+;     Dedicated logic registers      ; 96                                          ;
+; Total registers                    ; 96                                          ;
+; Total pins                         ; 42                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
 ; Embedded Multiplier 9-bit elements ; 0                                           ;
@@ -163,8 +162,8 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processor 2            ;   0.1%      ;
+;     Processors 3-4         ;   0.1%      ;
 +----------------------------+-------------+
 
 
@@ -187,30 +186,30 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-----------+
 ; Resource                                    ; Usage     ;
 +---------------------------------------------+-----------+
-; Estimated Total logic elements              ; 150       ;
+; Estimated Total logic elements              ; 213       ;
 ;                                             ;           ;
-; Total combinational functions               ; 110       ;
+; Total combinational functions               ; 189       ;
 ; Logic element usage by number of LUT inputs ;           ;
-;     -- 4 input functions                    ; 46        ;
-;     -- 3 input functions                    ; 38        ;
-;     -- <=2 input functions                  ; 26        ;
+;     -- 4 input functions                    ; 67        ;
+;     -- 3 input functions                    ; 79        ;
+;     -- <=2 input functions                  ; 43        ;
 ;                                             ;           ;
 ; Logic elements by mode                      ;           ;
-;     -- normal mode                          ; 95        ;
-;     -- arithmetic mode                      ; 15        ;
+;     -- normal mode                          ; 166       ;
+;     -- arithmetic mode                      ; 23        ;
 ;                                             ;           ;
-; Total registers                             ; 104       ;
-;     -- Dedicated logic registers            ; 104       ;
+; Total registers                             ; 96        ;
+;     -- Dedicated logic registers            ; 96        ;
 ;     -- I/O registers                        ; 0         ;
 ;                                             ;           ;
-; I/O pins                                    ; 34        ;
+; I/O pins                                    ; 42        ;
 ;                                             ;           ;
 ; Embedded Multiplier 9-bit elements          ; 0         ;
 ;                                             ;           ;
 ; Maximum fan-out node                        ; CLK~input ;
-; Maximum fan-out                             ; 104       ;
-; Total fan-out                               ; 731       ;
-; Average fan-out                             ; 2.59      ;
+; Maximum fan-out                             ; 96        ;
+; Total fan-out                               ; 940       ;
+; Average fan-out                             ; 2.55      ;
 +---------------------------------------------+-----------+
 
 
@@ -219,26 +218,59 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
 ; Compilation Hierarchy Node           ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                   ; Entity Name    ; Library Name ;
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
-; |main                                ; 110 (93)            ; 104 (60)                  ; 0           ; 0            ; 0       ; 0         ; 34   ; 0            ; |main                                 ; main           ; work         ;
-;    |Accumulator:Accumulator_1|       ; 2 (2)               ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|Accumulator:Accumulator_1       ; Accumulator    ; work         ;
-;    |BRegister:Breg_1|                ; 2 (2)               ; 16 (16)                   ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|BRegister:Breg_1                ; BRegister      ; work         ;
+; |main                                ; 189 (133)           ; 96 (60)                   ; 0           ; 0            ; 0       ; 0         ; 42   ; 0            ; |main                                 ; main           ; work         ;
+;    |Accumulator:Accumulator_1|       ; 9 (9)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|Accumulator:Accumulator_1       ; Accumulator    ; work         ;
+;    |AddSubtract:AddSubtract_1|       ; 25 (25)             ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|AddSubtract:AddSubtract_1       ; AddSubtract    ; work         ;
+;    |BRegister:Breg_1|                ; 9 (9)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|BRegister:Breg_1                ; BRegister      ; work         ;
 ;    |BUS:Bus_1|                       ; 0 (0)               ; 8 (8)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|BUS:Bus_1                       ; BUS            ; work         ;
 ;    |ProgramCounter:ProgramCounter_1| ; 13 (13)             ; 4 (4)                     ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|ProgramCounter:ProgramCounter_1 ; ProgramCounter ; work         ;
 +--------------------------------------+---------------------+---------------------------+-------------+--------------+---------+-----------+------+--------------+---------------------------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+---------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                               ;
-+----------------------------------------------------+---------------------+------------------------+
-; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
-+----------------------------------------------------+---------------------+------------------------+
-; ProgramCounter:ProgramCounter_1|PC_out[0]          ; OE_PC               ; yes                    ;
-; ProgramCounter:ProgramCounter_1|PC_out[1]          ; OE_PC               ; yes                    ;
-; ProgramCounter:ProgramCounter_1|PC_out[2]          ; OE_PC               ; yes                    ;
-; ProgramCounter:ProgramCounter_1|PC_out[3]          ; OE_PC               ; yes                    ;
-; Number of user-specified and inferred latches = 4  ;                     ;                        ;
-+----------------------------------------------------+---------------------+------------------------+
++----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                ;
++-----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------+------------------------+
+; curr[0]$latch                                       ; Mux8                ; yes                    ;
+; curr[1]$latch                                       ; Mux8                ; yes                    ;
+; curr[2]$latch                                       ; Mux8                ; yes                    ;
+; curr[3]$latch                                       ; Mux8                ; yes                    ;
+; curr[4]$latch                                       ; Mux8                ; yes                    ;
+; curr[5]$latch                                       ; Mux8                ; yes                    ;
+; curr[6]$latch                                       ; Mux8                ; yes                    ;
+; curr[7]$latch                                       ; Mux8                ; yes                    ;
+; BRegister:Breg_1|Breg_out[0]                        ; OE_Breg             ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[0]                ; OE_Acc              ; yes                    ;
+; ProgramCounter:ProgramCounter_1|PC_out[0]           ; OE_PC               ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[0]                ; OE_ALU              ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[1]                ; OE_Acc              ; yes                    ;
+; BRegister:Breg_1|Breg_out[1]                        ; OE_Breg             ; yes                    ;
+; ProgramCounter:ProgramCounter_1|PC_out[1]           ; OE_PC               ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[1]                ; OE_ALU              ; yes                    ;
+; BRegister:Breg_1|Breg_out[2]                        ; OE_Breg             ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[2]                ; OE_Acc              ; yes                    ;
+; ProgramCounter:ProgramCounter_1|PC_out[2]           ; OE_PC               ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[2]                ; OE_ALU              ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[3]                ; OE_Acc              ; yes                    ;
+; BRegister:Breg_1|Breg_out[3]                        ; OE_Breg             ; yes                    ;
+; ProgramCounter:ProgramCounter_1|PC_out[3]           ; OE_PC               ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[3]                ; OE_ALU              ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[4]                ; OE_Acc              ; yes                    ;
+; BRegister:Breg_1|Breg_out[4]                        ; OE_Breg             ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[4]                ; OE_ALU              ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[5]                ; OE_Acc              ; yes                    ;
+; BRegister:Breg_1|Breg_out[5]                        ; OE_Breg             ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[5]                ; OE_ALU              ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[6]                ; OE_Acc              ; yes                    ;
+; BRegister:Breg_1|Breg_out[6]                        ; OE_Breg             ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[6]                ; OE_ALU              ; yes                    ;
+; Accumulator:Accumulator_1|Acc_out[7]                ; OE_Acc              ; yes                    ;
+; BRegister:Breg_1|Breg_out[7]                        ; OE_Breg             ; yes                    ;
+; AddSubtract:AddSubtract_1|ALU_out[7]                ; OE_ALU              ; yes                    ;
+; Number of user-specified and inferred latches = 36  ;                     ;                        ;
++-----------------------------------------------------+---------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
@@ -247,12 +279,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 104   ;
+; Total registers                              ; 96    ;
 ; Number of registers using Synchronous Clear  ; 16    ;
 ; Number of registers using Synchronous Load   ; 4     ;
-; Number of registers using Asynchronous Clear ; 44    ;
+; Number of registers using Asynchronous Clear ; 28    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 60    ;
+; Number of registers using Clock Enable       ; 44    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -263,10 +295,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |main|PC_in[0]             ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |main|Breg_in[7]           ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |main|Acc_in[6]            ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |main|Breg_in[3]           ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |main|Bus_data[3]          ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |main|Bus_data[7]          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |main|Bus_data[2]          ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |main|Bus_data[7]          ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Mux7                 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |main|Mux3                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -289,39 +323,31 @@ Note: All latches listed above may not be present at the end of synthesis due to
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "AddSubtract:AddSubtract_1"                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; Port    ; Type   ; Severity ; Details                                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; ALU_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-
-
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 34                          ;
-; cycloneiii_ff         ; 104                         ;
+; boundary_port         ; 42                          ;
+; cycloneiii_ff         ; 96                          ;
 ;     CLR               ; 8                           ;
 ;     CLR SLD           ; 4                           ;
 ;     ENA               ; 28                          ;
-;     ENA CLR           ; 32                          ;
+;     ENA CLR           ; 16                          ;
 ;     SCLR              ; 16                          ;
-;     plain             ; 16                          ;
-; cycloneiii_lcell_comb ; 110                         ;
-;     arith             ; 15                          ;
-;         2 data inputs ; 15                          ;
-;     normal            ; 95                          ;
+;     plain             ; 24                          ;
+; cycloneiii_lcell_comb ; 189                         ;
+;     arith             ; 23                          ;
+;         2 data inputs ; 16                          ;
+;         3 data inputs ; 7                           ;
+;     normal            ; 166                         ;
 ;         1 data inputs ; 2                           ;
-;         2 data inputs ; 9                           ;
-;         3 data inputs ; 38                          ;
-;         4 data inputs ; 46                          ;
+;         2 data inputs ; 25                          ;
+;         3 data inputs ; 72                          ;
+;         4 data inputs ; 67                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 7.00                        ;
-; Average LUT depth     ; 2.52                        ;
+; Max LUT depth         ; 8.00                        ;
+; Average LUT depth     ; 2.96                        ;
 +-----------------------+-----------------------------+
 
 
@@ -340,7 +366,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Sat Jun 13 01:03:01 2020
+    Info: Processing started: Mon Jun 15 18:37:42 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 8BitComputer -c 8BitComputer
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -358,9 +384,25 @@ Info (12021): Found 1 design units, including 1 entities, in source file BRegist
     Info (12023): Found entity 1: BRegister File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file program_tb.v
     Info (12023): Found entity 1: program_tb File: /home/tom/Documents/8bit Computer/Quartus/program_tb.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file registers_tb.v
+    Info (12023): Found entity 1: registers_tb File: /home/tom/Documents/8bit Computer/Quartus/registers_tb.v Line: 2
 Info (12127): Elaborating entity "main" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at main.sv(172): truncated value with size 3 to match size of target (1) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 172
-Info (12128): Elaborating entity "ProgramCounter" for hierarchy "ProgramCounter:ProgramCounter_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 63
+Warning (10235): Verilog HDL Always Construct warning at main.sv(124): variable "PC_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 124
+Warning (10235): Verilog HDL Always Construct warning at main.sv(127): variable "Acc_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 127
+Warning (10235): Verilog HDL Always Construct warning at main.sv(130): variable "Breg_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 130
+Warning (10235): Verilog HDL Always Construct warning at main.sv(133): variable "ALU_out" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 133
+Warning (10270): Verilog HDL Case Statement warning at main.sv(122): incomplete case statement has no default case item File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 122
+Warning (10240): Verilog HDL Always Construct warning at main.sv(121): inferring latch(es) for variable "curr", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Warning (10230): Verilog HDL assignment warning at main.sv(190): truncated value with size 3 to match size of target (1) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 190
+Info (10041): Inferred latch for "curr[0]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[1]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[2]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[3]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[4]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[5]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[6]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (10041): Inferred latch for "curr[7]" at main.sv(121) File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 121
+Info (12128): Elaborating entity "ProgramCounter" for hierarchy "ProgramCounter:ProgramCounter_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 65
 Warning (10235): Verilog HDL Always Construct warning at ProgramCounter.v(14): variable "PC_in" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 14
 Warning (10240): Verilog HDL Always Construct warning at ProgramCounter.v(12): inferring latch(es) for variable "PC_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 12
 Warning (10230): Verilog HDL assignment warning at ProgramCounter.v(22): truncated value with size 32 to match size of target (4) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 22
@@ -368,23 +410,49 @@ Info (10041): Inferred latch for "PC_out[0]" at ProgramCounter.v(17) File: /home
 Info (10041): Inferred latch for "PC_out[1]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
 Info (10041): Inferred latch for "PC_out[2]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
 Info (10041): Inferred latch for "PC_out[3]" at ProgramCounter.v(17) File: /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v Line: 17
-Info (12128): Elaborating entity "Accumulator" for hierarchy "Accumulator:Accumulator_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 73
-Info (12128): Elaborating entity "BRegister" for hierarchy "BRegister:Breg_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 83
-Info (12128): Elaborating entity "AddSubtract" for hierarchy "AddSubtract:AddSubtract_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 92
-Warning (10230): Verilog HDL assignment warning at AddSubtract.v(10): truncated value with size 32 to match size of target (8) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 10
-Info (12128): Elaborating entity "BUS" for hierarchy "BUS:Bus_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 99
+Info (12128): Elaborating entity "Accumulator" for hierarchy "Accumulator:Accumulator_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 75
+Warning (10240): Verilog HDL Always Construct warning at Accumulator.v(8): inferring latch(es) for variable "Acc_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 8
+Info (10041): Inferred latch for "Acc_out[0]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[1]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[2]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[3]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[4]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[5]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[6]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (10041): Inferred latch for "Acc_out[7]" at Accumulator.v(9) File: /home/tom/Documents/8bit Computer/Quartus/Accumulator.v Line: 9
+Info (12128): Elaborating entity "BRegister" for hierarchy "BRegister:Breg_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 85
+Warning (10240): Verilog HDL Always Construct warning at BRegister.v(8): inferring latch(es) for variable "Breg_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 8
+Info (10041): Inferred latch for "Breg_out[0]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[1]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[2]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[3]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[4]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[5]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[6]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (10041): Inferred latch for "Breg_out[7]" at BRegister.v(9) File: /home/tom/Documents/8bit Computer/Quartus/BRegister.v Line: 9
+Info (12128): Elaborating entity "AddSubtract" for hierarchy "AddSubtract:AddSubtract_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 94
+Warning (10235): Verilog HDL Always Construct warning at AddSubtract.v(10): variable "OE" is read inside the Always Construct but isn't in the Always Construct's Event Control File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 10
+Warning (10240): Verilog HDL Always Construct warning at AddSubtract.v(9): inferring latch(es) for variable "ALU_out", which holds its previous value in one or more paths through the always construct File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Warning (10230): Verilog HDL assignment warning at AddSubtract.v(14): truncated value with size 32 to match size of target (8) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 14
+Info (10041): Inferred latch for "ALU_out[0]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[1]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[2]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[3]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[4]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[5]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[6]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (10041): Inferred latch for "ALU_out[7]" at AddSubtract.v(9) File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9
+Info (12128): Elaborating entity "BUS" for hierarchy "BUS:Bus_1" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 101
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 1 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "SUB" File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 12
-Info (21057): Implemented 196 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 268 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 21 input pins
-    Info (21059): Implemented 13 output pins
-    Info (21061): Implemented 162 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 977 megabytes
-    Info: Processing ended: Sat Jun 13 01:03:09 2020
+    Info (21059): Implemented 21 output pins
+    Info (21061): Implemented 226 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 980 megabytes
+    Info: Processing ended: Mon Jun 15 18:37:50 2020
     Info: Elapsed time: 00:00:08
     Info: Total CPU time (on all processors): 00:00:13
 

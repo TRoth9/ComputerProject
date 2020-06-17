@@ -1,6 +1,7 @@
 module main	(
 	output 	[3:0]count,
 	output 	[7:0]Bus_out,
+	output reg[7:0]curr,
 	output 	on,
 	input 	[3:0]sel, //select from 16 modules
 	input 	[7:0]in,
@@ -26,8 +27,7 @@ module main	(
 					OR 	=	4'b1000,	//	Output Register
 					BUS	=	4'b1001;	// Bus
 	
-	logic enPC,
-		 OE_PC,WE_PC,load_PC,rs_PC,
+	logic OE_PC,WE_PC,load_PC,rs_PC,
 		 OE_Acc,WE_Acc,load_Acc,rs_Acc,
 		 OE_Breg,WE_Breg,load_Breg,rs_Breg,
 		 OE_ALU,
@@ -49,6 +49,8 @@ module main	(
 	reg go_db;
 	wire mcount = &cnt;
 	
+	wire en_PC = en & ~HLT;
+	
 	ProgramCounter ProgramCounter_1 (
 			.count	( count	),
 			.PC_out	( PC_out	),
@@ -59,7 +61,7 @@ module main	(
 			.load		( load_PC),
 			.WE		( WE_PC	),
 			.OE		( OE_PC	),
-			.en		( enPC	) //enables counter
+			.en		( en_PC	) //enables counter
 	);
 												
 	Accumulator	Accumulator_1	(
@@ -116,6 +118,23 @@ module main	(
 
 	end
 	
+	always @(sel) begin
+			case (sel)
+			PC		:	begin								//ProgramCounter
+							curr 			= PC_out;
+						end
+			Acc	:	begin								// Accumulator
+							curr 			= Acc_out;
+						end
+			Breg	:	begin								// B Register
+							curr 			= Breg_out;
+						end
+			ALU	:	begin	
+							curr 			= ALU_out;
+						end
+		endcase
+	end
+	
 	always @(posedge CLK) begin	
 		if (go_db != go) cnt <= 0;	// nothing happening
 		else begin
@@ -128,32 +147,34 @@ module main	(
 //		{WE_Acc,load_Acc,rs_Acc} = 4'b0000;
 //		{WE_Breg,load_Breg,rs_Breg} = 4'b0000;
 //		{load_Bus,rs_Bus} = 2'b00;	
-		$display("sensitivity triggered");
-		if (go_db) begin									//use go_db when using 50MHz clock
+		if (go_db) begin									//use go_db when using 50MHz clock, go for tb
 			case (sel)
 				PC		:	begin								//ProgramCounter
-								enPC			= en;		
 								OE_PC			= OE;
 								WE_PC 		= WE;
 								load_PC		= load;
 								rs_PC			= RESET;
+//								curr 			= PC_out;
 							end
 				Acc	:	begin								// Accumulator
 								OE_Acc		= OE;
 								WE_Acc		= WE;
 								load_Acc		= load;
 								rs_Acc		= RESET;
+//								curr 			= Acc_out;
 							end
 				Breg	:	begin								// B Register
 								OE_Breg 		= OE;
 								WE_Breg 		= WE;
 								load_Breg	= load;
 								rs_Breg		= RESET;
+//								curr 			= Breg_out;
 							end
 				ALU	:	begin
 								OE_ALU		= OE;		
+//								curr 			= ALU_out;
 							end
-				BUS	:	begin
+							BUS	:	begin
 								load_Bus		= load;
 								rs_Bus		= RESET;
 							end
@@ -161,13 +182,14 @@ module main	(
 			$display("load_PC = %d",load_PC);
 		end
 		else if (HLT) begin
-			//Disable everything, counter stopped
-			{enPC,OE_PC,WE_PC,load_PC} = 4'b0000;
+			//Disable everything,
+			{OE_PC,WE_PC,load_PC} = 3'b000; //counter stopped
 			{OE_Acc,WE_Acc,load_Acc} = 3'b000;
 			{OE_Breg,WE_Breg,load_Breg} = 3'b000;
 			OE_ALU = 1'b0;
 			{load_Bus} = 3'b000;
 		end	
+		
 		
 		//We output to and read from bus and load on the next clock cycle
 		// At the moment, we trust the user to not set multiple modules to write to the bus
@@ -184,6 +206,7 @@ module main	(
 		if	(OE_PC)		Bus_data = {PC_out,4'b0000}; 			// output to bus
 		if	(OE_Acc)		Bus_data = Acc_out;	
 		if	(OE_Breg)	Bus_data = Breg_out;		
+		if	(OE_ALU)		Bus_data = ALU_out;	
 		//else 									Bus_in = Bus_data;	// outputting module data		
 
 		

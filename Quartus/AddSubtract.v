@@ -6,7 +6,11 @@ module AddSubtract	(output reg [7:0]ALU_out,
 	reg [7:0]TB; 
 	reg [7:0]ALU_data;
 		
-	always @(ALU_out or Acc_in or Breg_in or SUB) begin
+	always @(ALU_data or SUB) begin
+		if (OE) ALU_out <= ALU_data;			// output to bus
+	end
+	
+	always @(posedge CLK) begin
 		TB = ~Breg_in+1;						// Two's complement for subtraction
 		
 		if (SUB) begin
@@ -14,9 +18,5 @@ module AddSubtract	(output reg [7:0]ALU_out,
 		end else begin
 			ALU_data <= Acc_in + Breg_in;
 		end
-	end
-	
-	always @(posedge CLK) begin
-			if (OE) ALU_out <= ALU_data;			// output to bus
 	end
 endmodule

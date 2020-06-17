@@ -12,9 +12,9 @@ vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus
 vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/BRegister.v}
 vlog -sv -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/main.sv}
 
-vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/program_tb.v}
+vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/registers_tb.v}
 
-vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  program_tb
+vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  registers_tb
 
 add wave *
 view structure

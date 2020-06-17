@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/home/tom/Documents/8bit Computer/Quartus/simulation/modelsim
 vAccumulator
-Z1 !s110 1592019888
+Z1 !s110 1592268032
 !i10b 1
 !s100 V7NC4UbI_M]_DY]db8`4?0
 IckUN[_Y^fmUUBBf>^K0<n2
@@ -23,7 +23,7 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1592019888.000000
+Z4 !s108 1592268032.000000
 !s107 /home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !i113 1
@@ -104,13 +104,13 @@ vmain
 DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 R1
 !i10b 1
-!s100 h4?933dEB0l<Kb8QWHACW2
-IB7;KHj`kTAEfE_n9S[ECY1
+!s100 ]QOP4HjMTCi@OV;<1lO062
+I7TnNYLSOC22k=WRk70SZ?0
 R2
 !s105 main_sv_unit
 S1
 R0
-w1592019616
+w1592268011
 8/home/tom/Documents/8bit Computer/Quartus/main.sv
 F/home/tom/Documents/8bit Computer/Quartus/main.sv
 L0 1
@@ -124,28 +124,6 @@ R4
 !i113 1
 o-sv -work work
 !s92 -sv -work work {+incdir+/home/tom/Documents/8bit Computer/Quartus}
-R7
-vprogram_tb
-R1
-!i10b 1
-!s100 jVXddjPOCdk?D]2GQOPa53
-I7WafZF1;O<C;[Nfl3BG4h3
-R2
-R0
-w1592019451
-8/home/tom/Documents/8bit Computer/Quartus/program_tb.v
-F/home/tom/Documents/8bit Computer/Quartus/program_tb.v
-L0 2
-R3
-r1
-!s85 0
-31
-R4
-!s107 /home/tom/Documents/8bit Computer/Quartus/program_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/program_tb.v|
-!i113 1
-R5
-R6
 R7
 vProgramCounter
 R1
@@ -170,3 +148,25 @@ R5
 R6
 R7
 n@program@counter
+vregisters_tb
+R1
+!i10b 1
+!s100 lN5M:f@mP2SQ`;Bi;o>zX0
+I2V]LL:hnR?Wl?zhUUgFBi3
+R2
+R0
+w1592266849
+8/home/tom/Documents/8bit Computer/Quartus/registers_tb.v
+F/home/tom/Documents/8bit Computer/Quartus/registers_tb.v
+L0 2
+R3
+r1
+!s85 0
+31
+R4
+!s107 /home/tom/Documents/8bit Computer/Quartus/registers_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/registers_tb.v|
+!i113 1
+R5
+R6
+R7

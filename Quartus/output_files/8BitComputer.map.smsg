@@ -1,1 +1,2 @@
+Warning (10268): Verilog HDL information at main.sv(122): always construct contains both blocking and non-blocking assignments File: /home/tom/Documents/8bit Computer/Quartus/main.sv Line: 122
 Warning (10268): Verilog HDL information at AddSubtract.v(9): always construct contains both blocking and non-blocking assignments File: /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v Line: 9

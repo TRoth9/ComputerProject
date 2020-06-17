@@ -3,99 +3,243 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'CLK'
-Slack : -3.677
-TNS   : -174.784
+Slack : -3.970
+TNS   : -185.775
+
+Type  : Slow 1200mV 85C Model Setup 'sel[2]'
+Slack : -1.609
+TNS   : -6.497
+
+Type  : Slow 1200mV 85C Model Setup 'OE_ALU'
+Slack : -0.568
+TNS   : -2.936
 
 Type  : Slow 1200mV 85C Model Setup 'OE_PC'
-Slack : -0.343
-TNS   : -1.110
+Slack : -0.542
+TNS   : -1.673
+
+Type  : Slow 1200mV 85C Model Setup 'OE_Breg'
+Slack : -0.366
+TNS   : -2.738
+
+Type  : Slow 1200mV 85C Model Setup 'OE_Acc'
+Slack : -0.313
+TNS   : -2.369
+
+Type  : Slow 1200mV 85C Model Hold 'OE_ALU'
+Slack : 0.075
+TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'OE_PC'
-Slack : 0.084
+Slack : 0.120
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'sel[2]'
+Slack : 0.157
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'OE_Acc'
+Slack : 0.216
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'OE_Breg'
+Slack : 0.271
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'CLK'
-Slack : 0.309
+Slack : 0.357
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Recovery 'CLK'
-Slack : -0.421
-TNS   : -10.848
+Slack : -0.719
+TNS   : -11.751
 
 Type  : Slow 1200mV 85C Model Removal 'CLK'
-Slack : 0.655
+Slack : 0.834
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -107.000
+TNS   : -99.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'sel[2]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_Acc'
+Slack : 0.425
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_ALU'
+Slack : 0.430
+TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_PC'
-Slack : 0.386
+Slack : 0.434
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'OE_Breg'
+Slack : 0.459
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'CLK'
-Slack : -3.168
-TNS   : -147.501
+Slack : -3.474
+TNS   : -160.700
+
+Type  : Slow 1200mV 0C Model Setup 'sel[2]'
+Slack : -1.409
+TNS   : -5.410
+
+Type  : Slow 1200mV 0C Model Setup 'OE_ALU'
+Slack : -0.484
+TNS   : -2.489
 
 Type  : Slow 1200mV 0C Model Setup 'OE_PC'
-Slack : -0.288
-TNS   : -0.909
+Slack : -0.465
+TNS   : -1.420
+
+Type  : Slow 1200mV 0C Model Setup 'OE_Breg'
+Slack : -0.334
+TNS   : -2.516
+
+Type  : Slow 1200mV 0C Model Setup 'OE_Acc'
+Slack : -0.285
+TNS   : -2.155
+
+Type  : Slow 1200mV 0C Model Hold 'OE_ALU'
+Slack : 0.163
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'sel[2]'
+Slack : 0.182
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'OE_PC'
-Slack : 0.177
+Slack : 0.205
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'OE_Acc'
+Slack : 0.297
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'CLK'
-Slack : 0.288
+Slack : 0.311
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'OE_Breg'
+Slack : 0.351
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Recovery 'CLK'
-Slack : -0.274
-TNS   : -5.612
+Slack : -0.526
+TNS   : -7.569
 
 Type  : Slow 1200mV 0C Model Removal 'CLK'
-Slack : 0.596
+Slack : 0.743
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -107.000
+TNS   : -99.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'sel[2]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_Breg'
+Slack : 0.460
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_ALU'
+Slack : 0.464
+TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_PC'
-Slack : 0.420
+Slack : 0.472
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'OE_Acc'
+Slack : 0.475
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'CLK'
-Slack : -1.677
-TNS   : -57.886
+Slack : -2.193
+TNS   : -82.885
+
+Type  : Fast 1200mV 0C Model Setup 'sel[2]'
+Slack : -0.768
+TNS   : -2.217
+
+Type  : Fast 1200mV 0C Model Setup 'OE_ALU'
+Slack : -0.014
+TNS   : -0.014
 
 Type  : Fast 1200mV 0C Model Setup 'OE_PC'
-Slack : 0.161
+Slack : 0.010
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'OE_Breg'
+Slack : 0.111
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'OE_Acc'
+Slack : 0.140
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'OE_ALU'
+Slack : 0.124
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'OE_PC'
-Slack : 0.092
+Slack : 0.148
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'CLK'
-Slack : 0.151
+Slack : 0.186
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'OE_Acc'
+Slack : 0.212
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'sel[2]'
+Slack : 0.237
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'OE_Breg'
+Slack : 0.239
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Recovery 'CLK'
-Slack : 0.190
+Slack : 0.010
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Removal 'CLK'
-Slack : 0.364
+Slack : 0.467
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'CLK'
 Slack : -3.000
-TNS   : -113.018
+TNS   : -104.510
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'sel[2]'
+Slack : -3.000
+TNS   : -3.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_ALU'
+Slack : 0.382
+TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_PC'
-Slack : 0.344
+Slack : 0.386
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_Acc'
+Slack : 0.392
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'OE_Breg'
+Slack : 0.401
 TNS   : 0.000
 
 ------------------------------------------------------------
