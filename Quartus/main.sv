@@ -1,7 +1,7 @@
 module main	(
 	output 	[3:0]count,
-	output 	[7:0]Bus_out,
-	output reg[7:0]curr,
+	output	[7:0]Bus_out,
+	output	reg[7:0]curr,
 	output 	on,
 	input 	[3:0]sel, //select from 16 modules
 	input 	[7:0]in,
@@ -21,7 +21,7 @@ module main	(
 					Breg 	= 	4'b0010,	//	B register
 					ALU 	= 	4'b0011,	//	Arithmetic Logic Unit
 					MAR 	= 	4'b0100,	//	Memory Address Register
-					RAM 	= 	4'b0101,	//	Random Acess Memory
+					Mem 	= 	4'b0101,	//	SDRAM on De0-nano
 					IR 	=	4'b0110,	//	Instruction Register
 					CNTRL = 	4'b0111,	//	Controller/Sequencer
 					OR 	=	4'b1000,	//	Output Register
@@ -30,17 +30,24 @@ module main	(
 	logic OE_PC,WE_PC,load_PC,rs_PC,
 		 OE_Acc,WE_Acc,load_Acc,rs_Acc,
 		 OE_Breg,WE_Breg,load_Breg,rs_Breg,
+		 OE_Mem,WE_Mem,load_Mem,rs_Mem,
+		 WE_MAR,load_MAR,rs_MAR,
 		 OE_ALU,
 		 load_Bus,rs_Bus;
 	
+	reg [7:0]Mem_data;
 	reg [7:0]Bus_data;
 	
 	reg [3:0]PC_out;
+	reg [3:0]MAR_out;
 	reg [7:0]Breg_out;
 	reg [7:0]Acc_out;
 	reg [7:0]ALU_out;
-	
+	reg [7:0]Mem_out;
+
 	reg [3:0]PC_in;
+	reg [3:0]MAR_in;
+	reg [7:0]Mem_in;
 	reg [7:0]Breg_in;
 	reg [7:0]Acc_in;
 	reg [7:0]Bus_in;
@@ -92,6 +99,26 @@ module main	(
 			.SUB		( SUB			),
 			.CLK		( CLK			)
 	);
+	
+	MemAddReg MAR_1	(
+			.MAR_out		( MAR_out	),
+			.MAR_in		( MAR_in		),
+			.WE			( WE_MAR		),
+			.load			( load_MAR	),
+			.CLK			( CLK			),
+			.RESET		( rs_MAR		)
+	);
+	
+	Mem Mem_1	(
+			.Mem_out		( Mem_out	),
+			.Mem_in		( Mem_in		),
+			.Address		( MAR_out	),
+			.OE			( OE_Mem		),
+			.WE			( WE_Mem		),
+			.load			( load_Mem	),
+			.CLK			( CLK			),
+			.RESET		( rs_Mem		)
+	);
 										
 	BUS Bus_1	(
 			.Bus_out		( Bus_out	),
@@ -100,37 +127,26 @@ module main	(
 			.RESET		( rs_Bus		)
 	);
 	
-//	always @(go or HLT or en or OE or WE or load or RESET) begin
-	always @(*) begin
-
-		$display("WE_PC = %d",WE_PC);
-		$display("OE_PC = %d",OE_PC);
-		$display("and PC_in = %b",PC_in);
-		$display("and PC_out = %b",PC_out);		
-		$display("and Bus_data = %b",Bus_data);
-	end
-	
-	always @(PC_in or Acc_in or Breg_in or load_Bus) begin
-
-	end
-	
-	always @(in or PC_out or Acc_out or Breg_out or ALU_out) begin
-
-	end
-	
 	always @(sel) begin
+			curr = 8'b0000000;
 			case (sel)
 			PC		:	begin								//ProgramCounter
-							curr 			= PC_out;
+							curr = PC_out;
 						end
 			Acc	:	begin								// Accumulator
-							curr 			= Acc_out;
+							curr = Acc_out;
 						end
 			Breg	:	begin								// B Register
-							curr 			= Breg_out;
+							curr = Breg_out;
 						end
 			ALU	:	begin	
-							curr 			= ALU_out;
+							curr = ALU_out;
+						end
+			MAR	: 	begin
+							curr = MAR_out;
+						end
+			Mem	: 	begin
+							curr = Mem_out;
 						end
 		endcase
 	end
@@ -142,11 +158,6 @@ module main	(
 			if (mcount) go_db <= ~go_db;
 		end
 
-		
-//		{WE_PC,load_PC,rs_PC} = 5'b00000;
-//		{WE_Acc,load_Acc,rs_Acc} = 4'b0000;
-//		{WE_Breg,load_Breg,rs_Breg} = 4'b0000;
-//		{load_Bus,rs_Bus} = 2'b00;	
 		if (go_db) begin									//use go_db when using 50MHz clock, go for tb
 			case (sel)
 				PC		:	begin								//ProgramCounter
@@ -154,29 +165,36 @@ module main	(
 								WE_PC 		= WE;
 								load_PC		= load;
 								rs_PC			= RESET;
-//								curr 			= PC_out;
 							end
 				Acc	:	begin								// Accumulator
 								OE_Acc		= OE;
 								WE_Acc		= WE;
 								load_Acc		= load;
 								rs_Acc		= RESET;
-//								curr 			= Acc_out;
 							end
 				Breg	:	begin								// B Register
 								OE_Breg 		= OE;
 								WE_Breg 		= WE;
 								load_Breg	= load;
 								rs_Breg		= RESET;
-//								curr 			= Breg_out;
 							end
-				ALU	:	begin
+				ALU	:	begin								// Arithmetic Logic Unit
 								OE_ALU		= OE;		
-//								curr 			= ALU_out;
 							end
-							BUS	:	begin
+				BUS	:	begin
 								load_Bus		= load;
 								rs_Bus		= RESET;
+							end
+				MAR	:	begin								// Memory Address Register
+								WE_MAR		= WE;
+								load_MAR		= load;
+								rs_MAR		= RESET;
+							end
+				Mem	:	begin								// SDRam on dev board
+								OE_Mem		= OE;
+								WE_Mem		= WE;
+								load_Mem		= load;
+								rs_Mem		= RESET;
 							end
 			endcase
 			$display("load_PC = %d",load_PC);
@@ -202,12 +220,15 @@ module main	(
 		if 		(WE_Breg)	Breg_in = Bus_data;
 		else if	(load_Breg)	Breg_in = in;
 		
-		if (load_Bus)	Bus_data = in;			// programming bus
+		if 		(WE_Mem)		Mem_in = Bus_data;
+		else if	(load_Breg)	Mem_in = in;
+		
+		if (load_Bus)	Bus_data = in;								// programming bus
 		if	(OE_PC)		Bus_data = {PC_out,4'b0000}; 			// output to bus
 		if	(OE_Acc)		Bus_data = Acc_out;	
 		if	(OE_Breg)	Bus_data = Breg_out;		
 		if	(OE_ALU)		Bus_data = ALU_out;	
-		//else 									Bus_in = Bus_data;	// outputting module data		
+		if (OE_Mem)		Bus_data = Mem_out;
 
 		
 		//$monitor("PC = %d",count);

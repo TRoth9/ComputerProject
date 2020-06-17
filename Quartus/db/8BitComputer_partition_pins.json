@@ -88,6 +88,22 @@
 					"strict" : false
 				},
 				{
+					"name" : "sel[2]",
+					"strict" : false
+				},
+				{
+					"name" : "sel[0]",
+					"strict" : false
+				},
+				{
+					"name" : "sel[1]",
+					"strict" : false
+				},
+				{
+					"name" : "sel[3]",
+					"strict" : false
+				},
+				{
 					"name" : "en",
 					"strict" : false
 				},
@@ -105,22 +121,6 @@
 				},
 				{
 					"name" : "WE",
-					"strict" : false
-				},
-				{
-					"name" : "sel[2]",
-					"strict" : false
-				},
-				{
-					"name" : "sel[3]",
-					"strict" : false
-				},
-				{
-					"name" : "sel[0]",
-					"strict" : false
-				},
-				{
-					"name" : "sel[1]",
 					"strict" : false
 				},
 				{
