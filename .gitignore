@@ -40,3 +40,12 @@ Thumbs.db
 #####################
 2019_Book_QuickStartGuideToVerilog.pdf
 Albert P. Malvino, Jerald A. Brown - Digital Computer Electronics-McGraw-Hill (1993).pdf
+*.bak
+*.rpt
+*.qws
+work/
+simulation/
+db/
+incremental_db/
+output_files/
+.qysy_edit/

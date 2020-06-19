@@ -1,9 +1,10 @@
 module main	(
 	output 	[3:0]count,
-	output	[3:0]Address,
 	output	[7:0]Bus_out,
-	output	[7:0]Mem_out,
 	output	reg[7:0]curr,
+	output	I2C_SCLK,
+	inout		I2C_SDAT,
+	inout		[7:0]EEPROM_DATA,
 	output 	on,
 	input 	[3:0]sel, //select from 16 modules
 	input 	[7:0]in,
@@ -23,33 +24,36 @@ module main	(
 					Breg 	= 	4'b0010,	//	B register
 					ALU 	= 	4'b0011,	//	Arithmetic Logic Unit
 					MAR 	= 	4'b0100,	//	Memory Address Register
-					Mem 	= 	4'b0101,	//	SDRAM on De0-nano
+					MEM 	= 	4'b0101,	//	EEPROM on De0-nano
 					IR 	=	4'b0110,	//	Instruction Register
 					CNTRL = 	4'b0111,	//	Controller/Sequencer
 					OR 	=	4'b1000,	//	Output Register
-					BUS	=	4'b1001;	// Bus
+					BUS	=	4'b1001,	// Bus
+					WRITE = 	8'hA0,	// EEPROM Addresses
+					READ	= 	8'hA1;
+					
 	
 	logic OE_PC,WE_PC,load_PC,rs_PC,
 		 OE_Acc,WE_Acc,load_Acc,rs_Acc,
 		 OE_Breg,WE_Breg,load_Breg,rs_Breg,
-		 OE_Mem,WE_Mem,load_Mem,rs_Mem,
 		 WE_MAR,load_MAR,rs_MAR,
 		 OE_ALU,
-		 load_Bus,rs_Bus;
+		 load_Bus,rs_Bus,
+		 OE_EEPROM,WE_EEPROM,load_EEPROM,rs_EEPROM;
 	
 	reg [7:0]Mem_data;
 	reg [7:0]Bus_data;
+	reg [7:0]I2C_ADDR;
 	
 	reg [3:0]PC_out;
 	reg [3:0]MAR_out;
 	reg [7:0]Breg_out;
 	reg [7:0]Acc_out;
 	reg [7:0]ALU_out;
-	//reg [7:0]Mem_out;
-
+	
+	reg [3:0]MAR_add;
 	reg [3:0]PC_in;
 	reg [3:0]MAR_in;
-	reg [7:0]Mem_in;
 	reg [7:0]Breg_in;
 	reg [7:0]Acc_in;
 	reg [7:0]Bus_in;
@@ -111,17 +115,17 @@ module main	(
 			.RESET		( rs_MAR		)
 	);
 	
-	Mem Mem_1	(
-			.Mem_out		( Mem_out	),
-			.Mem_in		( Mem_in		),
-			.Address		( MAR_out	),
-			.OE			( OE_Mem		),
-			.WE			( WE_Mem		),
-			.load			( load_Mem	),
-			.CLK			( CLK			),
-			.RESET		( rs_Mem		)
+	EEPROM EEPROM_1	(
+		.I2C_SCLK		( I2C_SCLK		),
+		.EEPROM_DATA	( EEPROM_DATA	),
+		.I2C_SDAT		( I2C_SDAT		),
+		.I2C_ADDR		( I2C_ADDR		),			// I2C Address
+		.WORD_ADDR		( MAR_out		),
+		.GO_DB			( go_db			),			// go_db from top level
+		.CLK				( CLK				),
+		.RESET			( rs_EEPROM	 	),
 	);
-										
+								
 	BUS Bus_1	(
 			.Bus_out		( Bus_out	),
 			.Bus_in		( Bus_data	),
@@ -129,16 +133,16 @@ module main	(
 			.RESET		( rs_Bus		)
 	);
 	
-	always @(sel) begin
+	always @(sel) begin							// to keep track of currently selected module data
 			curr = 8'b0000000;
 			case (sel)
-			PC		:	begin								//ProgramCounter
+			PC		:	begin		
 							curr = PC_out;
 						end
-			Acc	:	begin								// Accumulator
+			Acc	:	begin					
 							curr = Acc_out;
 						end
-			Breg	:	begin								// B Register
+			Breg	:	begin								
 							curr = Breg_out;
 						end
 			ALU	:	begin	
@@ -147,20 +151,21 @@ module main	(
 			MAR	: 	begin
 							curr = MAR_out;
 						end
-			Mem	: 	begin
-							curr = Mem_out;
-						end
 		endcase
 	end
 	
 	always @(posedge CLK) begin	
-		if (go_db != go) cnt <= 0;	// nothing happening
-		else begin
+		if (go_db != go)
+			cnt <= 0;	// nothing happening
+		else 
+		begin
 			cnt <= cnt + 16'd1;
-			if (mcount) go_db <= ~go_db;
+			if (mcount) 
+				go_db <= ~go_db;
 		end
 
-		if (go_db) begin									//use go_db when using 50MHz clock, go for tb
+		if (go_db == 1'b1)								//use go_db when using 50MHz clock, go for tb
+		begin						
 			case (sel)
 				PC		:	begin								//ProgramCounter
 								OE_PC			= OE;
@@ -192,48 +197,64 @@ module main	(
 								load_MAR		= load;
 								rs_MAR		= RESET;
 							end
-				Mem	:	begin								// SDRam on dev board
-								OE_Mem		= OE;
-								WE_Mem		= WE;
-								load_Mem		= load;
-								rs_Mem		= RESET;
+				MEM	:	begin
+								I2C_ADDR		<= (WE == 1'b1 || load == 1'b1)? WRITE:
+													((OE == 1'b1)? READ : 1'b0);
+								OE_EEPROM	<= OE;
+								WE_EEPROM	<= WE;
+								load_EEPROM <= load;
+								rs_EEPROM 	<= RESET;
 							end
 			endcase
 			$display("load_PC = %d",load_PC);
 		end
 		else if (HLT) begin
 			//Disable everything,
-			{OE_PC,WE_PC,load_PC} = 3'b000; //counter stopped
-			{OE_Acc,WE_Acc,load_Acc} = 3'b000;
-			{OE_Breg,WE_Breg,load_Breg} = 3'b000;
-			OE_ALU = 1'b0;
-			{load_Bus} = 3'b000;
+			{OE_PC,WE_PC,load_PC} <= 3'b000; //counter stopped
+			{OE_Acc,WE_Acc,load_Acc} <= 3'b000;
+			{OE_Breg,WE_Breg,load_Breg} <= 3'b000;
+			OE_ALU <= 1'b0;
+			{load_Bus,rs_Bus} <= 3'b000;
 		end	
-		
-		
-		//We output to and read from bus and load on the next clock cycle
+	end
+	
+	always @(posedge CLK) begin	
+			//We output to and read from bus and load on the next clock cycle
 		// At the moment, we trust the user to not set multiple modules to write to the bus
-		if 		(WE_PC)		PC_in = Bus_data[7:4]; 			// read 4 MSBs from bus
-		else if	(load_PC)	PC_in = in[7:4];					// read from programmer
+		if (WE_PC)
+			PC_in <= Bus_data[7:4]; 			// read 4 MSBs from bus
+		else 
+		if	(load_PC)	
+			PC_in <= in[7:4];					// read from programmer
 
-		if 		(WE_Acc)		Acc_in = Bus_data;
-		else if	(load_Acc)	Acc_in = in;
+		if (WE_Acc)
+			Acc_in <= Bus_data;
+		else
+		if	(load_Acc)
+			Acc_in <= in;
 		
-		if 		(WE_Breg)	Breg_in = Bus_data;
-		else if	(load_Breg)	Breg_in = in;
+		if (WE_Breg)	
+			Breg_in <= Bus_data;
+		else
+		if	(load_Breg)	
+			Breg_in <= in;
 		
-		if 		(WE_Mem)		Mem_in = Bus_data;
-		else if	(load_Breg)	Mem_in = in;
+		if	(WE_MAR)		
+			MAR_in <= Bus_data[7:4];
+		else
+		if	(load_MAR)	
+			MAR_in <= in[7:4];
 		
-		if (load_Bus)	Bus_data = in;								// programming bus
-		if	(OE_PC)		Bus_data = {PC_out,4'b0000}; 			// output to bus
-		if	(OE_Acc)		Bus_data = Acc_out;	
-		if	(OE_Breg)	Bus_data = Breg_out;		
-		if	(OE_ALU)		Bus_data = ALU_out;	
-		if (OE_Mem)		Bus_data = Mem_out;
-
 		
-		//$monitor("PC = %d",count);
+		if (load_Bus)	Bus_data <= in;								// programming bus
+		if	(OE_PC)		Bus_data <= {PC_out,4'b0,}; 			// output to bus
+		if	(OE_Acc)		Bus_data <= Acc_out;	
+		if	(OE_Breg)	Bus_data <= Breg_out;		
+		if	(OE_ALU)		Bus_data <= ALU_out;	
+		if (OE_EEPROM)	Bus_data <= EEPROM_DATA;	
+		if (rs_Bus)		Bus_data <= 8'b0;	
 	end
 
+	assign EEPROM_DATA = ((I2C_ADDR == WRITE)? 
+								((WE_EEPROM == 1'b1)? Bus_data : ((load_EEPROM == 1'b1)? in : 1'bz)):1'bz);
 endmodule
