@@ -1,22 +1,18 @@
-module BRegister	(output reg [7:0]Breg_out,
+module BRegister	(output		[7:0]Breg_out,
 						 input wire [7:0]Breg_in,
 						 input wire OE,WE,load,
 						 input wire CLK,RESET);
 		
-		reg [7:0]Breg;
+		reg [7:0]Breg_data;
 		
-		always @(OE or Breg) begin
-				if (OE) begin
-					Breg_out = Breg;				// write to bus
-				end
-		end
+		assign Breg_out = Breg_data;
 		
 		always @(posedge CLK or posedge RESET) begin
 				if (RESET) begin
-					Breg = 8'b00000000;
+					Breg_data = 8'b00000000;
 				end					
 				else if (WE || load) begin
-					Breg = Breg_in;					// read from bus or loading
+					Breg_data = Breg_in;					// read from bus or loading
 				end
 		end
 

@@ -18,6 +18,8 @@ module main	(
 	//NOTE:	WE has priority over OE.
 	//			RESET is asynchronous
 	//multiplexer selects which module, and enables the inputs for that specific module	
+	
+	//need to implement EEPROM better
 		
 	parameter 	PC 	=	4'b0000, //	ProgramCounter
 					Acc 	= 	4'b0001,	//	Accumulator
@@ -123,7 +125,7 @@ module main	(
 		.WORD_ADDR		( MAR_out		),
 		.GO_DB			( go_db			),			// go_db from top level
 		.CLK				( CLK				),
-		.RESET			( rs_EEPROM	 	),
+		.RESET			( rs_EEPROM	 	)
 	);
 								
 	BUS Bus_1	(
@@ -132,8 +134,8 @@ module main	(
 			.CLK			( CLK			),
 			.RESET		( rs_Bus		)
 	);
-	
-	always @(sel) begin							// to keep track of currently selected module data
+	// to keep track of currently selected module data
+	always @(sel or PC_out or Acc_out or Breg_out or ALU_out or MAR_out) begin							
 			curr = 8'b0000000;
 			case (sel)
 			PC		:	begin		
@@ -208,14 +210,6 @@ module main	(
 			endcase
 			$display("load_PC = %d",load_PC);
 		end
-		else if (HLT) begin
-			//Disable everything,
-			{OE_PC,WE_PC,load_PC} <= 3'b000; //counter stopped
-			{OE_Acc,WE_Acc,load_Acc} <= 3'b000;
-			{OE_Breg,WE_Breg,load_Breg} <= 3'b000;
-			OE_ALU <= 1'b0;
-			{load_Bus,rs_Bus} <= 3'b000;
-		end	
 	end
 	
 	always @(posedge CLK) begin	
@@ -247,7 +241,7 @@ module main	(
 		
 		
 		if (load_Bus)	Bus_data <= in;								// programming bus
-		if	(OE_PC)		Bus_data <= {PC_out,4'b0,}; 			// output to bus
+		if	(OE_PC)		Bus_data <= {PC_out,4'b0}; 			// output to bus
 		if	(OE_Acc)		Bus_data <= Acc_out;	
 		if	(OE_Breg)	Bus_data <= Breg_out;		
 		if	(OE_ALU)		Bus_data <= ALU_out;	

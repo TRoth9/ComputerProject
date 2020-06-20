@@ -9,8 +9,7 @@ module ProgramCounter	(output reg [3:0]count,
 	
 	assign on = en;
 	
-	always @(WE or OE or load or counter) begin
-		$display("PC_in = %b",PC_in);
+	always @(WE or OE or load or counter or PC_in) begin
 		if (WE || load)	count = PC_in;	// read from bus,load from programmer
 		else 					count = counter;
 		

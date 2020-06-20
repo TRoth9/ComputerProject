@@ -1,8 +1,8 @@
 module ALU_REG	(
-		output signed	[7:0]	ALU_out,
-		input  signed	[7:0]	Acc_in,		// Accumulator input
-		input  signed	[7:0]	Breg_in,		// B register input
-		input  wire		[2:0]	OP,			// Op code
+		output signed 		[7:0]	ALU_out,	// Output to bus
+		input  signed		[7:0]	Acc_in,	// Accumulator input
+		input  signed		[7:0]	Breg_in,	// B register input
+		input  wire			[2:0]	OP,		// Op code
 		input  wire				OE,			// output enable
 		input  wire				CLK			// clock
 	);			
@@ -17,11 +17,8 @@ module ALU_REG	(
 				 BND = 3'b101,	// Bitwise AND
 				 BOR = 3'b110,	// Bitwise OR
 				 BXR = 3'b111;	// Bitwise XOR
-		
-	always @(ALU_data or SUB) 
-	begin
-		if (OE) ALU_out <= ALU_data;			// output to bus
-	end
+				 
+	assign ALU_out = (OE == 1'b1)? ALU_data : 8'bz;
 	
 	always @(posedge CLK) 
 	begin
