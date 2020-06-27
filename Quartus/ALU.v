@@ -1,13 +1,12 @@
 module ALU_REG	(
-		output signed 		[7:0]	ALU_out,	// Output to bus
-		input  signed		[7:0]	Acc_in,	// Accumulator input
-		input  signed		[7:0]	Breg_in,	// B register input
+		output signed 		[7:0]	ALU_OUT,	// Output to bus
+		input  signed		[7:0]	ACC_IN,	// Accumulator input
+		input  signed		[7:0]	BREG_IN,	// B register input
 		input  wire			[2:0]	OP,		// Op code
-		input  wire				OE,			// output enable
 		input  wire				CLK			// clock
 	);			
 	
-	reg [7:0]ALU_data;
+	reg [7:0]ALU_DATA;
 	
 	parameter ADD = 3'b000,	// Addition
 				 SUB = 3'b001,	// Subtraction
@@ -18,19 +17,19 @@ module ALU_REG	(
 				 BOR = 3'b110,	// Bitwise OR
 				 BXR = 3'b111;	// Bitwise XOR
 				 
-	assign ALU_out = (OE == 1'b1)? ALU_data : 8'bz;
+	assign ALU_OUT = ALU_DATA;
 	
 	always @(posedge CLK) 
 	begin
 		case (OP)
-			ADD	:	ALU_data <= Acc_in + Breg_in;
-			SUB	:	ALU_data <= Acc_in - Breg_in;
-			DEC	:	ALU_data <= Acc_in - 1;
-			INC	:	ALU_data <= Acc_in + 1;
-			OC		:	ALU_data <= ~Acc_in;
-			BND	:	ALU_data <= Acc_in & Breg_in;
-			BOR	:	ALU_data <= Acc_in | Breg_in;
-			BXR	:	ALU_data <= Acc_in ^ Breg_in;
+			ADD	:	ALU_DATA <= ACC_IN + BREG_IN;
+			SUB	:	ALU_DATA <= ACC_IN - BREG_IN;
+			DEC	:	ALU_DATA <= ACC_IN - 1;
+			INC	:	ALU_DATA <= ACC_IN + 1;
+			OC		:	ALU_DATA <= ~ACC_IN;
+			BND	:	ALU_DATA <= ACC_IN & BREG_IN;
+			BOR	:	ALU_DATA <= ACC_IN | BREG_IN;
+			BXR	:	ALU_DATA <= ACC_IN ^ BREG_IN;
 		endcase
 	end
 endmodule

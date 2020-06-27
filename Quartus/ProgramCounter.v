@@ -1,24 +1,23 @@
-module ProgramCounter	(output reg [3:0]count,
-								 output reg [3:0]PC_out,
-								 output wire on,
-								 input wire[3:0]PC_in,
-								 input wire CLK,RESET,en,
-								 input wire OE,WE,load);
+module ProgramCounter	(
+	output		[3:0] COUNT,
+	output 				ON,
+	input 		[3:0]	PC_IN,
+	input 				WE,PRGM,RESET,EN,
+	input 				CLK
+);
 								 
-	reg [3:0]counter;
+	reg [3:0] COUNTER;
 	
-	assign on = en;
-	
-	always @(WE or OE or load or counter or PC_in) begin
-		if (WE || load)	count = PC_in;	// read from bus,load from programmer
-		else 					count = counter;
-		
-		if (OE)	PC_out = counter;	// output to bus		
+	assign COUNT = COUNTER;
+	assign ON = EN;
+
+	always @(posedge CLK or posedge RESET)
+	begin
+		if (RESET)
+			COUNTER = 4'b0000;
+		else if (WE || PRGM)	
+			COUNTER = PC_IN;
+		else if (EN) 			
+			COUNTER = COUNTER + 4'd1;	// Counting
 	end
-	
-	always @(posedge CLK or posedge RESET) begin
-		if (RESET) 			counter = 4'b0000;
-		else if (en) 		counter = counter+1;	// Counting
-		else if (WE || load)	counter = PC_in;
-		end
 endmodule

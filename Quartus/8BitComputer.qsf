@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
-set_global_assignment -name TOP_LEVEL_ENTITY main
+set_global_assignment -name TOP_LEVEL_ENTITY FPGAComputer
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 19.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "16:21:01  MAY 30, 2020"
 set_global_assignment -name LAST_QUARTUS_VERSION "19.1.0 Lite Edition"
@@ -58,78 +58,22 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_location_assignment PIN_R8 -to CLK
-set_location_assignment PIN_A7 -to RESET
-set_location_assignment PIN_N11 -to count[3]
-set_location_assignment PIN_K16 -to count[2]
-set_location_assignment PIN_L15 -to count[1]
-set_location_assignment PIN_P16 -to count[0]
-set_location_assignment PIN_B5 -to in[3]
-set_location_assignment PIN_D5 -to in[2]
-set_location_assignment PIN_A6 -to in[1]
-set_location_assignment PIN_D6 -to in[0]
-set_location_assignment PIN_A5 -to en
-set_location_assignment PIN_J14 -to on
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_location_assignment PIN_D12 -to SUB
-set_location_assignment PIN_F13 -to Bus_out[0]
-set_location_assignment PIN_T15 -to Bus_out[1]
-set_location_assignment PIN_T13 -to Bus_out[2]
-set_location_assignment PIN_T12 -to Bus_out[3]
-set_location_assignment PIN_T11 -to Bus_out[4]
-set_location_assignment PIN_R11 -to Bus_out[5]
-set_location_assignment PIN_R10 -to Bus_out[6]
-set_location_assignment PIN_P9 -to Bus_out[7]
-set_location_assignment PIN_D3 -to in[7]
-set_location_assignment PIN_C3 -to in[6]
-set_location_assignment PIN_A3 -to in[5]
-set_location_assignment PIN_B4 -to in[4]
-set_location_assignment PIN_B6 -to WE
-set_location_assignment PIN_B7 -to OE
-set_location_assignment PIN_C8 -to go
-set_location_assignment PIN_A8 -to sel[3]
-set_location_assignment PIN_B8 -to sel[2]
-set_location_assignment PIN_A2 -to sel[1]
-set_location_assignment PIN_B3 -to sel[0]
-set_location_assignment PIN_A12 -to HLT
-set_location_assignment PIN_A4 -to load
+set_location_assignment PIN_B7 -to RESET
+set_location_assignment PIN_A5 -to WE
+set_location_assignment PIN_B6 -to OE
+set_location_assignment PIN_C8 -to HLT
 set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
-set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH EEPROM_tb -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH program_tb -section_id eda_simulation
 set_global_assignment -name EDA_TEST_BENCH_NAME program_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id program_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME program_tb -section_id program_tb
-set_location_assignment PIN_A15 -to curr[0]
-set_location_assignment PIN_A13 -to curr[1]
-set_location_assignment PIN_B13 -to curr[2]
-set_location_assignment PIN_A11 -to curr[3]
-set_location_assignment PIN_D1 -to curr[4]
-set_location_assignment PIN_F3 -to curr[5]
-set_location_assignment PIN_B1 -to curr[6]
-set_location_assignment PIN_L3 -to curr[7]
 set_global_assignment -name EDA_TEST_BENCH_NAME registers_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id registers_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME registers_tb -section_id registers_tb
-set_location_assignment PIN_M8 -to Address[3]
-set_location_assignment PIN_N6 -to Address[2]
-set_location_assignment PIN_N5 -to Address[1]
-set_location_assignment PIN_P2 -to Address[0]
-set_location_assignment PIN_R7 -to Mem_out[7]
-set_location_assignment PIN_G2 -to Mem_out[0]
-set_location_assignment PIN_G1 -to Mem_out[1]
-set_location_assignment PIN_L8 -to Mem_out[2]
-set_location_assignment PIN_K5 -to Mem_out[3]
-set_location_assignment PIN_K2 -to Mem_out[4]
-set_location_assignment PIN_J2 -to Mem_out[5]
-set_location_assignment PIN_J1 -to Mem_out[6]
-set_location_assignment PIN_P6 -to Mem_en
-set_location_assignment PIN_R4 -to Mem_CLK
-set_location_assignment PIN_L7 -to Mem_CKE
 set_global_assignment -name VERILOG_FILE MemAddReg.v
 set_global_assignment -name VERILOG_FILE testbenches/registers_tb.v
 set_global_assignment -name VERILOG_FILE testbenches/program_tb.v
 set_global_assignment -name VERILOG_FILE ProgramCounter.v
-set_global_assignment -name SYSTEMVERILOG_FILE main.sv
 set_global_assignment -name VERILOG_FILE Accumulator.v
 set_global_assignment -name VERILOG_FILE AddSubtract.v
 set_global_assignment -name VERILOG_FILE BUS.v
@@ -140,10 +84,50 @@ set_location_assignment PIN_F2 -to I2C_SCLK
 set_location_assignment PIN_F1 -to I2C_SDAT
 set_global_assignment -name VERILOG_FILE ALU.v
 set_global_assignment -name VERILOG_FILE testbenches/EEPROM_tb.v
-set_global_assignment -name EDA_TEST_BENCH_FILE program_tb.v -section_id program_tb
-set_global_assignment -name EDA_TEST_BENCH_FILE registers_tb.v -section_id registers_tb
 set_global_assignment -name EDA_TEST_BENCH_NAME EEPROM_tb -section_id eda_simulation
 set_global_assignment -name EDA_DESIGN_INSTANCE_NAME NA -section_id EEPROM_tb
 set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME EEPROM_tb -section_id EEPROM_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE testbenches/program_tb.v -section_id program_tb
+set_global_assignment -name EDA_TEST_BENCH_FILE registers_tb.v -section_id registers_tb
 set_global_assignment -name EDA_TEST_BENCH_FILE testbenches/EEPROM_tb.v -section_id EEPROM_tb
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_FILE FPGAComputer.v
+set_location_assignment PIN_L3 -to CURRENT[7]
+set_location_assignment PIN_A15 -to CURRENT[0]
+set_location_assignment PIN_A13 -to CURRENT[1]
+set_location_assignment PIN_B13 -to CURRENT[2]
+set_location_assignment PIN_A11 -to CURRENT[3]
+set_location_assignment PIN_D1 -to CURRENT[4]
+set_location_assignment PIN_F3 -to CURRENT[5]
+set_location_assignment PIN_B1 -to CURRENT[6]
+set_location_assignment PIN_B3 -to SEL[0]
+set_location_assignment PIN_A2 -to SEL[1]
+set_location_assignment PIN_B8 -to SEL[2]
+set_location_assignment PIN_A8 -to SEL[3]
+set_location_assignment PIN_E7 -to GO
+set_location_assignment PIN_P16 -to COUNT[0]
+set_location_assignment PIN_L15 -to COUNT[1]
+set_location_assignment PIN_K16 -to COUNT[2]
+set_location_assignment PIN_N11 -to COUNT[3]
+set_location_assignment PIN_A4 -to EN
+set_location_assignment PIN_J14 -to ON
+set_location_assignment PIN_A7 -to PRGM
+set_location_assignment PIN_D6 -to PRGM_IN[0]
+set_location_assignment PIN_A6 -to PRGM_IN[1]
+set_location_assignment PIN_D5 -to PRGM_IN[2]
+set_location_assignment PIN_B5 -to PRGM_IN[3]
+set_location_assignment PIN_B4 -to PRGM_IN[4]
+set_location_assignment PIN_A3 -to PRGM_IN[5]
+set_location_assignment PIN_C3 -to PRGM_IN[6]
+set_location_assignment PIN_D3 -to PRGM_IN[7]
+set_location_assignment PIN_F13 -to BUS_OUT[0]
+set_location_assignment PIN_T15 -to BUS_OUT[1]
+set_location_assignment PIN_T13 -to BUS_OUT[2]
+set_location_assignment PIN_T12 -to BUS_OUT[3]
+set_location_assignment PIN_T11 -to BUS_OUT[4]
+set_location_assignment PIN_R11 -to BUS_OUT[5]
+set_location_assignment PIN_R10 -to BUS_OUT[6]
+set_location_assignment PIN_P9 -to BUS_OUT[7]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

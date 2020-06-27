@@ -1,20 +1,20 @@
-module Accumulator	(output		[7:0]Acc_out,
-							 input wire [7:0]Acc_in,
-							 input wire OE,WE,load,
-							 input wire CLK,RESET);
+module Accumulator	(
+	output	[7:0] ACC_OUT,
+	input		[7:0]	ACC_IN,
+	input				WE,PRGM,RESET,
+	input 			CLK
+);
 		
-		reg [7:0]Acc_data;
-		
-		assign Acc_out = Acc_data;
-		
-		always @(posedge CLK or posedge RESET) begin
-				if (RESET) begin
-					Acc_data = 8'b00000000;
-				end					
-				else if (WE || load) begin
-					Acc_data = Acc_in;					// read from bus, or programmer
-				end
-				
-		end
+reg [7:0] ACC_DATA;
 
+assign ACC_OUT = ACC_DATA;
+
+always @(posedge CLK or posedge RESET) begin
+		if (RESET) begin
+			ACC_DATA = 8'b00000000;
+		end					
+		else if (WE || PRGM) begin
+			ACC_DATA = ACC_IN;					// read from bus, or programmer
+		end
+end
 endmodule

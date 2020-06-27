@@ -9,211 +9,139 @@ z2
 cModel Technology
 Z0 d/home/tom/Documents/8bit Computer/Quartus/simulation/modelsim
 vAccumulator
-Z1 !s110 1592650227
+Z1 !s110 1593223299
 !i10b 1
-!s100 @LFnjYW[QzJ]^MVbKonUR1
-IEbUbaZ35Q6EC3FoZBI7;k1
+!s100 BiSmQ9W[T]Lc^e1gKj28<3
+IV<?JT6OHko2:h`??QlMn01
 Z2 VDg1SIo80bB@j0V0VzS_@n1
 R0
-w1592649561
+Z3 w1593218436
 8/home/tom/Documents/8bit Computer/Quartus/Accumulator.v
 F/home/tom/Documents/8bit Computer/Quartus/Accumulator.v
 L0 1
-Z3 OV;L;10.5b;63
+Z4 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1592650227.000000
+Z5 !s108 1593223299.000000
 !s107 /home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !i113 1
-Z5 o-vlog01compat -work work
-Z6 !s92 -vlog01compat -work work {+incdir+/home/tom/Documents/8bit Computer/Quartus}
-Z7 tCvgOpt 0
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work {+incdir+/home/tom/Documents/8bit Computer/Quartus}
+Z8 tCvgOpt 0
 n@accumulator
-vAddSubtract
+vALU_REG
 R1
 !i10b 1
-!s100 S:FJ0;eR51NBDZ8W34gnc2
-IK?;dQZ;@9Ojd^2kY89_ij1
+!s100 FIdE4z7no=VK7H_jF_2G01
+ISm=R<X34bOLjbl`bjiTkV3
 R2
 R0
-w1592649465
-8/home/tom/Documents/8bit Computer/Quartus/AddSubtract.v
-F/home/tom/Documents/8bit Computer/Quartus/AddSubtract.v
+w1593219665
+8/home/tom/Documents/8bit Computer/Quartus/ALU.v
+F/home/tom/Documents/8bit Computer/Quartus/ALU.v
 L0 1
-R3
+R4
 r1
 !s85 0
 31
-R4
-!s107 /home/tom/Documents/8bit Computer/Quartus/AddSubtract.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/AddSubtract.v|
-!i113 1
 R5
+!s107 /home/tom/Documents/8bit Computer/Quartus/ALU.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/ALU.v|
+!i113 1
 R6
 R7
-n@add@subtract
+R8
+n@a@l@u_@r@e@g
 vBRegister
 R1
 !i10b 1
-!s100 LVbJakSHS2XZ=o:f^UWb32
-I6>F9e89SB16e5iUoIUPm52
+!s100 NGAjF]?Di6g00kjJBJcGB3
+Ilb7CeQkaVb@[ZUST>R=Sj2
 R2
 R0
-w1592649558
+R3
 8/home/tom/Documents/8bit Computer/Quartus/BRegister.v
 F/home/tom/Documents/8bit Computer/Quartus/BRegister.v
 L0 1
-R3
+R4
 r1
 !s85 0
 31
-R4
+R5
 !s107 /home/tom/Documents/8bit Computer/Quartus/BRegister.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/BRegister.v|
 !i113 1
-R5
 R6
 R7
-n@b@register
-vBUS
-R1
-!i10b 1
-!s100 Im[7z<VTCJG[kh:8DlWLD2
-ImDID86LZmJHj_KPICGA2g1
-R2
-R0
-w1591864525
-8/home/tom/Documents/8bit Computer/Quartus/BUS.v
-F/home/tom/Documents/8bit Computer/Quartus/BUS.v
-L0 1
-R3
-r1
-!s85 0
-31
-R4
-!s107 /home/tom/Documents/8bit Computer/Quartus/BUS.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/BUS.v|
-!i113 1
-R5
-R6
-R7
-n@b@u@s
-vEEPROM
-R1
-!i10b 1
-!s100 J9?1nRgn99@W:XDmkTO;;0
-Ii]hBnMQa_757?HHO3D3Wz0
-R2
-R0
-w1592649082
-8/home/tom/Documents/8bit Computer/Quartus/EEPROM.v
-F/home/tom/Documents/8bit Computer/Quartus/EEPROM.v
-L0 1
-R3
-r1
-!s85 0
-31
-R4
-!s107 /home/tom/Documents/8bit Computer/Quartus/EEPROM.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/EEPROM.v|
-!i113 1
-R5
-R6
-R7
-n@e@e@p@r@o@m
-vEEPROM_tb
-Z8 !s110 1592650228
-!i10b 1
-!s100 5FGTD8>30VE]?eFhea0G?0
-IWheRB^G@iWj<l8>O9LJ4f2
-R2
-R0
-w1592647931
-8/home/tom/Documents/8bit Computer/Quartus/testbenches/EEPROM_tb.v
-F/home/tom/Documents/8bit Computer/Quartus/testbenches/EEPROM_tb.v
-L0 2
-R3
-r1
-!s85 0
-31
-!s108 1592650228.000000
-!s107 /home/tom/Documents/8bit Computer/Quartus/testbenches/EEPROM_tb.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches|/home/tom/Documents/8bit Computer/Quartus/testbenches/EEPROM_tb.v|
-!i113 1
-R5
-!s92 -vlog01compat -work work {+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches}
-R7
-n@e@e@p@r@o@m_tb
-vmain
-DXx6 sv_std 3 std 0 22 AD7iAPLo6nTIKk<N0eo=D3
 R8
-!i10b 1
-!s100 eAN`Ym<4gBjiHl3:93DjV0
-IJ=h9nZ2eJFY<kN0^fZD`11
-R2
-!s105 main_sv_unit
-S1
-R0
-w1592649629
-8/home/tom/Documents/8bit Computer/Quartus/main.sv
-F/home/tom/Documents/8bit Computer/Quartus/main.sv
-L0 1
-R3
-r1
-!s85 0
-31
-R4
-!s107 /home/tom/Documents/8bit Computer/Quartus/main.sv|
-!s90 -reportprogress|300|-sv|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/main.sv|
-!i113 1
-o-sv -work work
-!s92 -sv -work work {+incdir+/home/tom/Documents/8bit Computer/Quartus}
-R7
-vMemAddReg
+n@b@register
+vFPGAComputer
 R1
 !i10b 1
-!s100 a55kn0j8=L;U8`BnU><JK3
-ImYSF4TGP]z3k=zkL8jHLl3
+!s100 mP@USBkzZUlA3ZzWP=Gi;3
+IKeNO@<4dQ]=inCYZY=7[:1
 R2
 R0
-w1592390030
-8/home/tom/Documents/8bit Computer/Quartus/MemAddReg.v
-F/home/tom/Documents/8bit Computer/Quartus/MemAddReg.v
+w1593223285
+8/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v
+F/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v
 L0 1
-R3
+R4
 r1
 !s85 0
 31
-R4
-!s107 /home/tom/Documents/8bit Computer/Quartus/MemAddReg.v|
-!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/MemAddReg.v|
-!i113 1
 R5
+!s107 /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v|
+!i113 1
 R6
 R7
-n@mem@add@reg
+R8
+n@f@p@g@a@computer
+vprogram_tb
+R1
+!i10b 1
+!s100 B;oj4fCjNAfi:9BOW6Izz1
+IF[AN_LFoPV1]>og;ONzjZ2
+R2
+R0
+w1593222775
+8/home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v
+F/home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v
+L0 2
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches|/home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v|
+!i113 1
+R6
+!s92 -vlog01compat -work work {+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches}
+R8
 vProgramCounter
 R1
 !i10b 1
-!s100 He?CLX;O_iIkd;?cPcVJ92
-IFiHDKAe2FD[[1=l9?]^Pj2
+!s100 ?1H==4DHSA;I072gB4Vc01
+ICK>4>@m8O3HWBmAjlc>=k0
 R2
 R0
-w1592649492
+R3
 8/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v
 F/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v
 L0 1
-R3
+R4
 r1
 !s85 0
 31
-R4
+R5
 !s107 /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v|
 !i113 1
-R5
 R6
 R7
+R8
 n@program@counter

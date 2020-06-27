@@ -11,21 +11,20 @@ module program_tb();
 	reg 	HLT;	//halt the PC
 	reg 	SUB;
 
-	main uut(
-				.count	(count),
-				.Bus_out	(Bus_out),
-				.on		(on),
-				.sel		(sel),
-				.in		(in),
+	FPGAComputer uut(
+				.COUNT	(count),
+				.BUS_OUT	(Bus_out),
+				.ON		(on),
+				.SEL		(sel),
+				.PRGM_IN	(in),
 				.CLK		(CLK),
 				.RESET	(RESET),
-				.en		(en),
-				.go		(go),
+				.EN		(en),
+				.GO		(go),
 				.OE		(OE),
 				.WE		(WE),
-				.load		(load),
-				.HLT		(HLT),
-				.SUB		(SUB)
+				.PRGM		(load),
+				.HLT		(HLT)
 				);
 	
 	initial begin
@@ -54,7 +53,7 @@ module program_tb();
 		en = 1'b1;				// enable counter and OE
 		OE = 1'b1;
 		go = 1'b1;
-		#50;
+		#400;
 		
 		go = 1'b0;
 		OE = 1'b0;
@@ -72,7 +71,7 @@ module program_tb();
 		
 		OE = 1'b1;			// output to bus
 		go = 1'b1;
-		#100;
+		#300;
 
 		go = 1'b0;
 		OE = 1'b0;

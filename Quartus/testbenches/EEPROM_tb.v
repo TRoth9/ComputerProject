@@ -30,7 +30,8 @@ module EEPROM_tb ();
 	
 	initial
 	begin
-		I2C_ADDR = 8'hA0; // Write address
+//		I2C_ADDR = 8'hA0; // Write address
+		I2C_ADDR = 8'hA1; // Read address
 		WORD_ADDR = 4'b0;
 		GO_DB = 1'b0;
 		CLK = 1'b0;
