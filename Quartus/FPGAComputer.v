@@ -7,6 +7,7 @@ module FPGAComputer	(
 	inout			[7:0] BUS_OUT, 			// Bus output
 	input			[3:0]	SEL,					// Mux controlling modules
 	input			[7:0]	PRGM_IN,				// Input from programmer
+	input			[2:0] OP,
 	input					GO,					// Flag for programming and testing
 	input					EN,					// Enable flag for Program Counter
 	input					OE,					// Output Enable
@@ -88,7 +89,7 @@ wire [7:0]	BREG_OUT;
 reg	OE_ALU;
 reg	PRGM_ALU;
 
-reg [2:0]	OP;									// OP code for ALU operation
+//reg [2:0]	OP;									// OP code for ALU operation
 reg [7:0]	ALU_IN;
 
 // ALU Wires //
@@ -97,10 +98,11 @@ wire [7:0]	ALU_OUT;
 // BUS Registers //
 reg [7:0] BUS_DATA;
 
-assign BUS_OUT =	(OE_PC)?		COUNT<<<4:
-						(OE_ACC)?	ACC_OUT:
-						(OE_BREG)?	BREG_OUT:
-						(OE_ALU)?	ALU_OUT:
+// BUS Output //
+assign BUS_OUT =	(CLK & OE_PC)?		COUNT<<<4:
+						(CLK & OE_ACC)?	ACC_OUT:
+						(CLK & OE_BREG)?	BREG_OUT:
+						(CLK & OE_ALU)?	ALU_OUT:
 						BUS_DATA;					// If we are not outputting, we hold previous data
 
 ProgramCounter PC_1 (
@@ -137,26 +139,32 @@ ALU_REG	ALU_1	(
 	.BREG_IN		( BREG_OUT	),
 	.OP			( OP			),			
 	.CLK			( CLK			)
-);			
+);	
 
-always @(posedge CLK)
-begin
-	case (SEL)
-		PC		:	CURRENT <= COUNT<<<4;
-		ACC	:	CURRENT <= ACC_OUT;
-		BREG	:	CURRENT <= BREG_OUT;
-		ALU	:	CURRENT <= ALU_OUT;
-	endcase
+// Debounce
+always @(posedge CLK) begin	
+	if (GO_DB != GO)
+		CNT <= 0;	// nothing happening
+	else 
+	begin
+		CNT <= CNT + 16'd1;
+		if (MCOUNT) 
+			GO_DB <= ~GO_DB;
+	end					
 end
 
-// Writing Modules
-always @(posedge CLK or posedge RESET)
+// Control Signals
+always @(negedge CLK or posedge RESET)
 begin	
 	if (RESET) 
 	begin		
 		RS_PC		<= 1;
 		RS_ACC	<= 1;		
 		RS_BREG	<= 1;
+		OE_PC		<= 0; 
+		OE_ACC	<= 0;
+		OE_BREG	<= 0;
+		OE_ALU	<= 0;
 	end
 	else 
 	begin
@@ -166,81 +174,30 @@ begin
 		WE_PC			<= 0;
 		WE_ACC		<= 0;
 		WE_BREG		<= 0;
+		OE_PC			<= 0; 
+		OE_ACC		<= 0;
+		OE_BREG		<= 0;
+		OE_ALU		<= 0;
 		RS_PC			<= 0;
 		RS_ACC		<= 0;	
 		RS_BREG		<= 0;
-		
-		// Programming //
-		if (GO_DB) 
-		begin
-			if (PRGM) 	
-			begin
-				case (SEL)
-					PC		:	begin
-									PRGM_PC		<= PRGM;
-									PC_IN			<= PRGM_IN[7:4];
-								end
-					ACC	:	begin
-									PRGM_ACC		<= PRGM;
-									ACC_IN		<= PRGM_IN;
-								end
-					BREG	:	begin
-									PRGM_BREG	<= PRGM;
-									BREG_IN		<= PRGM_IN;
-								end
-				endcase
-			end
-			
-			// Writing from bus //
-			else if (WE) 
-			begin
-				case (SEL)
-					PC		:	begin
-									WE_PC		<= WE;
-									PC_IN		<= BUS_OUT[7:4];
-								end
-					ACC	:	begin
-									WE_ACC	<= WE;
-									ACC_IN	<= BUS_OUT;
-								end
-					BREG	:	begin
-									WE_BREG	<= WE;
-									BREG_IN	<= BUS_OUT;
-								end
-				endcase
-			end
-		end
-	end
-end
-
-// Writing Bus 
-always @(posedge CLK or posedge RESET)
-begin
-	if (RESET) 
-	begin
-		OE_PC		<= 0;
-		OE_ACC	<= 0;
-		OE_BREG	<= 0;
-		OE_ALU	<= 0;
-	end
-	else
-	begin
-		OE_PC		<= 0; 
-		OE_ACC	<= 0;
-		OE_BREG	<= 0;
-		OE_ALU	<= 0;
-		
-		// Enabling module outputs
-		if (OE & GO_DB) 
+						
+		if (~GO) 
 		begin			
 			case (SEL)
 				PC		:	begin
+								PRGM_PC	<= PRGM;
+								WE_PC		<= WE;
 								OE_PC		<= OE;
 							end
 				ACC	:	begin
+								PRGM_ACC	<= PRGM;
+								WE_ACC	<= WE;
 								OE_ACC	<= OE;
 							end
 				BREG	:	begin
+								PRGM_BREG	<= PRGM;
+								WE_BREG	<= WE;
 								OE_BREG	<= OE;
 							end
 				ALU	:	begin
@@ -251,10 +208,61 @@ begin
 	end
 end
 
-// Latch for BUS data //
-always @(posedge CLK)
+// Module Data 
+always @(*)//negedge CLK or posedge RESET)
 begin
-	if			(OE_PC)
+	if (RESET) 
+	begin
+		PC_IN <= 0;
+		ACC_IN <= 0;
+		BREG_IN <= 0;
+	end
+	else
+	begin
+		PC_IN <= 0;
+		ACC_IN <= 0;
+		BREG_IN <= 0;
+		
+		case (SEL)
+			PC		:	begin
+							if (PRGM_PC)
+								PC_IN		<= PRGM_IN[7:4];
+							else if (WE_PC)
+								PC_IN		<= BUS_OUT[7:4];
+						end
+			ACC	:	begin
+							if (PRGM_ACC)
+								ACC_IN	<= PRGM_IN;
+							else if (WE_ACC)
+								ACC_IN	<= BUS_OUT;
+						end
+			BREG	:	begin
+							if (PRGM_BREG)
+								BREG_IN	<= PRGM_IN;
+							else if (WE_BREG)
+								BREG_IN	<= BUS_OUT;
+						end
+		endcase
+	end
+end		
+
+// Outputs currently selected module for easier testing
+always @(*)
+begin
+	CURRENT <= 0;
+	
+	case (SEL)
+		PC		:	CURRENT <= COUNT<<<4;
+		ACC	:	CURRENT <= ACC_OUT;
+		BREG	:	CURRENT <= BREG_OUT;
+		ALU	:	CURRENT <= ALU_OUT;
+	endcase
+end
+
+// Latch for BUS data //
+always @(COUNT or ACC_OUT or BREG_OUT or ALU_OUT)
+begin
+	if	(OE_PC)
 		BUS_DATA <= COUNT<<<4;
 	else if	(OE_ACC)
 		BUS_DATA <= ACC_OUT;
@@ -268,17 +276,5 @@ end
 always @(posedge CLK)
 begin
 
-end
-
-// Debounce
-always @(posedge CLK) begin	
-	if (GO_DB != GO)
-		CNT <= 0;	// nothing happening
-	else 
-	begin
-		CNT <= CNT + 16'd1;
-		if (MCOUNT) 
-			GO_DB <= ~GO_DB;
-	end					
 end
 endmodule
