@@ -15,6 +15,7 @@ module EEPROM_tb ();
 		
 		assign EEPROM_DATA = (I2C_ADDR == 8'hA0)? WR_DATA : 8'bz;
 		
+
 		EEPROM	uut(
 		.I2C_SCLK		( I2C_SCLK		),		
 		.CLK_COUNT		( CLK_COUNT		),			// EEPROM Clock	
@@ -37,18 +38,16 @@ module EEPROM_tb ();
 		CLK = 1'b0;
 		RESET = 1'b0;
 		WR_DATA = 8'b01010101;
-		
-		#10
 		RESET = 1'b1;
+		#25;
 		
-		#20;
 		RESET = 1'b0;
 		GO_DB = 1;
 	end		
 		
 	always
 	begin
-		#20;
+		#50;
 		CLK <= ~CLK;
 	end
 endmodule
