@@ -8,82 +8,124 @@
 # vmap work rtl_work 
 # Modifying /home/tom/intelFPGA_lite/19.1/modelsim_ase/linuxaloem/../modelsim.ini
 # 
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/OutputRegister.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:06:39 on Jul 03,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/OutputRegister.v 
+# -- Compiling module OP_REG
+# 
+# Top level modules:
+# 	OP_REG
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/MAR.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:06:39 on Jul 03,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/MAR.v 
+# -- Compiling module ADDR_REG
+# 
+# Top level modules:
+# 	ADDR_REG
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:01:39 on Jun 26,2020
+# Start time: 19:06:39 on Jul 03,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v 
 # -- Compiling module ProgramCounter
 # 
 # Top level modules:
 # 	ProgramCounter
-# End time: 19:01:39 on Jun 26,2020, Elapsed time: 0:00:00
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/Accumulator.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:01:39 on Jun 26,2020
+# Start time: 19:06:39 on Jul 03,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/Accumulator.v 
 # -- Compiling module Accumulator
 # 
 # Top level modules:
 # 	Accumulator
-# End time: 19:01:39 on Jun 26,2020, Elapsed time: 0:00:00
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/BRegister.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:01:39 on Jun 26,2020
+# Start time: 19:06:39 on Jul 03,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/BRegister.v 
 # -- Compiling module BRegister
 # 
 # Top level modules:
 # 	BRegister
-# End time: 19:01:39 on Jun 26,2020, Elapsed time: 0:00:00
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/EEPROM.v}
+# Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+# Start time: 19:06:39 on Jul 03,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/EEPROM.v 
+# -- Compiling module EEPROM
+# 
+# Top level modules:
+# 	EEPROM
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/ALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:01:39 on Jun 26,2020
+# Start time: 19:06:39 on Jul 03,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/ALU.v 
 # -- Compiling module ALU_REG
 # 
 # Top level modules:
 # 	ALU_REG
-# End time: 19:01:39 on Jun 26,2020, Elapsed time: 0:00:00
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:01:39 on Jun 26,2020
+# Start time: 19:06:39 on Jul 03,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v 
 # -- Compiling module FPGAComputer
 # 
 # Top level modules:
 # 	FPGAComputer
-# End time: 19:01:39 on Jun 26,2020, Elapsed time: 0:00:00
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus/testbenches {/home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v}
+# vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus/testbenches {/home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 19:01:39 on Jun 26,2020
-# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches" /home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v 
-# -- Compiling module program_tb
+# Start time: 19:06:39 on Jul 03,2020
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches" /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v 
+# -- Compiling module OR_tb
 # 
 # Top level modules:
-# 	program_tb
-# End time: 19:01:39 on Jun 26,2020, Elapsed time: 0:00:00
+# 	OR_tb
+# End time: 19:06:39 on Jul 03,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  program_tb
-# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" program_tb 
-# Start time: 19:01:39 on Jun 26,2020
-# Loading work.program_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  OR_tb
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" OR_tb 
+# Start time: 19:06:39 on Jul 03,2020
+# Loading work.OR_tb
 # Loading work.FPGAComputer
 # Loading work.ProgramCounter
 # Loading work.Accumulator
 # Loading work.BRegister
 # Loading work.ALU_REG
-# ** Warning: (vsim-3017) /home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v(14): [TFMPC] - Too few port connections. Expected 16, found 13.
-#    Time: 0 ps  Iteration: 0  Instance: /program_tb/uut File: /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v
-# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v(14): [TFMPC] - Missing connection for port 'CURRENT'.
-# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v(14): [TFMPC] - Missing connection for port 'I2C_SCLK'.
-# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/program_tb.v(14): [TFMPC] - Missing connection for port 'I2C_SDAT'.
+# Loading work.ADDR_REG
+# Loading work.EEPROM
+# Loading work.OP_REG
+# ** Warning: (vsim-3017) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Too few port connections. Expected 22, found 14.
+#    Time: 0 ps  Iteration: 0  Instance: /OR_tb/uut File: /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'CLK_COUNT'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'SD_COUNTER'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'OUT'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'I2C_SCLK'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'I2C_SDAT'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'EEPROM_DATA'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'OP'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/OutputRegister_tb.v(15): [TFMPC] - Missing connection for port 'WORD_ADDR'.
+# ** Warning: (vsim-3015) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(193): [PCDPC] - Port size (4) does not match connection size (8) for port 'MAR_OUT'. The port definition is at: /home/tom/Documents/8bit Computer/Quartus/MAR.v(2).
+#    Time: 0 ps  Iteration: 0  Instance: /OR_tb/uut/MAR_1 File: /home/tom/Documents/8bit Computer/Quartus/MAR.v
+# ** Warning: (vsim-3015) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(193): [PCDPC] - Port size (4) does not match connection size (8) for port 'MAR_IN'. The port definition is at: /home/tom/Documents/8bit Computer/Quartus/MAR.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /OR_tb/uut/MAR_1 File: /home/tom/Documents/8bit Computer/Quartus/MAR.v
 # 
 # add wave *
 # view structure
@@ -94,5 +136,5 @@
 # ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
 # Break key hit
 # Simulation stop requested.
-# End time: 19:04:02 on Jun 26,2020, Elapsed time: 0:02:23
-# Errors: 0, Warnings: 5
+# End time: 19:07:35 on Jul 03,2020, Elapsed time: 0:00:56
+# Errors: 0, Warnings: 12

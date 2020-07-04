@@ -24,8 +24,8 @@ module ALU_REG	(
 		case (OP)
 			ADD	:	ALU_DATA <= ACC_IN + BREG_IN;
 			SUB	:	ALU_DATA <= ACC_IN - BREG_IN;
-			DEC	:	ALU_DATA <= ACC_IN - 1;
-			INC	:	ALU_DATA <= ACC_IN + 1;
+			DEC	:	ALU_DATA <= ACC_IN - 8'd1;
+			INC	:	ALU_DATA <= ACC_IN + 8'd1;
 			OC		:	ALU_DATA <= ~ACC_IN;
 			BND	:	ALU_DATA <= ACC_IN & BREG_IN;
 			BOR	:	ALU_DATA <= ACC_IN | BREG_IN;
