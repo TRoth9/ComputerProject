@@ -1,11 +1,20 @@
-8-bit Computer project designed on breadboards and implemented in Verilog using a DE0-nano FPGA
+# FPGA Computer Design 
+8-bit Computer Design project designed and implemented in Verilog using a DE0-nano FPGA
 
 This is a personal project started over the Summer of 2020 and is intented to replace the experience of an internship. This was inspired by the dissapointing number of internships cancelled due to Covid-19.
 
-The project will consist of schematics for each module and the correspoding HDL written in Verilog. In addition, I will be performing cost analysis on each module to aim for the most economic options that still meet the desired specifications.
+## Project Goals
+The goals of this project is to design a "Turing Complete" Computer on an Altera FPGA while learning and following traditional industry standards.
 
-## Project Goals:
-###### MultiSim Schematics for:
-~~Program Counter~~, ~~Accumulator~~, ~~B Register~~, ~~ALU~~, RAM, MAR, Controller, Output Register, ~~Bus~~
-###### Verilog HDL for: 
-~~Program Counter~~, ~~Accumulator~~, ~~B Register~~, ~~ALU~~, Memory, MAR, Controller, Output Register, ~~Bus~~
+## Project Status
+EEPROM Read Testbench
+![EEPROM Read Testbench](https://github.com/TRoth9/ComputerProject/Images/EEPROM_READ.png)
+
+EEPROM Write Testbench
+![EEPROM Write Testbench](https://github.com/TRoth9/ComputerProject/Images/EEPROM_READ.png)
+
+Control Unit Fetch and Load Testbench
+![Control Unit Fetch and Load Testbench](https://github.com/TRoth9/ComputerProject/Images/ControlUnit_FetchLDA.png)
+## Resources
+* Quick Start Guide to Verilog 1st Edition, LaMeres
+* Digital Computer Electronics 3rd Edition, Malvino and Brown
