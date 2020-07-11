@@ -2,21 +2,22 @@ module FPGAComputer	(
 	output 		[3:0] COUNT,				// ProgramCounter
 	output reg	[7:0] CURRENT,				// Current module data
 	output				ON,					// Turns on PC
+	output 		[3:0]	ADDR,					// EEPROM Clock	
 	output 		[9:0]	CLK_COUNT,			// EEPROM Clock	
 	output 		[5:0] SD_COUNTER,			// Counter for EEPROM
-	output		[7:0] OUT,					// Output Register
+	output		[7:0] BUS_OUT, 			// Bus output
+	output		[10:0] OUT,					// Output Register
+	inout			[7:0]	EEPROM_DATA,
 	output				I2C_SCLK,
 	inout					I2C_SDAT,
-	inout			[7:0]	EEPROM_DATA,
-	inout			[7:0] BUS_OUT, 			// Bus output
 	input			[3:0]	SEL,					// Mux controlling modules
+	input			[3:0]	PRGM_ADDR,			// Address in memory to program
 	input			[7:0]	PRGM_IN,				// Input from programmer
-	input			[2:0] OP,					// ALU op code
-	input			[3:0]	WORD_ADDR,
+	input			[2:0] OP_PRGM,
 	input					GO,					// Flag for programming and testing
 	input					EN,					// Enable flag for Program Counter
-	input					OE,					// Output Enable
-	input					WE,					//	Write Enable
+	input					WE,
+	input					OE,
 	input					RESET,				//	Asynchronous Reset
 	input					PRGM,					//	Program mode
 	input					HLT,					// Computer Halt
@@ -24,10 +25,12 @@ module FPGAComputer	(
 );
 
 // Priority:
-//		PC > ACC > BREG > ALU > EEPROM > MAR
-//		RESET > PRGM > WE > OE
-//		PRGM & WE > EN
+//		PC > ACC > BREG > ALU > MAR > EEPROM 
+//		RESET > WE > PRGM > OE
 
+// Separate program mode from the control unit
+	// Just set all control ports to wires, output controls from ControlUnit instantiation
+	
 // Control Parameters //
 parameter PC 	 =	4'b0000, //	ProgramCounter
 			 ACC 	 = 4'b0001,	//	Accumulator
@@ -38,126 +41,142 @@ parameter PC 	 =	4'b0000, //	ProgramCounter
 			 IR 	 =	4'b0110,	//	Instruction Register
 			 CNTRL = 4'b0111,	//	Controller/Sequencer
 			 OR 	 =	4'b1000,	//	Output Register
-			 BUS	 =	4'b1001,	// Bus
-			 WRITE = 8'hA0,	// EEPROM Addresses
+			 BUS	 =	4'b1001;	// Bus
+			 
+// EEPROM Addresses //
+parameter WRITE = 8'hA0,
 			 READ	 = 8'hA1;
 
 // ALU OP Codes //
-parameter ADD = 3'b000,	// Addition
-			 SUB = 3'b001,	// Subtraction
-			 DEC = 3'b010,	// Decrement
-			 INC = 3'b011,	// Increment
-			 OC  = 3'b100,	// One's Complement
-			 BND = 3'b101,	// Bitwise AND
-			 BOR = 3'b110,	// Bitwise OR
-			 BXR = 3'b111;	// Bitwise XOR		
+parameter ALU_ADD = 3'b000,	// Addition
+			 ALU_SUB = 3'b001,	// Subtraction
+			 ALU_DEC = 3'b010,	// Decrement
+			 ALU_INC = 3'b011,	// Increment
+			 ALU_OC  = 3'b100,	// One's Complement
+			 ALU_BND = 3'b101,	// Bitwise AND
+			 ALU_BOR = 3'b110,	// Bitwise OR
+			 ALU_BXR = 3'b111;	// Bitwise XOR		
 			 
 // Debounce //
 reg [15:0]	CNT;	
-reg 			GO_DB;	
+reg GO_DB;	
 
-wire 			MCOUNT = &CNT;
+wire MCOUNT = &CNT;
+
+// Control Unit //
+wire EN_CU;
+wire OP_CU;
+wire RESET_CU;
+wire CLR = RESET || RESET_CU;
 		
 // Program Counter //
-reg	OE_PC;
-reg	WE_PC;
 reg	RS_PC;
-reg	PRGM_PC;
 reg [3:0]	PC_IN;
 
+wire	OE_PC;
+wire	PRGM_PC;
 wire [3:0]	PC_OUT;
-wire EN_PC = EN & ~HLT;
+wire EN_PC = (EN || EN_CU) & ~HLT;
 
 // Accumulator //
-reg	OE_ACC;
-reg	WE_ACC;
 reg	RS_ACC;
-reg	PRGM_ACC;
 reg [7:0]	ACC_IN;
 
+wire	OE_ACC;
+wire	WE_ACC;
+wire	PRGM_ACC;
 wire [7:0]	ACC_OUT;
 
 // B Register //
-reg	OE_BREG;
-reg	WE_BREG;
 reg	RS_BREG;
-reg	PRGM_BREG;
 reg [7:0]	BREG_IN;
 
+wire	WE_BREG;
+wire	PRGM_BREG;
 wire [7:0]	BREG_OUT;
 
 // ALU //
-reg	OE_ALU;
-reg	PRGM_ALU;
-//reg [2:0]	OP;									// OP code for ALU operation
 reg [7:0]	ALU_IN;
 
-wire [7:0]	ALU_OUT;
+wire	OE_ALU;
+wire	PRGM_ALU;			
+wire [2:0]	OP;
+wire [7:0]	ALU_OUT;	
+wire [2:0]	OP_IN = PRGM? OP_PRGM: OP_CU;			
 
 // MAR //
-reg	OE_MAR;
-reg	WE_MAR;
 reg	RS_MAR;
-reg	PRGM_MAR;
-reg [7:0]	MAR_IN;
+reg [3:0]	MAR_IN;
 
-wire [7:0]	MAR_OUT;
+wire	WE_MAR;
+wire	PRGM_MAR;
+wire [3:0]	MAR_OUT;
 
 // BUS //
-reg		 RS_BUS;
-reg		 PRGM_BUS;
+wire		 PRGM_BUS;
 reg [7:0] BUS_IN;
 reg [7:0] BUS_DATA;
 
 
 // EEPROM //
-reg	OE_EEPROM;
-reg	WE_EEPROM;
 reg	RS_EEPROM;
-reg	PRGM_EEPROM;
-reg [7:0]	I2C_ADDR;			// I2C Address
+reg [7:0] I2C_ADDR;		
 
 wire	DONE;
+wire	OE_EEPROM;
+wire	WE_EEPROM;
+wire	PRGM_EEPROM;
 wire [7:0] R_DATA;
 wire [7:0] WR_DATA;
-wire [7:0] EEPROM_OUT;
+wire [3:0] WORD_ADDR = (PRGM_EEPROM)? PRGM_ADDR: MAR_OUT;
 
 // Output Register //
-reg	WE_OR;
 reg	RS_OR;
-reg	PRGM_OR;
 reg [7:0]	OR_IN;
 
-wire [7:0]	OR_OUT;
+wire	WE_OR;
+wire	PRGM_OR;
+wire [3:0] 	ANODE;
+wire [6:0]	OR_OUT;
+
+// Instruction Register //
+reg	RS_IR;
+reg [3:0]	ADDR_IN;
+reg [3:0]	INST_IN;
+
+wire	WE_IR;
+wire	OE_IR;
+reg	PRGM_IR;
+wire [3:0]	INST;
+wire [3:0]	ADDR_OUT;
 
 // BUS Output //
-assign BUS_OUT =	(OE_PC)?			{COUNT,4'b0}:
+assign BUS_OUT =	(OE_PC)?			{4'b0,COUNT}:
 						(OE_ACC)?		ACC_OUT:
-						(OE_BREG)?		BREG_OUT:
 						(OE_ALU)?		ALU_OUT:
-						(OE_MAR)?		{MAR_OUT,4'b0}:
-						(OE_EEPROM)?	EEPROM_DATA:
-						BUS_DATA;										// If we are not outputting, we hold previous data
+						(OE_IR)?			{4'b0,ADDR_OUT}:
+						(OE_EEPROM)?	R_DATA:
+						BUS_DATA;									// If we are not outputting, we hold previous data
 									
-// What about programming the EEPROM from PRGM_IN? Read from BUS?
+assign ADDR = MAR_OUT;
 									
 // EEPROM Output //
-assign EEPROM_DATA = (OE_EEPROM)? R_DATA:
-							(WE_EEPROM)? BUS_OUT:
-							(PRGM_EEPROM)? PRGM_IN:
+assign EEPROM_DATA = (OE_EEPROM)? R_DATA: 		// Output read contents
+							(WE_EEPROM)? BUS_DATA: 		// Output BUS contents
+							(PRGM_EEPROM)? PRGM_IN:		// Output PRGM contents
 							8'bz;
-
-// Output Register Output //			
-assign OUT = OR_OUT;
 
 // EEPROM Input //
 assign WR_DATA = (WE_EEPROM || PRGM_EEPROM)? EEPROM_DATA: 8'bz;
+
+// Output Register Output //			
+assign OUT = {ANODE,OR_OUT};
+
 
 ProgramCounter PC_1 (
 	.COUNT		( COUNT		),
 	.ON			( ON			),
 	.PC_IN		( PC_IN		),
-	.WE			( WE_PC		),
 	.PRGM			( PRGM_PC	),
 	.EN			( EN_PC		),
 	.RESET		( RS_PC		),
@@ -186,7 +205,7 @@ ALU_REG	ALU_1	(
 	.ALU_OUT		( ALU_OUT	),	
 	.ACC_IN		( ACC_OUT	),	
 	.BREG_IN		( BREG_OUT	),
-	.OP			( OP			),			
+	.OP			( OP_IN		),			
 	.CLK			( CLK			)
 );
 
@@ -197,25 +216,70 @@ ADDR_REG	MAR_1	(
 	.PRGM			( PRGM_MAR	),
 	.CLK			( CLK			),
 	.RESET		( RS_MAR		)
-);		
-EEPROM	EEPROM_1	(
-		.I2C_SCLK		( I2C_SCLK		),
-		.CLK_COUNT 		( CLK_COUNT		),
-		.SD_COUNTER		( SD_COUNTER	),
-		.DONE				( DONE			),
-		.EEPROM_OUT		( R_DATA			),
-		.EEPROM_IN		( WR_DATA		),
-		.I2C_SDAT		( I2C_SDAT		),
-		.I2C_ADDR		( I2C_ADDR		),
-		.WORD_ADDR		( WORD_ADDR		),
-		.GO_DB			( GO_DB			),
-		.CLK				( CLK				),
-		.RESET			( RS_EEPROM		)
 );
 
-OP_REG	OR_1	(
-	.OP_OUT	( OR_OUT		),
-	.OP_IN	( OR_IN		),
+InstructionReg	IR_1 (
+	.INST_OUT	( INST		),
+	.ADDR_OUT	( ADDR_OUT	),		
+	.ADDR_IN		( ADDR_IN	),	
+	.INST			( INST_IN	),		
+	.WE			( WE_IR		),		
+	.PRGM			( PRGM_IR	),
+	.CLK			( CLK			),
+	.RESET		( RS_IR		)
+);
+	
+ControlUnit	CU_1	(
+	.PRGM_PC			( PRGM_PC		),
+	.PRGM_ACC		( PRGM_ACC		),
+	.PRGM_BREG		( PRGM_BREG		),
+	.PRGM_MAR		( PRGM_MAR		),
+	.PRGM_EEPROM	( PRGM_EEPROM	),
+	.PRGM_OR			( PRGM_OR		),
+	.PRGM_BUS		( PRGM_BUS		),
+	.OE_PC			( OE_PC			),
+	.OE_ACC			( OE_ACC			),
+	.OE_ALU			( OE_ALU			),	
+	.OE_EEPROM		( OE_EEPROM		),		
+	.OE_IR			( OE_IR			),
+	.WE_ACC			( WE_ACC			),
+	.WE_BREG			( WE_BREG		),		
+	.WE_MAR			( WE_MAR			),	
+	.WE_EEPROM		( WE_EEPROM		),	
+	.WE_OR			( WE_OR			),	
+	.WE_IR			( WE_IR			),	
+	.EN				( EN_CU			),
+	.OP				( OP_CU			),
+	.SEL				( SEL				),
+	.INST				( INST			),
+	.PRGM				( PRGM			),
+	.GO				( ~GO				), // use go_db when compiling for hardware
+	.OE				( OE				),
+	.WE				( WE				),
+	.DONE				( DONE			),
+	.CLK				( CLK				),
+	.CLR				( RESET_CU		)
+);
+	
+EEPROM EEPROM_1	(
+	.I2C_SCLK		( I2C_SCLK		),
+	.CLK_COUNT 		( CLK_COUNT		),
+	.SD_COUNTER		( SD_COUNTER	),
+	.DONE				( DONE			),
+	.EEPROM_OUT		( R_DATA			),
+	.EEPROM_IN		( WR_DATA		),
+	.I2C_SDAT		( I2C_SDAT		),
+	.I2C_ADDR		( I2C_ADDR		),
+	.WORD_ADDR		( WORD_ADDR		),
+	.GO_DB			( GO_DB			),
+	.CLK				( CLK				),
+	.RESET			( RS_EEPROM		)
+);
+
+OP_REG OR_1	(
+	.OR_OUT	( OR_OUT		),
+	.ANODE	( ANODE		),
+	.OR_IN	( OR_IN		),
 	.WE		( WE_OR		),
 	.PRGM		( PRGM_OR	),
 	.RESET	( RS_OR		),
@@ -225,7 +289,7 @@ OP_REG	OR_1	(
 // Debounce
 always @(posedge CLK) begin	
 	if (GO_DB != GO)
-		CNT <= 0;	// nothing happening
+		CNT <= 0;	
 	else 
 	begin
 		CNT <= CNT + 16'd1;
@@ -234,163 +298,80 @@ always @(posedge CLK) begin
 	end					
 end
 
-// Control Signals
-always @(negedge CLK or posedge RESET)
-begin	
-	if (RESET) 
-	begin		
-		RS_PC			<= 1;
-		RS_ACC		<= 1;		
-		RS_BREG		<= 1;
-		RS_MAR		<= 1;
-		RS_OR			<= 1;
-		RS_BUS		<= 1;
-		PRGM_PC		<= 0;
-		PRGM_ACC		<= 0;
-		PRGM_BREG	<= 0;
-		PRGM_MAR		<= 0;
-		PRGM_EEPROM	<= 0;
-		PRGM_OR		<= 0;
-		WE_PC			<= 0;
-		WE_ACC		<= 0;
-		WE_BREG		<= 0;
-		WE_MAR		<= 0;
-		WE_EEPROM	<= 0;
-		WE_OR			<= 0;
-		OE_PC			<= 0; 
-		OE_ACC		<= 0;
-		OE_BREG		<= 0;
-		OE_ALU		<= 0;
-		OE_MAR		<= 0;
-		OE_EEPROM	<= 0;
-	end
-	else 
-	begin
-		PRGM_PC		<= 0;
-		PRGM_ACC		<= 0;
-		PRGM_BREG	<= 0;
-		PRGM_MAR		<= 0;
-		PRGM_EEPROM	<= 0;
-		PRGM_OR		<= 0;
-		PRGM_BUS		<= 0;
-		WE_PC			<= 0;
-		WE_ACC		<= 0;
-		WE_BREG		<= 0;
-		WE_MAR		<= 0;
-		WE_EEPROM	<= 0;
-		WE_OR			<= 0;
-		OE_PC			<= 0; 
-		OE_ACC		<= 0;
-		OE_BREG		<= 0;
-		OE_ALU		<= 0;
-		OE_MAR		<= 0;
-		OE_EEPROM	<= 0;
-		RS_PC			<= 0;
-		RS_ACC		<= 0;	
-		RS_BREG		<= 0;
-		RS_MAR		<= 0;
-		RS_EEPROM	<= 0;
-		RS_OR			<= 0;
-		RS_BUS		<= 0;
-						
-		if (~GO) 
-		begin			
-			case (SEL)
-				PC		:	begin
-								PRGM_PC		<= PRGM;
-								WE_PC			<= WE;
-								OE_PC			<= OE;
-							end
-				ACC	:	begin
-								PRGM_ACC		<= PRGM;
-								WE_ACC		<= WE;
-								OE_ACC		<= OE;
-							end
-				BREG	:	begin
-								PRGM_BREG	<= PRGM;
-								WE_BREG		<= WE;
-								OE_BREG		<= OE;
-							end
-				ALU	:	begin
-								OE_ALU		<= OE;
-							end
-				MAR	:	begin
-								PRGM_MAR		<= PRGM;
-								WE_MAR		<= WE;
-								OE_MAR		<= OE;
-							end
-				MEM	:	begin
-								PRGM_EEPROM	<= PRGM;
-								WE_EEPROM	<= WE;
-								OE_EEPROM	<= OE;
-							end
-				OR		:	begin
-								PRGM_OR		<= PRGM;
-								WE_OR			<= WE;
-							end
-				BUS	:	begin
-								PRGM_BUS		<= PRGM;
-							end
-			endcase
-		end
-	end
-end
 
 // Module Data 
-always @(*)//negedge CLK or posedge RESET)
+always @(*)//negedge CLK or posedge CLR)
 begin
-	if (RESET) 
+	PC_IN = 0;
+	ACC_IN = 0;
+	BREG_IN = 0;
+	MAR_IN = 0;
+	OR_IN = 0;
+	ADDR_IN = 0;
+	INST_IN = 0;
+	BUS_IN = 0;
+	
+	if (CLR) 
 	begin
-		PC_IN <= 0;
-		ACC_IN <= 0;
-		BREG_IN <= 0;
-		MAR_IN <= 0;
-		OR_IN <= 0;
-		BUS_IN <= 0;
+		PC_IN = 0;
+		ACC_IN = 0;
+		BREG_IN = 0;
+		MAR_IN = 0;
+		OR_IN = 0;
+		ADDR_IN = 0;
+		INST_IN = 0;
+		BUS_IN = 0;
 	end
-	else
+	else if (PRGM || WE)
 	begin
-		PC_IN <= 0;
-		ACC_IN <= 0;
-		BREG_IN <= 0;
-		MAR_IN <= 0;
-		OR_IN <= 0;
-		BUS_IN <= 0;
-		
-		case (SEL)
+		case (SEL) // When WE is high, bus contents take priority over PRGM_IN
 			PC		:	begin
 							if (PRGM_PC)
-								PC_IN		<= PRGM_IN[7:4];
-							else if (WE_PC)
-								PC_IN		<= BUS_OUT[7:4];
+								PC_IN <= PRGM_IN[3:0];
 						end
 			ACC	:	begin
-							if (PRGM_ACC)
-								ACC_IN	<= PRGM_IN;
-							else if (WE_ACC)
-								ACC_IN	<= BUS_OUT;
+							if (WE_ACC)
+								ACC_IN <= BUS_DATA;
+							else if (PRGM_ACC)
+								ACC_IN <= PRGM_IN;
 						end
 			BREG	:	begin
-							if (PRGM_BREG)
-								BREG_IN	<= PRGM_IN;
-							else if (WE_BREG)
-								BREG_IN	<= BUS_OUT;
+							if (WE_BREG)
+								BREG_IN <= BUS_DATA;
+							else if (PRGM_BREG)
+								BREG_IN <= PRGM_IN;
 						end
 			MAR	:	begin
-							if (PRGM_MAR)
-								MAR_IN	<= PRGM_IN[7:4];
-							else if (WE_MAR)
-								MAR_IN	<= BUS_OUT[7:4];
+							if (WE_MAR)
+								MAR_IN <= BUS_DATA[3:0];
+							else if (PRGM_MAR)
+								MAR_IN <= PRGM_IN[3:0];
 						end
 			OR		:	begin
-							if (PRGM_OR)
+							if (WE_OR)
+								OR_IN	<= BUS_DATA;
+							else if (PRGM_OR)
 								OR_IN	<= PRGM_IN;
-							else if (WE_OR)
-								OR_IN	<= BUS_OUT;
+						end
+			IR		:	begin
+							if (WE_IR)
+								{INST_IN,ADDR_IN}	<= BUS_DATA;
+							else if (PRGM_IR)
+								{INST_IN,ADDR_IN}	<= {PRGM_IN[7:4],PRGM_ADDR};
 						end
 			BUS	:	begin
 							if (PRGM_BUS)
-								BUS_IN	<= PRGM_IN;
+								BUS_IN <= PRGM_IN;
+						end
+			default: begin
+							PC_IN <= 0;
+							ACC_IN <= 0;
+							BREG_IN <= 0;
+							MAR_IN <= 0;
+							OR_IN <= 0;
+							ADDR_IN <= 0;
+							INST_IN <= 0;
+							BUS_IN <= 0;
 						end
 		endcase
 	end
@@ -400,11 +381,9 @@ end
 always @(*)
 begin
 	if (PRGM_EEPROM || WE_EEPROM)
-		I2C_ADDR = 8'hA0; // Write address
+		I2C_ADDR <= 8'hA0;	// Write address
 	else if (OE_EEPROM)
-		I2C_ADDR = 8'hA1; // Read address
-	else
-		I2C_ADDR = 8'hz; 	// Nothing
+		I2C_ADDR <= 8'hA1;	// Read address
 end
 		
 
@@ -414,35 +393,35 @@ begin
 	CURRENT <= 0;
 	
 	case (SEL)
-		PC		:	CURRENT <= {COUNT,4'b0};
+		PC		:	CURRENT <= {4'b0,COUNT};
 		ACC	:	CURRENT <= ACC_OUT;
 		BREG	:	CURRENT <= BREG_OUT;
 		ALU	:	CURRENT <= ALU_OUT;
 		MEM	:	CURRENT <= R_DATA;
-		MAR	:	CURRENT <= {MAR_OUT,4'b0};
+		MAR	:	CURRENT <= {4'b0,MAR_OUT};
 		OR		:	CURRENT <= OR_OUT;
+		IR		:	CURRENT <= {INST,ADDR_OUT};
+		default: CURRENT <= {4'b0,COUNT};
 	endcase
 end
 
 // Latch for BUS data //
-always @(posedge CLK or posedge RESET)//COUNT or ACC_OUT or BREG_OUT or ALU_OUT or MAR_OUT or R_DATA or BUS_IN or posedge RESET)
+always @(posedge CLK or posedge CLR)//COUNT or ACC_OUT or BREG_OUT or ALU_OUT or MAR_OUT or R_DATA or BUS_IN or posedge CLR)
 begin
-	if (RESET)
+	if (CLR)
 		BUS_DATA <= 8'b0;
 	else if	(PRGM_BUS)
 		BUS_DATA <= BUS_IN;
 	else if (OE_PC)
-		BUS_DATA <= {COUNT,4'b0};
+		BUS_DATA <= {4'b0,COUNT};
 	else if	(OE_ACC)
 		BUS_DATA <= ACC_OUT;
-	else if	(OE_BREG)
-		BUS_DATA <= BREG_OUT;
 	else if	(OE_ALU)
 		BUS_DATA <= ALU_OUT;
-	else if	(OE_MAR)
-		BUS_DATA <= {MAR_OUT,4'b0};
 	else if	(OE_EEPROM)
 		BUS_DATA <=	R_DATA;
+	else if	(OE_IR)
+		BUS_DATA <=	{INST,ADDR_OUT};
 end
 
 endmodule

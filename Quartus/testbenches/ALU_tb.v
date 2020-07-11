@@ -36,7 +36,7 @@ FPGAComputer uut(
 			.ON		( ON			),
 			.SEL		( SEL			),
 			.PRGM_IN	( PRGM_IN	),
-			.OP		( OP			),
+			.OP_PRGM	( OP			),
 			.CLK		( CLK			),
 			.RESET	( RESET		),
 			.EN		( EN			),
@@ -49,7 +49,7 @@ FPGAComputer uut(
 
 initial begin
 	CLK = 1'b0;
-	RESET = 1'b0;
+	RESET = 1'b1;
 	SEL = 4'b000;
 	PRGM_IN = 8'b00000000;
 	EN = 1'b0;
@@ -60,26 +60,23 @@ initial begin
 	HLT = 1'b0;
 	#25;
 	
-	RESET = 1'b1;				// reset modules
+	RESET = 1'b0;				// reset modules
 	SEL = ACC;
 	GO = 1'b0;
 	#50;
 	
-	RESET = 1'b0;				// Program Accumulator
+	// Program Accumulator
 	PRGM_IN = 8'b10101010;
 	PRGM = 1'b1;
 	
 	#50;
-	PRGM = 1'b0;
 	
 	#50;
 	SEL = BREG;					// Program Bregister
 	OE = 1'b0;
 	PRGM_IN = 8'b01010101;
-	PRGM = 1'b1;
 	
 	#50;
-	PRGM = 1'b0;
 	
 	#50;
 	SEL = ALU;
@@ -88,12 +85,13 @@ initial begin
 	
 	
 	#50;
-	OE = 1'b0;
+//	OE = 1'b0;
 	
 	#50;
 	OP = SUB;					// ACC - BREG
 	
 	#100;
+	OE = 1'b0;
 	OP = DEC;					// ACC--
 	
 	#100;

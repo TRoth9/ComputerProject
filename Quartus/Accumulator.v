@@ -17,4 +17,5 @@ always @(posedge CLK or posedge RESET) begin
 			ACC_DATA = ACC_IN;					// read from bus, or programmer
 		end
 end
+
 endmodule

@@ -12,7 +12,7 @@ module MAR_tb();
 	reg		[3:0]	SEL;					// Mux controlling modules
 	reg		[7:0]	PRGM_IN;				// reg from programmer
 	reg		[2:0] OP;					// ALU op code
-	reg		[3:0]	WORD_ADDR;
+	//reg		[3:0]	WORD_ADDR;
 	reg				GO;					// Flag for programming and testing
 	reg				EN;					// Enable flag for Program Counter
 	reg				OE;					// wire Enable

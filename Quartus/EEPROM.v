@@ -3,7 +3,7 @@ module EEPROM	(
 	output reg	[9:0]	CLK_COUNT = 1'b0,			// EEPROM Clock	
 	output reg	[5:0] SD_COUNTER = 1'b0,		// Counter for EEPROM
 	output reg			DONE,
-	output 		[7:0]	EEPROM_OUT,
+	output reg	[7:0]	EEPROM_OUT,
 	input			[7:0]	EEPROM_IN,
 	inout	 				I2C_SDAT,
 	input			[7:0]	I2C_ADDR,					// I2C Address
@@ -24,7 +24,7 @@ parameter	WRITE = 8'hA0,				// EEPROM Addresses
 				READ	= 8'hA1;
 
 wire [5:0]	PULSE_COUNT = (I2C_ADDR == WRITE)? 6'd31 : 6'd42;
-wire [7:0]	WR_DATA;
+reg [7:0]	WR_DATA;
 
 // Setup clock for EEPROM
 always @(posedge CLK) CLK_COUNT <= CLK_COUNT + 10'd1;	
@@ -42,6 +42,19 @@ begin
 		I2C_SCLK <= (((SD_COUNTER >= 4)  & (SD_COUNTER <= 22)) 
 						| (SD_COUNTER >= 24) & (SD_COUNTER <= 42))? ~CLK_COUNT[9]: SCLK;
 	end
+end
+
+always @(posedge CLK)
+begin
+//// EEPROM Output
+//assign EEPROM_OUT = ((I2C_ADDR == READ) & (DONE))? R_DATA: 8'bz;
+//// EEPROM Input
+//assign WR_DATA		= (I2C_ADDR == WRITE)? EEPROM_IN: 8'bz;
+	if (I2C_ADDR == READ && DONE)
+		EEPROM_OUT <= R_DATA;
+	
+	if (I2C_ADDR == WRITE)
+		WR_DATA <= EEPROM_IN;
 end
 
 // Initialize EEPROM Counter
@@ -139,7 +152,7 @@ begin
 		endcase
 	end
 	else 
-	if (I2C_ADDR == READ)										// READ									
+	if (I2C_ADDR == READ)										// READ							
 	begin
 		case	(SD_COUNTER)
 			6'd0	:	begin
@@ -213,8 +226,5 @@ end
 // Disconnect when we are reading data
 assign I2C_SDAT = ((I2C_ADDR == READ) & (SD_COUNTER >= 32) & (SD_COUNTER <= 42))? 1'bz : SDI;
 
-// EEPROM Output
-assign EEPROM_OUT = ((I2C_ADDR == READ) & (DONE))? R_DATA: 8'bz;
-// EEPROM Input
-assign WR_DATA		= (I2C_ADDR == WRITE)? EEPROM_IN: 8'bz;
+
 endmodule
