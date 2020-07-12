@@ -10,119 +10,119 @@
 # 
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/OutputRegister.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/OutputRegister.v 
 # -- Compiling module OP_REG
 # 
 # Top level modules:
 # 	OP_REG
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/MAR.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/MAR.v 
 # -- Compiling module ADDR_REG
 # 
 # Top level modules:
 # 	ADDR_REG
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/ProgramCounter.v 
 # -- Compiling module ProgramCounter
 # 
 # Top level modules:
 # 	ProgramCounter
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/Accumulator.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/Accumulator.v 
 # -- Compiling module Accumulator
 # 
 # Top level modules:
 # 	Accumulator
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/BRegister.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/BRegister.v 
 # -- Compiling module BRegister
 # 
 # Top level modules:
 # 	BRegister
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/EEPROM.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/EEPROM.v 
 # -- Compiling module EEPROM
 # 
 # Top level modules:
 # 	EEPROM
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/ALU.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/ALU.v 
 # -- Compiling module ALU_REG
 # 
 # Top level modules:
 # 	ALU_REG
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v 
 # -- Compiling module FPGAComputer
 # 
 # Top level modules:
 # 	FPGAComputer
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/ControlUnit.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/ControlUnit.v 
 # -- Compiling module ControlUnit
 # 
 # Top level modules:
 # 	ControlUnit
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus {/home/tom/Documents/8bit Computer/Quartus/InstructionReg.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus" /home/tom/Documents/8bit Computer/Quartus/InstructionReg.v 
 # -- Compiling module InstructionReg
 # 
 # Top level modules:
 # 	InstructionReg
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vlog -vlog01compat -work work +incdir+/home/tom/Documents/8bit\ Computer/Quartus/testbenches {/home/tom/Documents/8bit Computer/Quartus/testbenches/ALU_tb.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+/home/tom/Documents/8bit Computer/Quartus/testbenches" /home/tom/Documents/8bit Computer/Quartus/testbenches/ALU_tb.v 
 # -- Compiling module ALU_tb
 # 
 # Top level modules:
 # 	ALU_tb
-# End time: 16:57:00 on Jul 11,2020, Elapsed time: 0:00:00
+# End time: 02:40:17 on Jul 12,2020, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  ALU_tb
 # vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" ALU_tb 
-# Start time: 16:57:00 on Jul 11,2020
+# Start time: 02:40:17 on Jul 12,2020
 # Loading work.ALU_tb
 # Loading work.FPGAComputer
 # Loading work.ProgramCounter
@@ -144,11 +144,11 @@
 # ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/ALU_tb.v(32): [TFMPC] - Missing connection for port 'I2C_SCLK'.
 # ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/ALU_tb.v(32): [TFMPC] - Missing connection for port 'I2C_SDAT'.
 # ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/testbenches/ALU_tb.v(32): [TFMPC] - Missing connection for port 'PRGM_ADDR'.
-# ** Warning: (vsim-3017) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(232): [TFMPC] - Too few port connections. Expected 30, found 29.
+# ** Warning: (vsim-3017) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(224): [TFMPC] - Too few port connections. Expected 31, found 30.
 #    Time: 0 ps  Iteration: 0  Instance: /ALU_tb/uut/CU_1 File: /home/tom/Documents/8bit Computer/Quartus/ControlUnit.v
-# ** Warning: (vsim-3015) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(232): [PCDPC] - Port size (3) does not match connection size (1) for port 'OP'. The port definition is at: /home/tom/Documents/8bit Computer/Quartus/ControlUnit.v(22).
+# ** Warning: (vsim-3015) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(224): [PCDPC] - Port size (3) does not match connection size (1) for port 'OP'. The port definition is at: /home/tom/Documents/8bit Computer/Quartus/ControlUnit.v(22).
 #    Time: 0 ps  Iteration: 0  Instance: /ALU_tb/uut/CU_1 File: /home/tom/Documents/8bit Computer/Quartus/ControlUnit.v
-# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(232): [TFMPC] - Missing connection for port 'DONE_CU'.
+# ** Warning: (vsim-3722) /home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v(224): [TFMPC] - Missing connection for port 'DONE_CU'.
 # 
 # add wave *
 # view structure
@@ -159,5 +159,5 @@
 # ** Warning: (vsim-3116) Problem reading symbols from linux-gate.so.1 : can not open ELF file.
 # Break key hit
 # Simulation stop requested.
-# End time: 16:57:38 on Jul 11,2020, Elapsed time: 0:00:38
+# End time: 02:41:01 on Jul 12,2020, Elapsed time: 0:00:44
 # Errors: 0, Warnings: 13

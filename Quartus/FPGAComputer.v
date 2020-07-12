@@ -39,7 +39,7 @@ parameter PC 	 =	4'b0000, //	ProgramCounter
 			 MAR 	 = 4'b0100,	//	Memory Address Register
 			 MEM 	 = 4'b0101,	//	EEPROM on De0-nano
 			 IR 	 =	4'b0110,	//	Instruction Register
-			 CNTRL = 4'b0111,	//	Controller/Sequencer
+			 CTRL	 = 4'b0111,	//	Controller/Sequencer
 			 OR 	 =	4'b1000,	//	Output Register
 			 BUS	 =	4'b1001;	// Bus
 			 
@@ -70,7 +70,6 @@ wire RESET_CU;
 wire CLR = RESET || RESET_CU;
 		
 // Program Counter //
-reg	RS_PC;
 reg [3:0]	PC_IN;
 
 wire	OE_PC;
@@ -79,7 +78,6 @@ wire [3:0]	PC_OUT;
 wire EN_PC = (EN || EN_CU) & ~HLT;
 
 // Accumulator //
-reg	RS_ACC;
 reg [7:0]	ACC_IN;
 
 wire	OE_ACC;
@@ -88,7 +86,6 @@ wire	PRGM_ACC;
 wire [7:0]	ACC_OUT;
 
 // B Register //
-reg	RS_BREG;
 reg [7:0]	BREG_IN;
 
 wire	WE_BREG;
@@ -105,7 +102,6 @@ wire [7:0]	ALU_OUT;
 wire [2:0]	OP_IN = PRGM? OP_PRGM: OP_CU;			
 
 // MAR //
-reg	RS_MAR;
 reg [3:0]	MAR_IN;
 
 wire	WE_MAR;
@@ -116,22 +112,19 @@ wire [3:0]	MAR_OUT;
 wire		 PRGM_BUS;
 reg [7:0] BUS_IN;
 reg [7:0] BUS_DATA;
-
+wire [7:0] BUS_REG;
 
 // EEPROM //
-reg	RS_EEPROM;
-reg [7:0] I2C_ADDR;		
-
 wire	DONE;
 wire	OE_EEPROM;
 wire	WE_EEPROM;
 wire	PRGM_EEPROM;
 wire [7:0] R_DATA;
 wire [7:0] WR_DATA;
+wire [7:0] I2C_ADDR;	
 wire [3:0] WORD_ADDR = (PRGM_EEPROM)? PRGM_ADDR: MAR_OUT;
 
 // Output Register //
-reg	RS_OR;
 reg [7:0]	OR_IN;
 
 wire	WE_OR;
@@ -140,7 +133,6 @@ wire [3:0] 	ANODE;
 wire [6:0]	OR_OUT;
 
 // Instruction Register //
-reg	RS_IR;
 reg [3:0]	ADDR_IN;
 reg [3:0]	INST_IN;
 
@@ -179,7 +171,7 @@ ProgramCounter PC_1 (
 	.PC_IN		( PC_IN		),
 	.PRGM			( PRGM_PC	),
 	.EN			( EN_PC		),
-	.RESET		( RS_PC		),
+	.RESET		( CLR			),
 	.CLK			( CLK			)
 );
 
@@ -188,16 +180,16 @@ Accumulator	ACC_1	(
 	.ACC_IN		( ACC_IN		),
 	.WE			( WE_ACC		),
 	.PRGM			( PRGM_ACC	),
-	.RESET		( RS_ACC		),
+	.RESET		( CLR			),
 	.CLK			( CLK			)
 );
 
-BRegister	BREG_1	(
+BRegister BREG_1 (
 	.BREG_OUT	( BREG_OUT		),
 	.BREG_IN		( BREG_IN		),
 	.WE			( WE_BREG		),
 	.PRGM			( PRGM_BREG		),
-	.RESET		( RS_BREG		),
+	.RESET		( CLR				),
 	.CLK			( CLK				)
 );
 
@@ -215,7 +207,7 @@ ADDR_REG	MAR_1	(
 	.WE			( WE_MAR		),
 	.PRGM			( PRGM_MAR	),
 	.CLK			( CLK			),
-	.RESET		( RS_MAR		)
+	.RESET		( CLR			)
 );
 
 InstructionReg	IR_1 (
@@ -226,7 +218,7 @@ InstructionReg	IR_1 (
 	.WE			( WE_IR		),		
 	.PRGM			( PRGM_IR	),
 	.CLK			( CLK			),
-	.RESET		( RS_IR		)
+	.RESET		( CLR			)
 );
 	
 ControlUnit	CU_1	(
@@ -250,6 +242,7 @@ ControlUnit	CU_1	(
 	.WE_IR			( WE_IR			),	
 	.EN				( EN_CU			),
 	.OP				( OP_CU			),
+	.I2C_ADDR		( I2C_ADDR		),
 	.SEL				( SEL				),
 	.INST				( INST			),
 	.PRGM				( PRGM			),
@@ -273,7 +266,7 @@ EEPROM EEPROM_1	(
 	.WORD_ADDR		( WORD_ADDR		),
 	.GO_DB			( GO_DB			),
 	.CLK				( CLK				),
-	.RESET			( RS_EEPROM		)
+	.RESET			( CLR				)
 );
 
 OP_REG OR_1	(
@@ -282,7 +275,7 @@ OP_REG OR_1	(
 	.OR_IN	( OR_IN		),
 	.WE		( WE_OR		),
 	.PRGM		( PRGM_OR	),
-	.RESET	( RS_OR		),
+	.RESET	( CLR			),
 	.CLK		( CLK			)
 );
 
@@ -297,7 +290,6 @@ always @(posedge CLK) begin
 			GO_DB <= ~GO_DB;
 	end					
 end
-
 
 // Module Data 
 always @(*)//negedge CLK or posedge CLR)
@@ -377,15 +369,6 @@ begin
 	end
 end		
 
-// EEPROM
-always @(*)
-begin
-	if (PRGM_EEPROM || WE_EEPROM)
-		I2C_ADDR <= 8'hA0;	// Write address
-	else if (OE_EEPROM)
-		I2C_ADDR <= 8'hA1;	// Read address
-end
-		
 
 // Outputs currently selected module for easier testing
 always @(*)
@@ -406,22 +389,24 @@ begin
 end
 
 // Latch for BUS data //
-always @(posedge CLK or posedge CLR)//COUNT or ACC_OUT or BREG_OUT or ALU_OUT or MAR_OUT or R_DATA or BUS_IN or posedge CLR)
+always @(*)
 begin
+	BUS_DATA <= 8'b0;
+	
 	if (CLR)
 		BUS_DATA <= 8'b0;
-	else if	(PRGM_BUS)
+	else if (PRGM_BUS)
 		BUS_DATA <= BUS_IN;
 	else if (OE_PC)
 		BUS_DATA <= {4'b0,COUNT};
-	else if	(OE_ACC)
+	else if (OE_ACC)
 		BUS_DATA <= ACC_OUT;
-	else if	(OE_ALU)
+	else if (OE_ALU)
 		BUS_DATA <= ALU_OUT;
-	else if	(OE_EEPROM)
+	else if (OE_EEPROM)
 		BUS_DATA <=	R_DATA;
-	else if	(OE_IR)
-		BUS_DATA <=	{INST,ADDR_OUT};
+	else if (OE_IR)
+		BUS_DATA <= {INST,ADDR_OUT};
 end
 
 endmodule

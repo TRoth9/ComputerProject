@@ -9,7 +9,7 @@ z2
 cModel Technology
 Z0 d/home/tom/Documents/8bit Computer/Quartus/simulation/modelsim
 vAccumulator
-Z1 !s110 1594511820
+Z1 !s110 1594546817
 !i10b 1
 !s100 ;E@RIO_:mb`H>2:SX_=2^3
 IdZ?A=:7BkgH6Q@LO?Zde21
@@ -23,7 +23,7 @@ Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1594511820.000000
+Z4 !s108 1594546817.000000
 !s107 /home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/tom/Documents/8bit Computer/Quartus|/home/tom/Documents/8bit Computer/Quartus/Accumulator.v|
 !i113 1
@@ -126,11 +126,11 @@ n@b@register
 vControlUnit
 R1
 !i10b 1
-!s100 5CK<E276^KLaIKZX[[?HI3
-IQICjIhoJJNcKaQ`E2Z_EL3
+!s100 RIUW>4gcIQ]P[A[5`>:F:2
+I3]QZhQJ`?]WYbPccKDc133
 R2
 R0
-w1594511733
+w1594541910
 8/home/tom/Documents/8bit Computer/Quartus/ControlUnit.v
 F/home/tom/Documents/8bit Computer/Quartus/ControlUnit.v
 L0 1
@@ -172,11 +172,11 @@ n@e@e@p@r@o@m
 vFPGAComputer
 R1
 !i10b 1
-!s100 1?nAoCK34JUCk:0<e;AGF0
-I8FTj?NE2E@`XFN0KGQGl;0
+!s100 _maOWgo]Ho]iiZ<5FjIa60
+I2fBUS5@S^;e=AbdJ_7Ta@2
 R2
 R0
-w1594511051
+w1594546809
 8/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v
 F/home/tom/Documents/8bit Computer/Quartus/FPGAComputer.v
 L0 1

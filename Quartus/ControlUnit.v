@@ -20,6 +20,7 @@ module ControlUnit	(
 	output reg	EN,
 	output reg	DONE_CU,	// Flag to indicate when we finish the execution stage
 	output reg [2:0] OP,	// ALU OP codes
+	output reg [7:0] I2C_ADDR, 
 	input	[3:0]	SEL,		// Currently selected module for programming
 	input	[3:0]	INST,		// Instruction
 	input			GO,		// Push-button for inputting programmed data
@@ -38,33 +39,36 @@ module ControlUnit	(
 // DIP SWITCH MUX TO CONTROLL ENABLE FOR PROGRAM
 
 // Module Parameters //
-parameter PC 	 =	4'b0000, //	ProgramCounter
-			 ACC 	 = 4'b0001,	//	Accumulator
-			 BREG  = 4'b0010,	//	B register
-			 ALU 	 = 4'b0011,	//	Arithmetic Logic Unit
-			 MAR 	 = 4'b0100,	//	Memory Address Register
-			 MEM 	 = 4'b0101,	//	EEPROM on De0-nano
-			 IR 	 =	4'b0110,	//	Instruction Register
-			 CNTRL = 4'b0111,	//	Controller/Sequencer
-			 OR 	 =	4'b1000,	//	Output Register
-			 BUS	 =	4'b1001;	// Bus
+parameter 
+			PC		= 4'b0000,	//	ProgramCounter
+			ACC	= 4'b0001,	//	Accumulator
+			BREG	= 4'b0010,	//	B register
+			ALU	= 4'b0011,	//	Arithmetic Logic Unit
+			MAR	= 4'b0100,	//	Memory Address Register
+			MEM	= 4'b0101,	//	EEPROM on De0-nano
+			IR		= 4'b0110,	//	Instruction Register
+			CTRL	= 4'b0111,	//	Controller/Sequencer
+			OR		= 4'b1000,	//	Output Register
+			BUS	= 4'b1001;	// Bus
 			 
 // Control Unit Parameters //
-parameter LDA	= 4'b0001,		// Write to Accumulator
-			 LDB	= 4'b0010,		// Write to B Register
-			 ADD	= 4'b0011,		// Add Accumulator + B Register
-			 SUB	= 4'b0100,		// Subtract Accumulator - B Register
-			 OUT  = 4'b1000;		// Output Register
+parameter 
+			LDA	= 4'b0001,		// Write to Accumulator
+			LDB	= 4'b0010,		// Write to B Register
+			ADD	= 4'b0011,		// Add Accumulator + B Register
+			SUB	= 4'b0100,		// Subtract Accumulator - B Register
+			OUT	= 4'b1000;		// Output Register
 
 // ALU OP Codes //
-parameter ALU_ADD = 3'b000,	// Addition
-			 ALU_SUB = 3'b001,	// Subtraction
-			 ALU_DEC = 3'b010,	// Decrement
-			 ALU_INC = 3'b011,	// Increment
-			 ALU_OC  = 3'b100,	// One's Complement
-			 ALU_BND = 3'b101,	// Bitwise AND
-			 ALU_BOR = 3'b110,	// Bitwise OR
-			 ALU_BXR = 3'b111;	// Bitwise XOR			 
+parameter 
+			ALU_ADD = 3'b000,	// Addition
+			ALU_SUB = 3'b001,	// Subtraction
+			ALU_DEC = 3'b010,	// Decrement
+			ALU_INC = 3'b011,	// Increment
+			ALU_OC  = 3'b100,	// One's Complement
+			ALU_BND = 3'b101,	// Bitwise AND
+			ALU_BOR = 3'b110,	// Bitwise OR
+			ALU_BXR = 3'b111;	// Bitwise XOR			 
 
 // Instruction Register //
 //wire	[1:0] FETCH;
@@ -77,6 +81,16 @@ reg [2:0] CYCLES		= 3'd0;		// Register value for total execution CYCLES of opera
 wire FETCH = ~PRGM && ((CYCLE >= CYCLES) || (CYCLE <= 1)) && ~CLR;
 wire EXECUTE = (CYCLE >= 3'd1) && (CYCLE <= CYCLES);
 
+// EEPROM Addresses
+always @(*)
+begin
+	I2C_ADDR <= 8'h0;	
+	if (PRGM_EEPROM || WE_EEPROM)
+		I2C_ADDR <= 8'hA0;	// Write address
+	else if (OE_EEPROM)
+		I2C_ADDR <= 8'hA1;	// Read address
+end
+		
 always @(*)
 begin
 	CYCLES = 3'd0;
@@ -91,6 +105,24 @@ end
 
 always @(negedge CLK) 
 begin	
+	PRGM_PC <= 1'b0;
+	PRGM_ACC <= 1'b0;
+	PRGM_BREG <= 1'b0;
+	PRGM_MAR <= 1'b0;
+	PRGM_EEPROM <= 1'b0;
+	PRGM_OR <= 1'b0;
+	PRGM_BUS <= 1'b0;
+	OE_PC <= 1'b0;
+	OE_ACC <= 1'b0;
+	OE_ALU <= 1'b0;	
+	OE_EEPROM <= 1'b0;
+	OE_IR <= 1'b0;
+	WE_ACC <= 1'b0;
+	WE_BREG <= 1'b0;		
+	WE_MAR <= 1'b0;
+	WE_EEPROM <= 1'b0;	
+	WE_OR <= 1'b0;
+	WE_IR <= 1'b0;	
 	if (CLR)
 	begin
 		PRGM_PC <= 1'b0;
