@@ -8,7 +8,7 @@ The goals of this project is to design a "Turing Complete" Computer on an Altera
 
 ## Project Status
 ### EEPROM Read Testbench
-![EEPROM Read Testbench](https://github.com/TRoth9/ComputerProject/blob/master/Images/EEPROM_READ.png)
+![EEPROM Read Testbench](https://github.com/TRoth9/ComputerProject/blob/master/Images/EEPROM_Read.png)
 
 ### EEPROM Write Testbench
 ![EEPROM Write Testbench](https://github.com/TRoth9/ComputerProject/blob/master/Images/EEPROM_Write.png)
